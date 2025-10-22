@@ -23,7 +23,7 @@ function HeartMesh({ rotationSpeed, onSpeedChange }: HeartMeshProps) {
   const groupRef = useRef<Mesh>(null);
   const [currentSpeed, setCurrentSpeed] = useState(0.01);
 
-  useFrame(() => {
+  useFrame((state) => {
     if (groupRef.current) {
       // Apply rotation
       groupRef.current.rotation.y += currentSpeed;
@@ -37,6 +37,13 @@ function HeartMesh({ rotationSpeed, onSpeedChange }: HeartMeshProps) {
         setCurrentSpeed(newSpeed);
         onSpeedChange(newSpeed);
       }
+
+      // Heart beating effect - smooth sine wave animation
+      const time = state.clock.getElapsedTime();
+      const heartBeat = 1 + Math.sin(time * 4) * 0.1; // Beat at 3 Hz with 20% scale variation
+      
+      // Apply beating effect to the heart
+      groupRef.current.scale.set(heartBeat, heartBeat, heartBeat);
     }
   });
 
@@ -133,9 +140,9 @@ export default function PixelHeart3D() {
     >
       <Canvas
         camera={{ position: [0, 0, 8], fov: 50 }}
-        style={{ background: 'white' }}
+        style={{ background: 'black' }}
       >
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.2} />
         <directionalLight 
           position={[5, 5, 5]} 
           intensity={0.8}
