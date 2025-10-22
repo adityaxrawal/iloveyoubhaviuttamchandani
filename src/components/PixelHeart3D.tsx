@@ -17,9 +17,14 @@ const HEART_PATTERN = [
 interface HeartMeshProps {
   rotationSpeed: number;
   onSpeedChange: (speed: number) => void;
+  scale?: number;
 }
 
-function HeartMesh({ rotationSpeed, onSpeedChange }: HeartMeshProps) {
+interface PixelHeart3DProps {
+  scale?: number;
+}
+
+function HeartMesh({ rotationSpeed, onSpeedChange, scale = 1 }: HeartMeshProps) {
   const groupRef = useRef<Mesh>(null);
   const [currentSpeed, setCurrentSpeed] = useState(0.01);
 
@@ -49,8 +54,8 @@ function HeartMesh({ rotationSpeed, onSpeedChange }: HeartMeshProps) {
 
   // Generate cubes based on heart pattern
   const cubes = [];
-  const cubeSize = 0.5;
-  const spacing = 0.55;
+  const cubeSize = 0.5 * scale;
+  const spacing = 0.55 * scale;
 
   for (let row = 0; row < HEART_PATTERN.length; row++) {
     for (let col = 0; col < HEART_PATTERN[row].length; col++) {
@@ -80,7 +85,7 @@ function HeartMesh({ rotationSpeed, onSpeedChange }: HeartMeshProps) {
   );
 }
 
-export default function PixelHeart3D() {
+export default function PixelHeart3D({ scale = 1 }: PixelHeart3DProps) {
   const [rotationSpeed, setRotationSpeed] = useState(0.01);
   const [isDragging, setIsDragging] = useState(false);
   const [lastPointerX, setLastPointerX] = useState(0);
@@ -151,6 +156,7 @@ export default function PixelHeart3D() {
         <HeartMesh 
           rotationSpeed={rotationSpeed}
           onSpeedChange={setRotationSpeed}
+          scale={scale}
         />
       </Canvas>
     </div>
