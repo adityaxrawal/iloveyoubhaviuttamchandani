@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 
 // Comprehensive pixel font patterns for all letters (5x7 grid)
