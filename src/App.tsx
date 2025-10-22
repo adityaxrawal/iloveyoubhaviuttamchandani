@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PixelHeart3D from './components/PixelHeart3D';
 import PixelText3D from './components/PixelText3D';
 
