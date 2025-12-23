@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import PixelHeart3D from './components/PixelHeart3D';
-import PixelText3D from './components/PixelText3D';
+import PixelHeart3D from './components/3D/PixelHeart3D';
+import PixelText3D from './components/3D/PixelText3D';
 
 function App() {
   const [windowSize, setWindowSize] = useState({
