@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import PixelText3D from "../components/home/PixelText3D";
-import PixelHeart3D from "../components/home/PixelHeart3D";
+import PixelText3D from "../components/3d-heart/3d-heart-text";
+import PixelHeart3D from "../components/3d-heart/3d-heart-object";
 
 const PixelPage3D = () => {
   const [windowSize, setWindowSize] = useState({
