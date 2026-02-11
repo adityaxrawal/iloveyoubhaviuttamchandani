@@ -1,0 +1,31 @@
+:root {
+  --pixel-rose-size: 512px;
+}
+
+.pixel-rose-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9ebd1; /* Original background color preserved */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.pixel-rose-canvas {
+  /* Ensure the canvas scales nicely but keeps aspect ratio */
+  width: auto;
+  height: auto;
+
+  /* Max dimensions to ensure it fits */
+  max-width: 100%;
+  max-height: 80vh;
+
+  /* Force distinct pixels */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+
+  /* Shadow for depth/pop, optional but nice given it's a main element */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
