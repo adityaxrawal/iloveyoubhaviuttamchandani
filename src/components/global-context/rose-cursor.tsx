@@ -1,14 +1,16 @@
+import React, { useMemo } from "react";
 
-const RoseCursor = ({
-  scale = 1,
-  className = "",
-}: {
+interface RoseCursorProps {
   scale?: number;
   className?: string;
-}) => {
-  const pixelSize = 4 * scale;
+}
 
-  const boxShadow = `
+const RoseCursor: React.FC<RoseCursorProps> = React.memo(
+  ({ scale = 1, className = "" }) => {
+    const pixelSize = 4 * scale;
+
+    const boxShadow = useMemo(
+      () => `
     /* Row 1 */
     ${3 * pixelSize}px ${1 * pixelSize}px 0 #D32F2F, 
     ${4 * pixelSize}px ${1 * pixelSize}px 0 #D32F2F,
@@ -80,22 +82,27 @@ const RoseCursor = ({
     /* Stem Row 10 */
     ${5 * pixelSize}px ${10 * pixelSize}px 0 #1B5E20,
     ${6 * pixelSize}px ${10 * pixelSize}px 0 #1B5E20
-  `;
+  `,
+      [pixelSize],
+    );
 
-  return (
-    <div
-      className={className}
-      style={{
-        width: pixelSize,
-        height: pixelSize,
-        boxShadow: boxShadow,
-        backgroundColor: "transparent",
-        display: "inline-block",
-        marginRight: `${11 * pixelSize}px`, // reserve space for the shadow
-        marginBottom: `${11 * pixelSize}px`,
-      }}
-    />
-  );
-};
+    return (
+      <div
+        className={className}
+        style={{
+          width: pixelSize,
+          height: pixelSize,
+          boxShadow: boxShadow,
+          backgroundColor: "transparent",
+          display: "inline-block",
+          marginRight: `${11 * pixelSize}px`, // reserve space for the shadow
+          marginBottom: `${11 * pixelSize}px`,
+        }}
+      />
+    );
+  },
+);
+
+RoseCursor.displayName = "RoseCursor";
 
 export default RoseCursor;

@@ -1,5 +1,6 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import RoseCursor from "./rose-cursor";
+import "./global-cursor.css";
 
 interface FloatingElement {
   id: number;
@@ -11,47 +12,7 @@ interface FloatingElement {
   delay: number;
 }
 
-const STYLES = `
-
-/* ===== FLOATING ELEMENTS ===== */
-.floating-element {
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-  animation: float-up-fade 4s ease-out forwards;
-  will-change: transform, opacity;
-}
-
-.pixel-heart-particle {
-  width: 4px;
-  height: 4px;
-  background-color: #FF1744;
-  box-shadow: 0 0 4px #FF1744;
-  position: absolute;
-}
-.pixel-heart-particle::before {
-  content: '';
-  position: absolute;
-  left: -2px; top: -2px;
-  width: 2px; height: 2px;
-  box-shadow: 2px 0 0 #FF1744, 4px 0 0 #FF1744, 6px 0 0 #FF1744, 0 2px 0 #FF1744, 8px 2px 0 #FF1744, 2px 4px 0 #FF1744, 4px 4px 0 #FF1744, 6px 4px 0 #FF1744, 4px 6px 0 #FF1744;
-  background: transparent;
-}
-
-
-@keyframes float-up-fade {
-  0%   { opacity: 1; transform: translate(0, 0) scale(0.8); }
-  20%  { opacity: 1; transform: translate(var(--dx, 0), -50px) scale(1); }
-  100% { opacity: 0; transform: translate(var(--dx, 0), -400px) scale(1); }
-}
-
-/* ===== GLOBAL CURSOR ===== */
-body, a, button, .clickable {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" fill="%23FF1744"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto !important;
-}
-`;
-
-const GlobalCursor = () => {
+const GlobalCursor: React.FC = () => {
   const [floatingElements, setFloatingElements] = useState<FloatingElement[]>(
     [],
   );
@@ -91,11 +52,13 @@ const GlobalCursor = () => {
     setFloatingElements((prev) => [...prev, ...newElements]);
 
     // Cleanup
-    setTimeout(() => {
+    const cleanupId = setTimeout(() => {
       setFloatingElements((prev) =>
         prev.filter((el) => !newElements.some((ne) => ne.id === el.id)),
       );
     }, 4000);
+
+    return () => clearTimeout(cleanupId); // Note: this return is ignored by the event listener, but good practice if logic moves
   }, []);
 
   useEffect(() => {
@@ -107,7 +70,6 @@ const GlobalCursor = () => {
 
   return (
     <>
-      <style>{STYLES}</style>
       {floatingElements.map((el) => (
         <div
           key={el.id}
