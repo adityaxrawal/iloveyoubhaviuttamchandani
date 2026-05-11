@@ -1,0 +1,30 @@
+.section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* inherit from root */
+  scroll-snap-align: start; /* Optional scroll snapping */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@supports (height: 100dvh) {
+  .section {
+    min-height: 100dvh;
+  }
+}
+
+.footerSectionContent {
+  text-align: center;
+}
+
+.footerLoveText {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 400;
+  /* Deep maroon bg ( #8B1A2F ) contrasted with soft pink white */
+  color: #FFF0F5; 
+  margin: 0;
+}

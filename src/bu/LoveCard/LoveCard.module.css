@@ -1,0 +1,324 @@
+/* ValentinePostcard.module.css */
+
+/* ─── Page wrapper ──────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: 'Dancing Script', cursive;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@supports (min-height: 100dvh) {
+  .page {
+    min-height: 100dvh;
+  }
+}
+
+/* ─── Card — wiggly-box mask ────────────────────────────────────────────
+   RULE: width and height MUST be exact multiples of 4*--s (= 44px)
+   so the radial-gradient tiles complete cleanly on every edge.
+     --s = 11px  →  tile unit = 4 × 11 = 44px
+     width  = 44 × 11 = 484px  ✓
+     height = 44 × 16 = 704px  ✓  (700 is NOT a multiple → artifacts)
+   ─────────────────────────────────────────────────────────────────── */
+.card {
+  --s: 11px;
+  --card-w: 484px;
+  --card-h: 704px;
+  --card-w-num: 484;
+  --card-h-num: 704;
+
+  width:  var(--card-w);
+  height: var(--card-h);
+
+  /* Transparent border creates the outer zone the mask notches into */
+  border: calc(2 * var(--s)) solid #0000;
+  box-sizing: border-box;
+
+  background: #f5f0e8;
+
+  /* drop-shadow respects the mask outline — no box-shadow needed */
+  filter:
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 2px 6px  rgba(0, 0, 0, 0.10));
+
+  /* ── stamp-box mask ── */
+  --r: 20px; /* control the radius */
+  mask: 
+    radial-gradient(circle at 50% 50%,#0000 66%,#000 67%) round 
+     var(--r) var(--r)/calc(2*var(--r)) calc(2*var(--r)), 
+    conic-gradient(#000 0 0) content-box;
+
+  /* Content layout */
+  display: flex;
+  flex-direction: column;
+
+  /* Responsive Scaling: perfectly fit the viewport */
+  --scale: min(1.1, calc((100vw - 40px) / var(--card-w-num)), calc((100vh - 40px) / var(--card-h-num)));
+  transform: scale(var(--scale));
+  /* Shrink layout box to match scaled visual box so flex centering is perfect */
+  margin: calc((var(--card-h) * var(--scale) - var(--card-h)) / 2) calc((var(--card-w) * var(--scale) - var(--card-w)) / 2);
+}
+
+@supports (height: 100dvh) {
+  .card {
+    --scale: min(1.1, calc((100vw - 40px) / var(--card-w-num)), calc((100dvh - 40px) / var(--card-h-num)));
+  }
+}
+
+
+/* ─── Inner content wrapper ─────────────────────────────────────────── */
+/* Padding here is independent of the mask geometry so we can tune it freely */
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 42px 40px 32px 40px;
+  box-sizing: border-box;
+  /* The mask on .card clips this div too — no overflow needed */
+}
+
+/* ─── Title ──────────────────────────────────────────────────────────── */
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #8b1a1a;
+  text-align: center;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin: 0 0 22px 0;
+  line-height: 1.1;
+}
+
+/* ─── Recipient row ──────────────────────────────────────────────────── */
+.recipientRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.recipientBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.recipientLine {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.label {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  color: #c0392b;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 27px;
+  font-weight: 600;
+  color: #c0392b;
+  line-height: 1.05;
+}
+
+.underline {
+  display: block;
+  width: 140px;
+  height: 1.5px;
+  background: #c0392b;
+  margin-top: 3px;
+}
+
+/* ─── Stamps ─────────────────────────────────────────────────────────── */
+.stamps {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* ─── Salutation ─────────────────────────────────────────────────────── */
+.salutation {
+  font-family: 'Dancing Script', cursive;
+  font-size: 34px;
+  font-weight: 700;
+  color: #c0392b;
+  text-align: center;
+  margin: 4px 0 16px 0;
+  line-height: 1.2;
+}
+
+/* ─── Body text ──────────────────────────────────────────────────────── */
+.body {
+  font-family: 'Dancing Script', cursive;
+  font-size: 16.5px;
+  font-weight: 400;
+  color: #c0392b;
+  line-height: 1.85;
+  text-align: justify;
+  margin: 0 0 18px 0;
+  flex: 1;
+  word-spacing: 0.04em;
+}
+
+/* ─── Decorative divider ─────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  opacity: 0.5;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #c0392b;
+}
+.dividerHeart {
+  color: #c0392b;
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.date {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  color: #c0392b;
+  line-height: 1;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.happyText {
+  font-family: 'Dancing Script', cursive;
+  font-size: 26px;
+  font-weight: 700;
+  color: #c0392b;
+  line-height: 1;
+}
+
+.valentinesText {
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  color: #c0392b;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Responsive adjustments for mobile viewports */
+@media (max-width: 550px) {
+  .card {
+    /* 
+       Recalculate dimensions to fit narrow screens.
+       Tile size = 4 * 9px = 36px 
+       Width = 10 * 36px = 360px
+       Height = 19 * 36px = 684px
+    */
+    --s: 9px;
+    --card-w: 360px;
+    --card-h: 684px;
+    --card-w-num: 360;
+    --card-h-num: 684;
+  }
+
+  .cardContent {
+    /* 
+      Increase left/right padding so text doesn't touch the scalloped mask.
+      With --s: 9px, the border is 18px and scallop cuts inside it by 18px.
+      Padding of 32px ensures a 14px safe margin from the deepest cut. 
+    */
+    padding: 32px 32px 24px 32px;
+  }
+
+  .title {
+    font-size: 28px;
+    margin: 0 0 16px 0;
+  }
+
+  .recipientRow {
+    gap: 8px;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .label {
+    font-size: 9px;
+  }
+
+  .underline {
+    width: 100px;
+  }
+
+  /* Shrink stamp SVG elements physically to prevent flex overflow */
+  .stamps {
+    gap: 6px;
+    transform: none; /* remove any transform scale used previously */
+  }
+  .stamps svg {
+    width: 62px;
+    height: auto;
+  }
+
+  .salutation {
+    font-size: 25px;
+    margin: 8px 0 12px 0;
+  }
+
+  .body {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+  }
+
+  .divider {
+    margin-bottom: 12px;
+  }
+
+  .date {
+    font-size: 18px;
+  }
+
+  .happyText {
+    font-size: 22px;
+  }
+
+  .valentinesText {
+    font-size: 8px;
+  }
+}
+

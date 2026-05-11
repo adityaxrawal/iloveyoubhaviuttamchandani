@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* ─── Page wrapper ───────────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@supports (min-height: 100dvh) {
+  .page {
+    min-height: 100dvh;
+  }
+}
+
+/* ─── Card — wiggly-box (scalloped) mask ─────────────────────────────
+   RULE: width & height must be exact multiples of 4*--s (= 44px)
+     --s = 11px  →  tile = 4 × 11 = 44px
+     width  = 44 × 11 = 484px  ✓
+     height = 44 × 16 = 704px  ✓
+   ─────────────────────────────────────────────────────────────────── */
+.card {
+  --s: 11px;
+  --card-w: 484px;
+  --card-h: 704px;
+  --card-w-num: 484;
+  --card-h-num: 704;
+
+  width:  var(--card-w);
+  height: var(--card-h);
+
+  border: calc(2 * var(--s)) solid #0000;
+  box-sizing: border-box;
+
+  background: #f5f0e8;
+
+  filter:
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 2px 6px  rgba(0, 0, 0, 0.10));
+
+--mask:
+    radial-gradient(23.32px at 50% calc(100% - 32px),#000 99%,#0000 101%) calc(50% - 40px) 0/80px 100%,
+    radial-gradient(23.32px at 50% calc(100% + 12px),#0000 99%,#000 101%) 50% calc(100% - 20px)/80px 100% repeat-x;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
+
+  display: flex;
+  flex-direction: column;
+
+  --scale: min(1.1, calc((100vw - 40px) / var(--card-w-num)), calc((100vh - 40px) / var(--card-h-num)));
+  transform: scale(var(--scale));
+  margin:
+    calc((var(--card-h) * var(--scale) - var(--card-h)) / 2)
+    calc((var(--card-w) * var(--scale) - var(--card-w)) / 2);
+}
+
+@supports (height: 100dvh) {
+  .card {
+    --scale: min(1.1, calc((100vw - 40px) / var(--card-w-num)), calc((100dvh - 40px) / var(--card-h-num)));
+  }
+}
+
+/* ─── Inner content wrapper ──────────────────────────────────────────── */
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 42px 40px 32px 40px;
+  box-sizing: border-box;
+}
+
+/* ─── Centred charm placeholder ──────────────────────────────────────── */
+.charmCenter {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Responsive — mobile ────────────────────────────────────────────── */
+@media (max-width: 550px) {
+  .card {
+    --s: 9px;
+    --card-w: 360px;
+    --card-h: 684px;
+    --card-w-num: 360;
+    --card-h-num: 684;
+  }
+
+  .cardContent {
+    padding: 32px 32px 24px 32px;
+  }
+}
