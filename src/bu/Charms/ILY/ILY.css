@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+.ily-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e8e4df;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letter-cutout {
+  position: absolute;
+  /* Cream paper background */
+  background-color: #faf6f0;
+  /* Horizontal ruled lines */
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 11px,
+    #c8d8e8 11px,
+    #c8d8e8 12px
+  );
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.18);
+  /* Organic blob shape */
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 55%;
+  transition: transform 0.3s ease-out;
+  user-select: none;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #c0292b;
+  line-height: 1;
+}
+
+/* Specific blob variations for each letter to feel hand-cut */
+.letter-cutout:nth-child(2n) {
+  border-radius: 45% 55% 40% 60% / 60% 45% 55% 40%;
+}
+
+.letter-cutout:nth-child(3n) {
+  border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%;
+}
+
+.letter-cutout span {
+  /* Apply SVG Filter for crayon texture */
+  filter: url(#crayon-texture);
+  display: inline-block;
+  pointer-events: none;
+}
+
+.ily-svg-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
