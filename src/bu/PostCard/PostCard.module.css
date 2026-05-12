@@ -99,7 +99,7 @@
 
 /* ─── Title ──────────────────────────────────────────────────────────── */
 .title {
-  font-family: "Playfair Display", serif;
+  font-family: "Dancing Script", cursive;
   font-size: 30px;
   font-weight: 700;
   color: #8b1a1a;
@@ -168,7 +168,7 @@
 
 /* ─── Salutation ─────────────────────────────────────────────────────── */
 .salutation {
-  font-family: "Dancing Script", cursive;
+  font-family: "Great Vibes", cursive;
   font-size: 28px;
   font-weight: 700;
   color: #c0392b;
@@ -179,11 +179,11 @@
 
 /* ─── Body text ──────────────────────────────────────────────────────── */
 .body {
-  font-family: "Dancing Script", cursive;
-  font-size: 14px;
-  font-weight: 500;
+  font-family: "Caveat", cursive;
+  font-size: 20px;
+  font-weight: 400;
   color: #c0392b;
-  line-height: 1.7;
+  line-height: 1.5;
   text-align: justify;
   margin: 0 0 12px 0;
   flex: 1;
@@ -309,13 +309,13 @@
   }
 
   .salutation {
-    font-size: 20px;
+    font-size: 24px;
     margin: 4px 0 8px 0;
   }
 
   .body {
-    font-size: 12.5px;
-    line-height: 1.5;
+    font-size: 16px;
+    line-height: 1.4;
     margin: 0 0 10px 0;
   }
 
