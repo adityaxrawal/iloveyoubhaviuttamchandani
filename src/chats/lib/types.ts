@@ -72,6 +72,8 @@ export interface Streak {
 
 export interface ResponseTime {
   medianMinutes: SenderCounts;
+  instantCounts: SenderCounts;
+  slowCounts: SenderCounts;
 }
 
 export interface Initiator {

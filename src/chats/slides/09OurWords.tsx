@@ -18,11 +18,15 @@ function WordColumn({ words }: { words: [string, number][] }) {
 
 export default function OurWords({ data }: SlideProps) {
   const { vocabulary, meta } = data;
+  const topWordsA = vocabulary.topWordsBySender[meta.senderA]?.slice(0, 8) ?? [];
+  const topWordsB = vocabulary.topWordsBySender[meta.senderB]?.slice(0, 8) ?? [];
 
   if (meta.isSolo) {
     return (
       <Card label="Our dictionary" title="Our words">
         <WordColumn words={vocabulary.uniqueWordsBySender[meta.senderA] ?? []} />
+        <p className={styles.sectionLabel}>Most-used words overall</p>
+        <WordColumn words={topWordsA} />
       </Card>
     );
   }
@@ -36,6 +40,12 @@ export default function OurWords({ data }: SlideProps) {
       <div className={styles.columns}>
         <WordColumn words={vocabulary.uniqueWordsBySender[meta.senderA] ?? []} />
         <WordColumn words={vocabulary.uniqueWordsBySender[meta.senderB] ?? []} />
+      </div>
+
+      <p className={styles.sectionLabel}>Most-used words overall</p>
+      <div className={styles.columns}>
+        <WordColumn words={topWordsA} />
+        <WordColumn words={topWordsB} />
       </div>
     </Card>
   );

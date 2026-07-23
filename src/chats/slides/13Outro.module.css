@@ -14,6 +14,11 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
+.recap {
+  font: 400 13px/1.5 var(--cw-font-body);
+  color: var(--cw-text-faint);
+}
+
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }

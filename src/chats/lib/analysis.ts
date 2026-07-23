@@ -26,7 +26,9 @@ export function extractEmojis(text: string): string[] {
   return text.match(EMOJI_RE) ?? [];
 }
 
-const MEDIA_RE = /<(image|video|sticker|gif|audio|document|media) omitted>/i;
+// Matches both "<Media omitted>" and the real export form with no brackets
+// and a leading left-to-right-mark (‎): "‎image omitted".
+const MEDIA_RE = /<?‎?(image|video|sticker|gif|audio|document|media) omitted>?/i;
 
 export function isMediaMessage(text: string): boolean {
   return MEDIA_RE.test(text);
@@ -234,11 +236,15 @@ export function computeResponseTime(messages: RawMessage[], meta: Meta): Respons
   }
 
   const medianMinutes: SenderCounts = {};
+  const instantCounts: SenderCounts = {};
+  const slowCounts: SenderCounts = {};
   for (const s of meta.participants) {
     medianMinutes[s] = Math.round(median(bySender[s]) * 10) / 10;
+    instantCounts[s] = bySender[s].filter((m) => m < 1).length;
+    slowCounts[s] = bySender[s].filter((m) => m > 60).length;
   }
 
-  return { medianMinutes };
+  return { medianMinutes, instantCounts, slowCounts };
 }
 
 export function computeInitiator(messages: RawMessage[]): Initiator {
@@ -304,6 +310,8 @@ const STOP_WORDS = new Set([
   'wait', 'also', 'still', 'come', 'came', 'then', 'when', 'what', 'how', 'who',
   'why', 'one', 'two', 'now', 'too', 'not', 'about', 'more', 'will', 'said', 'well',
   'from', 'have', 'had', 'been', 'would', 'could', 'should', 'there', 'their',
+  // WhatsApp media-placeholder text — not real vocabulary
+  'omitted', 'image', 'video', 'sticker', 'gif', 'audio', 'document', 'media',
 ]);
 
 const WORD_RE = /\b[a-zA-Z]{3,}\b/g;

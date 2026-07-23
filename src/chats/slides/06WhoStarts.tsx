@@ -2,6 +2,7 @@ import type { SlideProps } from '../lib/types';
 import Card from '../components/Card';
 import StatBox from '../components/StatBox';
 import SenderSplitBar from '../components/SenderSplitBar';
+import styles from './06WhoStarts.module.css';
 
 export default function WhoStarts({ data }: SlideProps) {
   const { initiator, meta } = data;
@@ -27,6 +28,10 @@ export default function WhoStarts({ data }: SlideProps) {
       footer={`${meta.senderA.split(' ')[0]} kicked things off ${aCount} days. ${meta.senderB.split(' ')[0]} started ${bCount}.`}
     >
       <SenderSplitBar leftLabel={meta.senderA} leftPercent={aPercent} rightLabel={meta.senderB} rightPercent={bPercent} />
+      <div className={styles.grid}>
+        <StatBox number={aCount} label={`${meta.senderA} · days started`} />
+        <StatBox number={bCount} label={`${meta.senderB} · days started`} />
+      </div>
     </Card>
   );
 }

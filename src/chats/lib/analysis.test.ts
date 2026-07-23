@@ -12,6 +12,7 @@ import {
   computeTimeOfDay,
   computeVocabulary,
   computeMessageShape,
+  isMediaMessage,
 } from './analysis';
 
 const fixture: RawMessage[] = [
@@ -20,6 +21,21 @@ const fixture: RawMessage[] = [
   { id: 3, timestamp: '2020-01-02T09:00:00', date: '02/01/20', time: '9:00:00 AM', sender: 'Sam', message: '<Media omitted>' },
   { id: 4, timestamp: '2022-01-01T09:00:00', date: '01/01/22', time: '9:00:00 AM', sender: 'Alex', message: 'ok' },
 ];
+
+describe('isMediaMessage', () => {
+  it('matches the bracketed form', () => {
+    expect(isMediaMessage('<Media omitted>')).toBe(true);
+  });
+
+  it('matches the real WhatsApp export form: no brackets, leading LRM mark', () => {
+    expect(isMediaMessage('‎image omitted')).toBe(true);
+    expect(isMediaMessage('‎sticker omitted')).toBe(true);
+  });
+
+  it('does not flag ordinary text', () => {
+    expect(isMediaMessage('good morning')).toBe(false);
+  });
+});
 
 describe('computeMeta', () => {
   it('sorts participants alphabetically and picks senderA/senderB', () => {
@@ -102,6 +118,22 @@ describe('computeResponseTime', () => {
     // Alex->Sam at msg2: 5 min. Sam->Alex at msg4: ~2 year gap, excluded (>1440min).
     expect(rt.medianMinutes.Sam).toBe(5);
     expect(rt.medianMinutes.Alex).toBe(0);
+  });
+
+  it('counts instant (<1min) and slow (>60min) replies per sender', () => {
+    const rtFixture: RawMessage[] = [
+      { id: 1, timestamp: '2020-01-01T10:00:00', date: '01/01/20', time: '10:00:00 AM', sender: 'Alex', message: 'a' },
+      { id: 2, timestamp: '2020-01-01T10:00:30', date: '01/01/20', time: '10:00:30 AM', sender: 'Sam', message: 'b' },
+      { id: 3, timestamp: '2020-01-01T12:00:30', date: '01/01/20', time: '12:00:30 PM', sender: 'Alex', message: 'c' },
+      { id: 4, timestamp: '2020-01-01T12:05:30', date: '01/01/20', time: '12:05:30 PM', sender: 'Sam', message: 'd' },
+    ];
+    const meta = computeMeta(rtFixture);
+    const rt = computeResponseTime(rtFixture, meta);
+    // Sam replies: 0.5min (instant), 5min (neither). Alex replies: 120min (slow).
+    expect(rt.instantCounts.Sam).toBe(1);
+    expect(rt.slowCounts.Sam).toBe(0);
+    expect(rt.instantCounts.Alex).toBe(0);
+    expect(rt.slowCounts.Alex).toBe(1);
   });
 });
 

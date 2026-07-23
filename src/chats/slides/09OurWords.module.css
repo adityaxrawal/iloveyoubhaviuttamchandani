@@ -4,6 +4,14 @@
   gap: 16px;
 }
 
+.sectionLabel {
+  font: 500 11px/1 var(--cw-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 24px 0 12px;
+}
+
 .wordRow {
   display: flex;
   align-items: center;

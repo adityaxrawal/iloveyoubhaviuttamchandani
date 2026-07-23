@@ -1,0 +1,20 @@
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.sectionLabel {
+  font: 500 11px/1 var(--cw-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 20px 0 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}

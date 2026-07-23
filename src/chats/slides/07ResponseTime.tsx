@@ -1,5 +1,6 @@
 import type { SlideProps } from '../lib/types';
 import Card from '../components/Card';
+import StatBox from '../components/StatBox';
 import styles from './07ResponseTime.module.css';
 
 function formatMinutes(min: number): string {
@@ -24,6 +25,10 @@ export default function ResponseTime({ data }: SlideProps) {
     return (
       <Card label="How fast we reply" title="Response time">
         <ReplyStat name={meta.senderA} minutes={responseTime.medianMinutes[meta.senderA] ?? 0} />
+        <div className={styles.grid}>
+          <StatBox number={responseTime.instantCounts[meta.senderA] ?? 0} label="Instant replies (<1 min)" />
+          <StatBox number={responseTime.slowCounts[meta.senderA] ?? 0} label="Slow replies (>60 min)" />
+        </div>
       </Card>
     );
   }
@@ -41,6 +46,18 @@ export default function ResponseTime({ data }: SlideProps) {
       <div className={styles.grid}>
         <ReplyStat name={meta.senderA} minutes={medA} />
         <ReplyStat name={meta.senderB} minutes={medB} />
+      </div>
+
+      <p className={styles.sectionLabel}>Instant replies (under 1 minute)</p>
+      <div className={styles.grid}>
+        <StatBox number={responseTime.instantCounts[meta.senderA] ?? 0} label={meta.senderA} />
+        <StatBox number={responseTime.instantCounts[meta.senderB] ?? 0} label={meta.senderB} />
+      </div>
+
+      <p className={styles.sectionLabel}>Slow replies (over 60 minutes)</p>
+      <div className={styles.grid}>
+        <StatBox number={responseTime.slowCounts[meta.senderA] ?? 0} label={meta.senderA} />
+        <StatBox number={responseTime.slowCounts[meta.senderB] ?? 0} label={meta.senderB} />
       </div>
     </Card>
   );
