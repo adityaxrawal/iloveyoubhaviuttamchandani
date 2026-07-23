@@ -1,0 +1,40 @@
+.loveYou {
+  text-align: center;
+  padding: 24px;
+  border: 1px solid var(--cw-stat-border);
+  border-radius: var(--cw-radius-md);
+  margin-bottom: 20px;
+}
+
+.loveYouNumber {
+  font: 400 44px/1 var(--cw-font-display);
+  color: var(--cw-accent);
+  margin: 8px 0;
+}
+
+.emojiGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.emojiCell {
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: var(--cw-radius-md);
+  border: 1px solid var(--cw-stat-border);
+}
+
+.emojiCellDashed {
+  border-style: dashed;
+}
+
+.emojiChar {
+  font-size: 28px;
+}
+
+.emojiCount {
+  font: 400 13px/1.4 var(--cw-font-body);
+  color: var(--cw-text-faint);
+  margin-top: 4px;
+}

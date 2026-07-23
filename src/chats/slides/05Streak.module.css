@@ -1,0 +1,11 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.dates {
+  font: 400 13px/1.5 var(--cw-font-body);
+  color: var(--cw-text-faint);
+  margin-top: 4px;
+}

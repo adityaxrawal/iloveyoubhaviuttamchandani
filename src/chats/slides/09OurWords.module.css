@@ -1,0 +1,28 @@
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.wordRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.wordLabel {
+  font: 400 13px/1 var(--cw-font-body);
+  color: var(--cw-text-muted);
+  width: 70px;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wordBar {
+  height: 10px;
+  background: var(--cw-accent);
+  border-radius: 2px;
+}
