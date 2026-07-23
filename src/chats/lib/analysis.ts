@@ -1,4 +1,5 @@
 import type {
+  AnalysisResult,
   CalendarData,
   EmojiCount,
   Heatmap,
@@ -410,5 +411,37 @@ export function computeMessageShape(messages: RawMessage[], meta: Meta): Message
       preview: Array.from(longest.message).slice(0, 120).join(''),
     },
     avgLengthBySender,
+  };
+}
+
+export function computeAnalysis(rawMessages: RawMessage[]): AnalysisResult {
+  const messages = [...rawMessages].sort(
+    (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime(),
+  );
+
+  const meta = computeMeta(messages);
+  const receipts = computeReceipts(messages, meta);
+  const shape = computeShape(messages);
+  const calendar = computeCalendar(messages, meta);
+  const heatmap = computeHeatmap(messages, meta);
+  const streak = computeStreak(calendar);
+  const responseTime = computeResponseTime(messages, meta);
+  const initiator = computeInitiator(messages);
+  const vocabulary = computeVocabulary(messages, meta);
+  const messageShape = computeMessageShape(messages, meta);
+  const timeOfDay = computeTimeOfDay(messages, meta);
+
+  return {
+    meta,
+    receipts,
+    shape,
+    calendar,
+    heatmap,
+    streak,
+    responseTime,
+    initiator,
+    vocabulary,
+    messageShape,
+    timeOfDay,
   };
 }
