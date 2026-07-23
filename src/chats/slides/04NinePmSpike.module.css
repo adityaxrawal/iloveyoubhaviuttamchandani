@@ -31,3 +31,88 @@
   color: var(--cw-text-primary);
   margin: 0;
 }
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 20px;
+}
+
+.legendWord {
+  font: 500 10px/1 var(--cw-font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+}
+
+.legendWord:first-child {
+  margin-right: 2px;
+}
+
+.legendWord:last-child {
+  margin-left: 2px;
+}
+
+.legendSwatch {
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.daysSection {
+  margin-top: 24px;
+}
+
+.daysLabel {
+  font: 500 11px/1 var(--cw-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 0 0 12px;
+}
+
+.daysList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dayRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dayName {
+  width: 72px;
+  flex-shrink: 0;
+  font: 400 12px/1 var(--cw-font-body);
+  color: var(--cw-text-muted);
+}
+
+.dayBarTrack {
+  flex: 1;
+  height: 10px;
+  background: var(--cw-stat-bg);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dayBarFill {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--cw-charcoal);
+}
+
+.dayBarPeak {
+  background: var(--cw-gold);
+}
+
+.dayCount {
+  width: 44px;
+  flex-shrink: 0;
+  text-align: right;
+  font: 400 12px/1 var(--cw-font-body);
+  color: var(--cw-text-faint);
+}
