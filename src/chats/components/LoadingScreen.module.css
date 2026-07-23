@@ -1,0 +1,23 @@
+.wrap {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cw-bg, #e8e4d8);
+}
+
+.heart {
+  font-size: 48px;
+  color: var(--cw-accent, #3d5a40);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart { animation: none; }
+}
