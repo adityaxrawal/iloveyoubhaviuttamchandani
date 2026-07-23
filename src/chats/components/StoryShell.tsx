@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import type { ComponentType, PointerEvent, KeyboardEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { ComponentType, PointerEvent } from 'react';
 import type { AnalysisResult, SlideProps } from '../lib/types';
 import { directionFromSwipe, nextIndex, prevIndex } from './storyNav';
 import styles from './StoryShell.module.css';
@@ -17,6 +17,18 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
   const goNext = () => setIndex((i) => nextIndex(i, total));
   const goPrev = () => setIndex((i) => prevIndex(i, total));
 
+  // Document-level listener rather than relying on this element holding DOM
+  // focus — clicking the theme toggle (a sibling) would otherwise steal
+  // focus and silently break arrow-key navigation.
+  useEffect(() => {
+    const handleKeyDown = (e: globalThis.KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') setIndex((i) => nextIndex(i, total));
+      if (e.key === 'ArrowLeft') setIndex((i) => prevIndex(i, total));
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [total]);
+
   const handlePointerDown = (e: PointerEvent) => {
     dragStartX.current = e.clientX;
   };
@@ -30,11 +42,6 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
     if (direction === 'prev') goPrev();
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowRight' || e.key === ' ') goNext();
-    if (e.key === 'ArrowLeft') goPrev();
-  };
-
   const Slide = slides[index];
 
   return (
@@ -42,8 +49,6 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
       className={styles.shell}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
     >
       <div className={styles.progress}>
         {slides.map((_, i) => (
