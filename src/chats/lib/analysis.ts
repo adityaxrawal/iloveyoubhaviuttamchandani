@@ -1,4 +1,13 @@
-import type { Meta, Receipts, RawMessage, SenderCounts } from './types';
+import type {
+  CalendarData,
+  Heatmap,
+  Meta,
+  Receipts,
+  RawMessage,
+  SenderCounts,
+  Shape,
+  Streak,
+} from './types';
 
 export function codePointLength(s: string): number {
   return Array.from(s).length;
@@ -107,4 +116,97 @@ export function computeReceipts(messages: RawMessage[], meta: Meta): Receipts {
     senderShare,
     doubleTexts,
   };
+}
+
+function sortRecord(rec: Record<string, number>): Record<string, number> {
+  return Object.fromEntries(Object.entries(rec).sort(([a], [b]) => a.localeCompare(b)));
+}
+
+export function computeShape(messages: RawMessage[]): Shape {
+  const byYear: Record<string, number> = {};
+  const byMonth: Record<string, number> = {};
+
+  for (const m of messages) {
+    const d = new Date(m.timestamp);
+    const year = String(d.getFullYear());
+    const month = `${year}-${pad2(d.getMonth() + 1)}`;
+    byYear[year] = (byYear[year] ?? 0) + 1;
+    byMonth[month] = (byMonth[month] ?? 0) + 1;
+  }
+
+  return { byYear: sortRecord(byYear), byMonth: sortRecord(byMonth) };
+}
+
+export function computeCalendar(messages: RawMessage[], meta: Meta): CalendarData {
+  const days: Record<string, number> = {};
+  for (const m of messages) {
+    const key = formatDateKey(new Date(m.timestamp));
+    days[key] = (days[key] ?? 0) + 1;
+  }
+  return { days: sortRecord(days), startDate: meta.startDate, endDate: meta.endDate };
+}
+
+const DAYS = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+export function computeHeatmap(messages: RawMessage[], meta: Meta): Heatmap {
+  const grid: Record<string, number> = {};
+
+  for (const m of messages) {
+    const d = new Date(m.timestamp);
+    const dow = (d.getDay() + 6) % 7; // Monday = 0, matches analysis.py's DAYS order
+    const key = `${DAYS[dow]}_${pad2(d.getHours())}`;
+    grid[key] = (grid[key] ?? 0) + 1;
+  }
+
+  let peakCell = '';
+  let peakValue = 0;
+  for (const [key, value] of Object.entries(grid)) {
+    if (value > peakValue) {
+      peakCell = key;
+      peakValue = value;
+    }
+  }
+
+  const numWeeks = Math.max(1, Math.floor(meta.totalDays / 7));
+  const averages: Record<string, number> = {};
+  for (const [key, count] of Object.entries(grid)) {
+    averages[key] = Math.round((count / numWeeks) * 10) / 10;
+  }
+
+  return { grid, averages, peakCell, peakValue };
+}
+
+export function computeStreak(calendar: CalendarData): Streak {
+  const allDays = Object.keys(calendar.days).sort();
+  if (allDays.length === 0) {
+    return { maxStreak: 1, bestStart: '', bestEnd: '', totalChatDays: 0 };
+  }
+
+  let maxStreak = 0;
+  let curStreak = 1;
+  let streakStart = allDays[0];
+  let bestStart = allDays[0];
+  let bestEnd = allDays[0];
+
+  for (let i = 1; i < allDays.length; i++) {
+    const prev = new Date(`${allDays[i - 1]}T00:00:00`);
+    const curr = new Date(`${allDays[i]}T00:00:00`);
+    const diffDays = Math.round((curr.getTime() - prev.getTime()) / (24 * 60 * 60 * 1000));
+
+    if (diffDays === 1) {
+      curStreak += 1;
+      if (curStreak > maxStreak) {
+        maxStreak = curStreak;
+        bestStart = streakStart;
+        bestEnd = allDays[i];
+      }
+    } else {
+      curStreak = 1;
+      streakStart = allDays[i];
+    }
+  }
+
+  if (maxStreak === 0) maxStreak = 1;
+
+  return { maxStreak, bestStart, bestEnd, totalChatDays: allDays.length };
 }
