@@ -1,0 +1,19 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  flex: 1;
+}
+
+.names {
+  font: 600 30px/1.2 var(--cw-font-display);
+  color: var(--cw-text-primary);
+}
+
+.range {
+  font: 400 16px/1.5 var(--cw-font-body);
+  color: var(--cw-text-muted);
+}

@@ -1,0 +1,27 @@
+.footerBoxes {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.footerBox {
+  flex: 1;
+  background: var(--cw-stat-bg);
+  border: 1px solid var(--cw-stat-border);
+  border-radius: var(--cw-radius-md);
+  padding: 12px;
+}
+
+.footerLabel {
+  font: 500 11px/1 var(--cw-font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 0 0 6px;
+}
+
+.footerValue {
+  font: 400 22px/1 var(--cw-font-display);
+  color: var(--cw-text-primary);
+  margin: 0;
+}

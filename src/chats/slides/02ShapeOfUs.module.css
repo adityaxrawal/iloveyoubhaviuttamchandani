@@ -1,0 +1,20 @@
+.toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.toggleButton {
+  font: 500 12px/1 var(--cw-font-body);
+  padding: 6px 14px;
+  border-radius: var(--cw-radius-pill);
+  border: 1px solid var(--cw-stat-border);
+  background: var(--cw-stat-bg);
+  color: var(--cw-text-muted);
+  cursor: pointer;
+}
+
+.toggleActive {
+  background: var(--cw-charcoal);
+  color: var(--cw-card-bg);
+}
