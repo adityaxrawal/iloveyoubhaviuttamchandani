@@ -1,0 +1,25 @@
+.bubble {
+  background: var(--cw-stat-bg);
+  border: 1px solid var(--cw-stat-border);
+  border-radius: var(--cw-radius-lg);
+  padding: 16px;
+}
+
+.bubbleHeader {
+  font: 500 12px/1 var(--cw-font-body);
+  color: var(--cw-text-faint);
+  margin-bottom: 10px;
+}
+
+.bubbleBody {
+  font: 400 16px/1.5 var(--cw-font-display);
+  color: var(--cw-text-primary);
+  white-space: pre-wrap;
+}
+
+.bubbleFooter {
+  text-align: right;
+  font: 400 12px/1 var(--cw-font-body);
+  color: var(--cw-text-faint);
+  margin-top: 10px;
+}

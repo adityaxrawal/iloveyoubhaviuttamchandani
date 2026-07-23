@@ -1,0 +1,52 @@
+import type { SlideProps } from '../lib/types';
+import Card from '../components/Card';
+import styles from './10NightOwl.module.css';
+
+const BUCKET_LABELS: [string, string][] = [
+  ['morning', 'Morning (5–12)'],
+  ['afternoon', 'Afternoon (12–5)'],
+  ['evening', 'Evening (5–9)'],
+  ['night', 'Night (9–12)'],
+  ['lateNight', 'Late night (12–5)'],
+];
+
+function formatHour(hour: number): string {
+  const period = hour < 12 ? 'AM' : 'PM';
+  const h12 = hour % 12 === 0 ? 12 : hour % 12;
+  return `${h12} ${period}`;
+}
+
+export default function NightOwl({ data }: SlideProps) {
+  const { timeOfDay, meta } = data;
+
+  return (
+    <Card label="When you come alive" title="The night owl" subtitle="When each of you is most likely to text.">
+      <p className={styles.peak}>
+        {meta.senderA} · most active at {formatHour(timeOfDay.peakHourBySender[meta.senderA] ?? 0)}
+      </p>
+      {!meta.isSolo && (
+        <p className={styles.peak}>
+          {meta.senderB} · most active at {formatHour(timeOfDay.peakHourBySender[meta.senderB] ?? 0)}
+        </p>
+      )}
+      <table className={styles.bucketTable}>
+        <thead>
+          <tr>
+            <th></th>
+            <th>{meta.senderA}</th>
+            {!meta.isSolo && <th>{meta.senderB}</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {BUCKET_LABELS.map(([key, label]) => (
+            <tr key={key}>
+              <td>{label}</td>
+              <td>{timeOfDay.bucketsBySender[meta.senderA]?.[key] ?? 0}</td>
+              {!meta.isSolo && <td>{timeOfDay.bucketsBySender[meta.senderB]?.[key] ?? 0}</td>}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Card>
+  );
+}

@@ -1,0 +1,24 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  flex: 1;
+}
+
+.heart {
+  font-size: 56px;
+  color: var(--cw-accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart { animation: none; }
+}
