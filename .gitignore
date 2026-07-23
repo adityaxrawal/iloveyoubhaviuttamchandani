@@ -27,3 +27,8 @@ dist-ssr
 /docs
 /files
 files.zip
+
+# Never commit real chat data (privacy-first per src/chats/code/CLAUDE.md)
+src/chats/code/_chat.txt
+src/chats/code/chat.json
+src/chats/code/analysis.json

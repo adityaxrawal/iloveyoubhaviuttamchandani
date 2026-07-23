@@ -7,6 +7,19 @@ export interface RawMessage {
   message: string;
 }
 
+export interface ChatExportMetadata {
+  total_messages: number;
+  participants: string[];
+  start_date: string;
+  end_date: string;
+  source_file: string;
+}
+
+export interface ChatExport {
+  metadata: ChatExportMetadata;
+  messages: RawMessage[];
+}
+
 export type SenderCounts = Record<string, number>;
 
 export interface Meta {

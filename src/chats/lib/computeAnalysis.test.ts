@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import type { RawMessage } from './types';
+import type { ChatExport } from './types';
 import { computeAnalysis } from './analysis';
 import sampleData from '../code/sample_chat.json';
+
+const sampleMessages = (sampleData as ChatExport).messages;
 
 function scanForBadValues(value: unknown): string[] {
   if (typeof value === 'number') {
@@ -16,7 +18,7 @@ function scanForBadValues(value: unknown): string[] {
 
 describe('computeAnalysis', () => {
   it('produces internally consistent output for the sample chat with no NaN/Infinity', () => {
-    const messages = sampleData as RawMessage[];
+    const messages = sampleMessages;
     const result = computeAnalysis(messages);
 
     expect(result.meta.totalMessages).toBe(messages.length);
@@ -29,7 +31,7 @@ describe('computeAnalysis', () => {
   });
 
   it('sorts out-of-order input by timestamp before analysing', () => {
-    const messages = (sampleData as RawMessage[]).slice(0, 3);
+    const messages = sampleMessages.slice(0, 3);
     const shuffled = [messages[2], messages[0], messages[1]];
     const result = computeAnalysis(shuffled);
     expect(result.meta.startDate).toBe(messages[0].timestamp);
