@@ -1,12 +1,15 @@
 import type {
   CalendarData,
   Heatmap,
+  Initiator,
   Meta,
   Receipts,
   RawMessage,
+  ResponseTime,
   SenderCounts,
   Shape,
   Streak,
+  TimeOfDay,
 } from './types';
 
 export function codePointLength(s: string): number {
@@ -209,4 +212,81 @@ export function computeStreak(calendar: CalendarData): Streak {
   if (maxStreak === 0) maxStreak = 1;
 
   return { maxStreak, bestStart, bestEnd, totalChatDays: allDays.length };
+}
+
+export function computeResponseTime(messages: RawMessage[], meta: Meta): ResponseTime {
+  const bySender: Record<string, number[]> = {};
+  for (const s of meta.participants) bySender[s] = [];
+
+  for (let i = 1; i < messages.length; i++) {
+    const prev = messages[i - 1];
+    const curr = messages[i];
+    if (prev.sender === curr.sender) continue;
+
+    const deltaMinutes = (new Date(curr.timestamp).getTime() - new Date(prev.timestamp).getTime()) / 60000;
+    if (deltaMinutes > 0 && deltaMinutes < 1440) {
+      bySender[curr.sender].push(deltaMinutes);
+    }
+  }
+
+  const medianMinutes: SenderCounts = {};
+  for (const s of meta.participants) {
+    medianMinutes[s] = Math.round(median(bySender[s]) * 10) / 10;
+  }
+
+  return { medianMinutes };
+}
+
+export function computeInitiator(messages: RawMessage[]): Initiator {
+  const dailyFirst: SenderCounts = {};
+  const seenDays = new Set<string>();
+
+  for (const m of messages) {
+    const key = formatDateKey(new Date(m.timestamp));
+    if (!seenDays.has(key)) {
+      seenDays.add(key);
+      dailyFirst[m.sender] = (dailyFirst[m.sender] ?? 0) + 1;
+    }
+  }
+
+  return { dailyFirst };
+}
+
+function hourBucket(hour: number): string {
+  if (hour < 5) return 'lateNight';
+  if (hour < 12) return 'morning';
+  if (hour < 17) return 'afternoon';
+  if (hour < 21) return 'evening';
+  return 'night';
+}
+
+export function computeTimeOfDay(messages: RawMessage[], meta: Meta): TimeOfDay {
+  const bucketsBySender: Record<string, Record<string, number>> = {};
+  const hourCountsBySender: Record<string, Record<number, number>> = {};
+  for (const s of meta.participants) {
+    bucketsBySender[s] = {};
+    hourCountsBySender[s] = {};
+  }
+
+  for (const m of messages) {
+    const hour = new Date(m.timestamp).getHours();
+    const bucket = hourBucket(hour);
+    bucketsBySender[m.sender][bucket] = (bucketsBySender[m.sender][bucket] ?? 0) + 1;
+    hourCountsBySender[m.sender][hour] = (hourCountsBySender[m.sender][hour] ?? 0) + 1;
+  }
+
+  const peakHourBySender: SenderCounts = {};
+  for (const s of meta.participants) {
+    let peakHour = 0;
+    let peakCount = -1;
+    for (const [hourStr, count] of Object.entries(hourCountsBySender[s])) {
+      if (count > peakCount) {
+        peakCount = count;
+        peakHour = Number(hourStr);
+      }
+    }
+    peakHourBySender[s] = peakHour;
+  }
+
+  return { bucketsBySender, hourCountsBySender, peakHourBySender };
 }

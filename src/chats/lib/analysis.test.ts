@@ -1,6 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import type { RawMessage } from './types';
-import { computeMeta, computeReceipts, computeShape, computeCalendar, computeHeatmap, computeStreak } from './analysis';
+import {
+  computeMeta,
+  computeReceipts,
+  computeShape,
+  computeCalendar,
+  computeHeatmap,
+  computeStreak,
+  computeResponseTime,
+  computeInitiator,
+  computeTimeOfDay,
+} from './analysis';
 
 const fixture: RawMessage[] = [
   { id: 1, timestamp: '2020-01-01T10:00:00', date: '01/01/20', time: '10:00:00 AM', sender: 'Alex', message: 'hi 😊' },
@@ -80,5 +90,45 @@ describe('computeHeatmap', () => {
     expect(heatmap.grid['SA_09']).toBe(1);
     expect(heatmap.peakCell).toBe('WE_10');
     expect(heatmap.peakValue).toBe(2);
+  });
+});
+
+describe('computeResponseTime', () => {
+  it('computes median reply minutes per sender, ignoring gaps over 24h', () => {
+    const meta = computeMeta(fixture);
+    const rt = computeResponseTime(fixture, meta);
+    // Alex->Sam at msg2: 5 min. Sam->Alex at msg4: ~2 year gap, excluded (>1440min).
+    expect(rt.medianMinutes.Sam).toBe(5);
+    expect(rt.medianMinutes.Alex).toBe(0);
+  });
+});
+
+describe('computeInitiator', () => {
+  it('counts who sent the first message of each distinct day', () => {
+    const initiator = computeInitiator(fixture);
+    // day1 (2020-01-01) first sender Alex, day2 (2020-01-02) first sender Sam, day3 (2022-01-01) first sender Alex
+    expect(initiator.dailyFirst).toEqual({ Alex: 2, Sam: 1 });
+  });
+});
+
+describe('computeTimeOfDay', () => {
+  const todFixture: RawMessage[] = [
+    { id: 1, timestamp: '2020-01-01T10:00:00', date: '01/01/20', time: '10:00:00 AM', sender: 'Alex', message: 'a' },
+    { id: 2, timestamp: '2020-01-01T10:30:00', date: '01/01/20', time: '10:30:00 AM', sender: 'Alex', message: 'b' },
+    { id: 3, timestamp: '2020-01-01T14:00:00', date: '01/01/20', time: '2:00:00 PM', sender: 'Alex', message: 'c' },
+    { id: 4, timestamp: '2020-01-01T09:00:00', date: '01/01/20', time: '9:00:00 AM', sender: 'Sam', message: 'd' },
+    { id: 5, timestamp: '2020-01-01T09:15:00', date: '01/01/20', time: '9:15:00 AM', sender: 'Sam', message: 'e' },
+    { id: 6, timestamp: '2020-01-01T20:00:00', date: '01/01/20', time: '8:00:00 PM', sender: 'Sam', message: 'f' },
+  ];
+
+  it("buckets messages by time of day and finds each sender's unambiguous peak hour", () => {
+    const meta = computeMeta(todFixture);
+    const tod = computeTimeOfDay(todFixture, meta);
+    expect(tod.bucketsBySender.Alex.morning).toBe(2);
+    expect(tod.bucketsBySender.Alex.afternoon).toBe(1);
+    expect(tod.bucketsBySender.Sam.morning).toBe(2);
+    expect(tod.bucketsBySender.Sam.evening).toBe(1);
+    expect(tod.peakHourBySender.Alex).toBe(10);
+    expect(tod.peakHourBySender.Sam).toBe(9);
   });
 });
