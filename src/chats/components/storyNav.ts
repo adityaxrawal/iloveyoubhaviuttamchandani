@@ -11,3 +11,7 @@ export function directionFromSwipe(deltaX: number, threshold = 60): 'next' | 'pr
   if (deltaX >= threshold) return 'prev';
   return null;
 }
+
+export function directionFromTapPosition(relativeX: number, boundary = 0.3): 'next' | 'prev' {
+  return relativeX < boundary ? 'prev' : 'next';
+}

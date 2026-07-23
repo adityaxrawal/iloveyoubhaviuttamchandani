@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ComponentType, PointerEvent } from 'react';
 import type { AnalysisResult, SlideProps } from '../lib/types';
-import { directionFromSwipe, nextIndex, prevIndex } from './storyNav';
+import { directionFromSwipe, directionFromTapPosition, nextIndex, prevIndex } from './storyNav';
 import styles from './StoryShell.module.css';
+
+const TAP_DRAG_TOLERANCE = 10;
 
 interface StoryShellProps {
   slides: ComponentType<SlideProps>[];
@@ -33,23 +35,41 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
     dragStartX.current = e.clientX;
   };
 
+  // No full-screen tap-zone overlay: it would sit on top of the slide's own
+  // interactive elements (heatmap cells, the Shape-of-Us toggle) and steal
+  // every click before it reaches them. Instead this delegates from the
+  // shell itself — a real swipe always navigates; a plain tap navigates
+  // only if it didn't land on a control the slide handles itself.
   const handlePointerUp = (e: PointerEvent) => {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
     dragStartX.current = null;
-    const direction = directionFromSwipe(delta);
+
+    const swipeDirection = directionFromSwipe(delta);
+    if (swipeDirection === 'next') {
+      goNext();
+      return;
+    }
+    if (swipeDirection === 'prev') {
+      goPrev();
+      return;
+    }
+
+    if (Math.abs(delta) > TAP_DRAG_TOLERANCE) return;
+    const target = e.target as HTMLElement;
+    if (target.closest('button, [data-story-interactive]')) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const relativeX = (e.clientX - rect.left) / rect.width;
+    const direction = directionFromTapPosition(relativeX);
     if (direction === 'next') goNext();
-    if (direction === 'prev') goPrev();
+    else goPrev();
   };
 
   const Slide = slides[index];
 
   return (
-    <div
-      className={styles.shell}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-    >
+    <div className={styles.shell} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
       <div className={styles.progress}>
         {slides.map((_, i) => (
           <div
@@ -57,11 +77,6 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
             className={`${styles.segment} ${i < index ? styles.segmentVisited : ''} ${i === index ? styles.segmentCurrent : ''}`}
           />
         ))}
-      </div>
-
-      <div className={styles.tapZones}>
-        <div className={styles.tapPrev} onClick={goPrev} />
-        <div className={styles.tapNext} onClick={goNext} />
       </div>
 
       <div key={index} className={styles.slideWrap}>

@@ -29,6 +29,7 @@ export default function HeatmapGrid({ grid, onCellSelect }: HeatmapGridProps) {
             return (
               <div
                 key={key}
+                data-story-interactive
                 className={`${styles.cell} ${selected === key ? styles.cellSelected : ''}`}
                 style={{ backgroundColor: heatmapColorVar(count) }}
                 title={`${key}: ${count} messages`}

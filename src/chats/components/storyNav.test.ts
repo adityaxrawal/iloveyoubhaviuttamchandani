@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nextIndex, prevIndex, directionFromSwipe } from './storyNav';
+import { nextIndex, prevIndex, directionFromSwipe, directionFromTapPosition } from './storyNav';
 
 describe('nextIndex / prevIndex', () => {
   it('advances and loops past the last slide', () => {
@@ -24,5 +24,14 @@ describe('directionFromSwipe', () => {
 
   it('returns null when the swipe does not clear the threshold', () => {
     expect(directionFromSwipe(10, 60)).toBeNull();
+  });
+});
+
+describe('directionFromTapPosition', () => {
+  it('treats the left 30% as prev and the rest as next', () => {
+    expect(directionFromTapPosition(0.1)).toBe('prev');
+    expect(directionFromTapPosition(0.29)).toBe('prev');
+    expect(directionFromTapPosition(0.3)).toBe('next');
+    expect(directionFromTapPosition(0.9)).toBe('next');
   });
 });

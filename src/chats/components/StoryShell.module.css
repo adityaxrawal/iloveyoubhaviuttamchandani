@@ -4,6 +4,7 @@
   width: 100%;
   overflow: hidden;
   background: var(--cw-bg);
+  cursor: pointer;
 }
 
 .progress {
@@ -29,25 +30,6 @@
 
 .segmentCurrent {
   background: var(--cw-accent);
-}
-
-.tapZones {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  z-index: 3;
-}
-
-.tapPrev {
-  width: 30%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.tapNext {
-  width: 70%;
-  height: 100%;
-  cursor: pointer;
 }
 
 .slideWrap {
