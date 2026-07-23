@@ -24,7 +24,7 @@ export default function NinePmSpike({ data }: SlideProps) {
       <div className={styles.footerBoxes}>
         <div className={styles.footerBox}>
           <p className={styles.footerLabel}>{day} · {hour}:00</p>
-          <p className={styles.footerValue}>~{avg} texts on a typical {day}</p>
+          <p className={styles.footerValueSmall}>~{avg} texts, typical {day}</p>
         </div>
         <div className={styles.footerBox}>
           <p className={styles.footerLabel}>All time</p>

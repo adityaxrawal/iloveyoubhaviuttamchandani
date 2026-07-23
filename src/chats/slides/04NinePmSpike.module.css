@@ -25,3 +25,9 @@
   color: var(--cw-text-primary);
   margin: 0;
 }
+
+.footerValueSmall {
+  font: 400 14px/1.4 var(--cw-font-body);
+  color: var(--cw-text-primary);
+  margin: 0;
+}

@@ -3,3 +3,25 @@
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+.statBox {
+  background: var(--cw-stat-bg);
+  border: 1px solid var(--cw-stat-border);
+  border-radius: var(--cw-radius-md);
+  padding: 18px 10px;
+  text-align: center;
+}
+
+.statValue {
+  font: 400 26px/1.15 var(--cw-font-display);
+  color: var(--cw-text-primary);
+  margin: 0;
+}
+
+.statLabel {
+  font: 500 11px/1.3 var(--cw-font-body);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 6px 0 0;
+}

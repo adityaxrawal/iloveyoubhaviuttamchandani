@@ -1,14 +1,47 @@
 .grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 3px;
-  overflow-x: auto;
-  padding-bottom: 4px;
 }
 
-.cell {
-  width: 11px;
-  height: 11px;
+.headerRow,
+.weekRow {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.headerRow {
+  margin-bottom: 2px;
+}
+
+.cornerLabel,
+.monthLabel {
+  width: 26px;
+  flex-shrink: 0;
+  font: 400 9px/1 var(--cw-font-body);
+  color: var(--cw-text-faint);
+  text-align: right;
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+
+.dayLabel {
+  flex: 1;
+  font: 500 9px/1 var(--cw-font-body);
+  letter-spacing: 0.04em;
+  color: var(--cw-text-faint);
+  text-align: center;
+}
+
+.cell,
+.cellEmpty {
+  flex: 1;
+  aspect-ratio: 1;
+  min-width: 0;
   border-radius: 2px;
+}
+
+.cellEmpty {
+  background: transparent;
 }
