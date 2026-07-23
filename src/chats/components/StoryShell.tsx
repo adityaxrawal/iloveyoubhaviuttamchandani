@@ -20,8 +20,8 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
   const goPrev = () => setIndex((i) => prevIndex(i, total));
 
   // Document-level listener rather than relying on this element holding DOM
-  // focus — clicking the theme toggle (a sibling) would otherwise steal
-  // focus and silently break arrow-key navigation.
+  // focus — clicking any interactive control inside the slide would
+  // otherwise steal focus and silently break arrow-key navigation.
   useEffect(() => {
     const handleKeyDown = (e: globalThis.KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') setIndex((i) => nextIndex(i, total));
@@ -69,18 +69,20 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
   const Slide = slides[index];
 
   return (
-    <div className={styles.shell} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
-      <div className={styles.progress}>
-        {slides.map((_, i) => (
-          <div
-            key={i}
-            className={`${styles.segment} ${i < index ? styles.segmentVisited : ''} ${i === index ? styles.segmentCurrent : ''}`}
-          />
-        ))}
-      </div>
+    <div className={styles.pageBg}>
+      <div className={styles.shell} onPointerDown={handlePointerDown} onPointerUp={handlePointerUp}>
+        <div className={styles.progress}>
+          {slides.map((_, i) => (
+            <div
+              key={i}
+              className={`${styles.segment} ${i < index ? styles.segmentVisited : ''} ${i === index ? styles.segmentCurrent : ''}`}
+            />
+          ))}
+        </div>
 
-      <div key={index} className={styles.slideWrap}>
-        <Slide data={data} />
+        <div key={index} className={styles.slideWrap}>
+          <Slide data={data} />
+        </div>
       </div>
     </div>
   );

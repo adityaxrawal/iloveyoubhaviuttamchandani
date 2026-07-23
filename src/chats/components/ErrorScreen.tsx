@@ -7,7 +7,9 @@ interface ErrorScreenProps {
 export default function ErrorScreen({ message }: ErrorScreenProps) {
   return (
     <div className={styles.wrap}>
-      <p>{message}</p>
+      <div className={styles.stage}>
+        <p>{message}</p>
+      </div>
     </div>
   );
 }

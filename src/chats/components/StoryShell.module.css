@@ -1,9 +1,25 @@
+.pageBg {
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #8b1a2f;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Fixed 420:860 aspect ratio, like a phone screen — width is capped by
+   whichever runs out first: the comfortable max, the viewport width, or
+   the viewport height converted to an equivalent width via the ratio. */
 .shell {
   position: relative;
-  height: 100dvh;
-  width: 100%;
+  width: min(420px, calc(100vw - 48px), calc((100dvh - 48px) * 420 / 860));
+  aspect-ratio: 420 / 860;
   overflow: hidden;
   background: var(--cw-bg);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
   cursor: pointer;
 }
 

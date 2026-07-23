@@ -29,6 +29,8 @@ dist-ssr
 files.zip
 
 # Never commit real chat data (privacy-first per src/chats/code/CLAUDE.md)
-src/chats/code/_chat.txt
-src/chats/code/chat.json
-src/chats/code/analysis.json
+# Globs, not exact names, so re-exports (_chatv2.txt, chatv2.json, ...) stay
+# covered too. sample_chat.json is exempt — it's the safe placeholder.
+src/chats/code/_chat*.txt
+src/chats/code/chat*.json
+src/chats/code/analysis*.json

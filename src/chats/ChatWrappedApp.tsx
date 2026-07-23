@@ -3,11 +3,7 @@ import { useAnalysis } from './lib/useAnalysis';
 import LoadingScreen from './components/LoadingScreen';
 import ErrorScreen from './components/ErrorScreen';
 import StoryShell from './components/StoryShell';
-import { ThemeProvider } from './theme/ThemeContext';
-import { useTheme } from './theme/theme';
-import ThemeToggle from './theme/ThemeToggle';
-// import sampleData from './code/sample_chat.json';
-import chatData from './code/chat.json';
+import chatData from './code/chatv2.json';
 import './theme/tokens.css';
 
 import Cover from './slides/00Cover';
@@ -31,24 +27,14 @@ const SLIDES = [
   NightOwl, LongestMessage, DoubleText, Outro,
 ];
 
-function ChatWrappedInner() {
-  const { theme } = useTheme();
+export default function ChatWrappedApp() {
   const state = useAnalysis((chatData as ChatExport).messages);
 
   return (
-    <div className="storyRoot" data-theme={theme}>
-      <ThemeToggle />
+    <div className="storyRoot">
       {state.status === 'loading' && <LoadingScreen />}
       {state.status === 'error' && <ErrorScreen message={state.message} />}
       {state.status === 'ready' && <StoryShell slides={SLIDES} data={state.data} />}
     </div>
-  );
-}
-
-export default function ChatWrappedApp() {
-  return (
-    <ThemeProvider>
-      <ChatWrappedInner />
-    </ThemeProvider>
   );
 }

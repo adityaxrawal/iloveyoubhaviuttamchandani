@@ -1,15 +1,28 @@
 .wrap {
-  height: 100dvh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cw-bg, #e8e4d8);
+  background: #8b1a2f;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.stage {
+  width: min(420px, calc(100vw - 48px), calc((100dvh - 48px) * 420 / 860));
+  aspect-ratio: 420 / 860;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  background: var(--cw-bg, #f5f0e8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heart {
   font-size: 48px;
-  color: var(--cw-accent, #3d5a40);
+  color: var(--cw-accent, #c0392b);
   animation: pulse 1.4s ease-in-out infinite;
 }
 
