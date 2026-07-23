@@ -10,6 +10,8 @@ import {
   computeResponseTime,
   computeInitiator,
   computeTimeOfDay,
+  computeVocabulary,
+  computeMessageShape,
 } from './analysis';
 
 const fixture: RawMessage[] = [
@@ -130,5 +132,25 @@ describe('computeTimeOfDay', () => {
     expect(tod.bucketsBySender.Sam.evening).toBe(1);
     expect(tod.peakHourBySender.Alex).toBe(10);
     expect(tod.peakHourBySender.Sam).toBe(9);
+  });
+});
+
+describe('computeVocabulary', () => {
+  it('counts emojis and phrases', () => {
+    const meta = computeMeta(fixture);
+    const vocab = computeVocabulary(fixture, meta);
+    expect(vocab.topEmojis).toEqual([{ emoji: '😊', count: 1 }]);
+    expect(vocab.phraseCounts['i love you']).toBe(1);
+    expect(vocab.phraseCounts['love you']).toBe(1);
+  });
+});
+
+describe('computeMessageShape', () => {
+  it('finds the longest message (code-point length) and average length per sender', () => {
+    const meta = computeMeta(fixture);
+    const shape = computeMessageShape(fixture, meta);
+    expect(shape.longestMessage.sender).toBe('Sam');
+    expect(shape.longestMessage.length).toBe(15); // "<Media omitted>" is 15 code points
+    expect(shape.avgLengthBySender.Alex).toBe(3); // "hi 😊"=4 code points, "ok"=2, avg 3
   });
 });

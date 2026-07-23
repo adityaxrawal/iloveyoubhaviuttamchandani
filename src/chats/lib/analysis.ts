@@ -1,8 +1,10 @@
 import type {
   CalendarData,
+  EmojiCount,
   Heatmap,
   Initiator,
   Meta,
+  MessageShape,
   Receipts,
   RawMessage,
   ResponseTime,
@@ -10,6 +12,7 @@ import type {
   Shape,
   Streak,
   TimeOfDay,
+  Vocabulary,
 } from './types';
 
 export function codePointLength(s: string): number {
@@ -289,4 +292,123 @@ export function computeTimeOfDay(messages: RawMessage[], meta: Meta): TimeOfDay 
   }
 
   return { bucketsBySender, hourCountsBySender, peakHourBySender };
+}
+
+const STOP_WORDS = new Set([
+  'the', 'a', 'an', 'is', 'it', 'i', 'you', 'to', 'and', 'in', 'of', 'me', 'my', 'do',
+  'so', 'but', 'be', 'for', 'on', 'at', 'we', 'he', 'she', 'they', 'this', 'that',
+  'are', 'was', 'with', 'just', 'like', 'yes', 'no', 'okay', 'ok', 'haha', 'hahaha',
+  'lol', 'omg', 'yeah', 'yea', 'nah', 'dont', 'cant', 'wont', 'got', 'get', 'its',
+  'im', 'ive', 'ill', 'id', 'ur', 'u', 'r', 'oh', 'ah', 'hi', 'hey', 'bye', 'hmm',
+  'wait', 'also', 'still', 'come', 'came', 'then', 'when', 'what', 'how', 'who',
+  'why', 'one', 'two', 'now', 'too', 'not', 'about', 'more', 'will', 'said', 'well',
+  'from', 'have', 'had', 'been', 'would', 'could', 'should', 'there', 'their',
+]);
+
+const WORD_RE = /\b[a-zA-Z]{3,}\b/g;
+
+const PHRASES = [
+  'i love you', 'love you', 'i miss you', 'miss you',
+  'good morning', 'good night', 'haha', 'hahaha',
+  "i'm sorry", 'sorry', 'thank you', 'okay', 'aww',
+  'are you okay', "i'm fine", "let's go", 'no way',
+];
+
+function incrementMap<T>(map: Map<T, number>, key: T): void {
+  map.set(key, (map.get(key) ?? 0) + 1);
+}
+
+function topN<T>(counter: Map<T, number>, n: number): [T, number][] {
+  return Array.from(counter.entries()).sort((a, b) => b[1] - a[1]).slice(0, n);
+}
+
+export function computeVocabulary(messages: RawMessage[], meta: Meta): Vocabulary {
+  const allEmojis = new Map<string, number>();
+  const emojisBySender: Record<string, Map<string, number>> = {};
+  const wordsBySender: Record<string, Map<string, number>> = {};
+  for (const s of meta.participants) {
+    emojisBySender[s] = new Map();
+    wordsBySender[s] = new Map();
+  }
+
+  const phraseCounts: Record<string, number> = {};
+  for (const phrase of PHRASES) phraseCounts[phrase] = 0;
+
+  for (const m of messages) {
+    const lower = m.message.toLowerCase();
+
+    for (const emoji of extractEmojis(m.message)) {
+      incrementMap(allEmojis, emoji);
+      incrementMap(emojisBySender[m.sender], emoji);
+    }
+
+    for (const phrase of PHRASES) {
+      if (lower.includes(phrase)) phraseCounts[phrase] += 1;
+    }
+
+    const words = m.message.match(WORD_RE) ?? [];
+    for (const rawWord of words) {
+      const word = rawWord.toLowerCase();
+      if (STOP_WORDS.has(word)) continue;
+      incrementMap(wordsBySender[m.sender], word);
+    }
+  }
+
+  const topWordsBySender: Record<string, [string, number][]> = {};
+  const uniqueWordsBySender: Record<string, [string, number][]> = {};
+  for (const s of meta.participants) {
+    topWordsBySender[s] = topN(wordsBySender[s], 20);
+    const other = meta.participants.find((p) => p !== s);
+    uniqueWordsBySender[s] = Array.from(wordsBySender[s].entries())
+      .filter(([word, count]) => count > 5 && (!other || (wordsBySender[other].get(word) ?? 0) < 2))
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+  }
+
+  const emojisBySenderTop: Record<string, EmojiCount[]> = {};
+  for (const s of meta.participants) {
+    emojisBySenderTop[s] = topN(emojisBySender[s], 6).map(([emoji, count]) => ({ emoji, count }));
+  }
+
+  return {
+    topEmojis: topN(allEmojis, 12).map(([emoji, count]) => ({ emoji, count })),
+    emojisBySender: emojisBySenderTop,
+    phraseCounts,
+    topWordsBySender,
+    uniqueWordsBySender,
+  };
+}
+
+export function computeMessageShape(messages: RawMessage[], meta: Meta): MessageShape {
+  let longest = messages[0];
+  let longestLen = 0;
+  const totalLenBySender: SenderCounts = {};
+  const countBySender: SenderCounts = {};
+
+  for (const m of messages) {
+    const len = codePointLength(m.message);
+    totalLenBySender[m.sender] = (totalLenBySender[m.sender] ?? 0) + len;
+    countBySender[m.sender] = (countBySender[m.sender] ?? 0) + 1;
+    if (len > longestLen) {
+      longestLen = len;
+      longest = m;
+    }
+  }
+
+  const avgLengthBySender: SenderCounts = {};
+  for (const s of meta.participants) {
+    const count = countBySender[s] ?? 0;
+    avgLengthBySender[s] = count > 0 ? Math.round(((totalLenBySender[s] ?? 0) / count) * 10) / 10 : 0;
+  }
+
+  return {
+    longestMessage: {
+      sender: longest.sender,
+      length: longestLen,
+      timestamp: longest.timestamp,
+      // code-point aware slice — avoids splitting a surrogate-pair emoji in half
+      preview: Array.from(longest.message).slice(0, 120).join(''),
+    },
+    avgLengthBySender,
+  };
 }
