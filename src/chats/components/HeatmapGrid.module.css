@@ -1,0 +1,23 @@
+.grid {
+  display: grid;
+  grid-template-columns: 28px repeat(24, 1fr);
+  gap: 2px;
+}
+
+.rowLabel {
+  font: 400 10px/1 var(--cw-font-body);
+  color: var(--cw-text-faint);
+  display: flex;
+  align-items: center;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.cellSelected {
+  border-color: var(--cw-text-primary);
+}
