@@ -1,0 +1,21 @@
+.statBox {
+  background: var(--cw-stat-bg);
+  border: 1px solid var(--cw-stat-border);
+  border-radius: var(--cw-radius-md);
+  padding: 18px 12px;
+  text-align: center;
+}
+
+.stat {
+  font: 400 30px/1 var(--cw-font-display);
+  color: var(--cw-text-primary);
+  margin: 0;
+}
+
+.label {
+  font: 500 11px/1 var(--cw-font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 4px 0 0;
+}
