@@ -5,7 +5,7 @@ interface CardProps {
   label?: string;
   title?: string;
   subtitle?: string;
-  footer?: string;
+  footer?: ReactNode;
   children: ReactNode;
 }
 

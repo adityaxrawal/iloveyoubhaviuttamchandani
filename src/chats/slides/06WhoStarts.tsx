@@ -25,7 +25,7 @@ export default function WhoStarts({ data }: SlideProps) {
       label="Who texts first"
       title="Who starts it"
       subtitle="Who sent the first message of the day, every day."
-      footer={`${meta.senderA.split(' ')[0]} kicked things off ${aCount} days. ${meta.senderB.split(' ')[0]} started ${bCount}.`}
+      footer={<>{meta.senderA.split(' ')[0]} kicked things off {aCount} days.<br/>{meta.senderB.split(' ')[0]} started {bCount}.</>}
     >
       <SenderSplitBar leftLabel={meta.senderA} leftPercent={aPercent} rightLabel={meta.senderB} rightPercent={bPercent} />
       <div className={styles.grid}>

@@ -17,7 +17,7 @@ export default function Cover({ data }: SlideProps) {
     <Card label={meta.participants.join(' & ')} title="Our story, by the numbers.">
       <div className={styles.wrap}>
         <span className={styles.names} aria-hidden="true">
-          {meta.senderA.slice(0, 1)} ♡ {meta.senderB ? meta.senderB.slice(0, 1) : ''}
+          {'A'} ♡ {'B'}
         </span>
         <span className={styles.range}>{range}</span>
       </div>

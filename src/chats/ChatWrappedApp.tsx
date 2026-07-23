@@ -1,9 +1,6 @@
-import type { ChatExport } from './lib/types';
-import { useAnalysis } from './lib/useAnalysis';
-import LoadingScreen from './components/LoadingScreen';
-import ErrorScreen from './components/ErrorScreen';
+import type { AnalysisResult } from './lib/types';
 import StoryShell from './components/StoryShell';
-import chatData from './code/chatv2.json';
+import metricsData from './code/metrics.json';
 import './theme/tokens.css';
 
 import Cover from './slides/00Cover';
@@ -28,13 +25,9 @@ const SLIDES = [
 ];
 
 export default function ChatWrappedApp() {
-  const state = useAnalysis((chatData as ChatExport).messages);
-
   return (
     <div className="storyRoot">
-      {state.status === 'loading' && <LoadingScreen />}
-      {state.status === 'error' && <ErrorScreen message={state.message} />}
-      {state.status === 'ready' && <StoryShell slides={SLIDES} data={state.data} />}
+      <StoryShell slides={SLIDES} data={metricsData as unknown as AnalysisResult} />
     </div>
   );
 }

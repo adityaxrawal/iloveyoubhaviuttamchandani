@@ -34,3 +34,8 @@ files.zip
 src/chats/code/_chat*.txt
 src/chats/code/chat*.json
 src/chats/code/analysis*.json
+
+# Global fallbacks for chat files
+_chat*.txt
+chat*.json
+analysis*.json
