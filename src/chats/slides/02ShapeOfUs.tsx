@@ -48,39 +48,55 @@ export default function ShapeOfUs({ data }: SlideProps) {
 
   return (
     <Card
-      label="Messages over time"
+      label="MESSAGES OVER TIME"
       title="The shape of us"
-      footer={peakRawLabel ? `${formatLabel(peakRawLabel)} · ${peakValue.toLocaleString()} messages` : undefined}
+      subtitle="Volume trends across the seasons"
     >
-      <div className={styles.toggle}>
-        <button
-          type="button"
-          className={`${styles.toggleButton} ${view === 'month' ? styles.toggleActive : ''}`}
-          onClick={() => setView('month')}
-        >
-          By month
-        </button>
-        <button
-          type="button"
-          className={`${styles.toggleButton} ${view === 'year' ? styles.toggleActive : ''}`}
-          onClick={() => setView('year')}
-        >
-          By year
-        </button>
-      </div>
-      <BarChart data={chartData} peakIndex={peakIndex} />
+      <div className={styles.container}>
+        {/* Toggle Pill Control */}
+        <div className={styles.toggleBar} data-story-interactive>
+          <button
+            type="button"
+            className={`${styles.toggleBtn} ${view === 'month' ? styles.toggleActive : ''}`}
+            onClick={() => setView('month')}
+          >
+            By Month
+          </button>
+          <button
+            type="button"
+            className={`${styles.toggleBtn} ${view === 'year' ? styles.toggleActive : ''}`}
+            onClick={() => setView('year')}
+          >
+            By Year
+          </button>
+        </div>
 
-      <div className={styles.statsGrid}>
-        <StatBox number={entries.length} label={`${unit}s tracked`} />
-        <StatBox number={average} label={`Avg per ${unit}`} />
-        <StatBox number={peakValue < 0 ? 0 : peakValue} label={`Busiest ${unit}`} />
-        <StatBox number={quietValue === Infinity ? 0 : quietValue} label={`Quietest ${unit}`} />
+        {/* Peak Badge Ribbon */}
+        {peakRawLabel && (
+          <div className={styles.peakBanner}>
+            🏆 Busiest {unit}: <strong>{formatLabel(peakRawLabel)}</strong> ({peakValue.toLocaleString()} msgs)
+          </div>
+        )}
+
+        {/* Bar Chart Container */}
+        <div className={styles.chartWrap}>
+          <BarChart data={chartData} peakIndex={peakIndex} />
+        </div>
+
+        {/* Key Metrics Grid */}
+        <div className={styles.statsGrid}>
+          <StatBox number={entries.length} label={`${unit}s tracked`} />
+          <StatBox number={average} label={`Avg per ${unit}`} />
+          <StatBox number={peakValue < 0 ? 0 : peakValue} label={`Busiest ${unit}`} />
+          <StatBox number={quietValue === Infinity ? 0 : quietValue} label={`Quietest ${unit}`} />
+        </div>
+
+        {quietRawLabel && (
+          <p className={styles.quietCaption}>
+            Quietest: {formatLabel(quietRawLabel)} ({quietValue.toLocaleString()} texts)
+          </p>
+        )}
       </div>
-      {quietRawLabel && (
-        <p className={styles.quietCaption}>
-          Quietest: {formatLabel(quietRawLabel)} · {quietValue.toLocaleString()} messages
-        </p>
-      )}
     </Card>
   );
 }

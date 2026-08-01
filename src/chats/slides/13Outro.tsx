@@ -9,14 +9,36 @@ export default function Outro({ data }: SlideProps) {
     : '';
 
   return (
-    <Card title="And we're still counting.">
-      <div className={styles.wrap}>
-        <span className={styles.heart} aria-hidden="true">♡</span>
-        <p>{meta.totalMessages.toLocaleString()} messages. {meta.totalDays.toLocaleString()} days. {lastDate}.</p>
-        <p className={styles.recap}>
-          {receipts.totalEmojis.toLocaleString()} emojis · {receipts.loveYouCount.toLocaleString()} &ldquo;I love you&rdquo;s · {receipts.photosShared.toLocaleString()} photos shared
+    <Card label="THE NEXT CHAPTER" title="And we're still counting.">
+      <div className={styles.container}>
+        {/* Pulsing Seal Heart */}
+        <div className={styles.sealWrap}>
+          <span className={styles.pulseHeart}>♡</span>
+        </div>
+
+        {/* Hero Totals Box */}
+        <div className={styles.totalsBox}>
+          <p className={styles.bigStat}>{meta.totalMessages.toLocaleString()}</p>
+          <p className={styles.bigStatLabel}>Messages Exchanged Over {meta.totalDays.toLocaleString()} Days</p>
+          <p className={styles.lastDateTag}>Through {lastDate}</p>
+        </div>
+
+        {/* Recap Items */}
+        <div className={styles.recapGrid}>
+          <div className={styles.recapPill}>
+            <span>😍 {receipts.totalEmojis.toLocaleString()} Emojis</span>
+          </div>
+          <div className={styles.recapPill}>
+            <span>❤️ {receipts.loveYouCount.toLocaleString()} &ldquo;I Love You&rdquo;s</span>
+          </div>
+          <div className={styles.recapPill}>
+            <span>📸 {receipts.photosShared.toLocaleString()} Photos</span>
+          </div>
+        </div>
+
+        <p className={styles.closingText}>
+          Export your next chapter whenever you&rsquo;re ready. Our story continues every single day.
         </p>
-        <p>Export your next chapter whenever you're ready.</p>
       </div>
     </Card>
   );

@@ -1,20 +1,53 @@
-.stats {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
+  height: 100%;
+  justify-content: space-between;
 }
 
-.sectionLabel {
-  font: 500 11px/1 var(--cw-font-body);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cw-text-faint);
-  margin: 20px 0 12px;
+.winnerCard {
+  background: var(--cw-stat-bg);
+  border: 1px solid var(--cw-gold);
+  border-radius: var(--cw-radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.crownIcon {
+  font-size: 28px;
+}
+
+.winnerText {
+  font-family: var(--cw-font-body);
+  font-size: 13px;
+  color: var(--cw-text-primary);
+  line-height: 1.4;
+  margin: 0;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 8px;
+}
+
+.splitWrap {
+  margin: 10px 0;
+}
+
+.ownSection {
+  margin-top: 4px;
+}
+
+.sectionLabel {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 0 0 6px;
 }

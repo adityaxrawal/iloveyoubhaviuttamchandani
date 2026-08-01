@@ -1,29 +1,84 @@
-.wrap {
+.container {
   display: flex;
   flex-direction: column;
+  height: 100%;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
+  justify-content: space-between;
   text-align: center;
-  flex: 1;
 }
 
-.heart {
-  font-size: 56px;
+.sealWrap {
+  margin: 4px 0;
+}
+
+.pulseHeart {
+  font-size: 44px;
   color: var(--cw-accent);
-  animation: pulse 2s ease-in-out infinite;
+  display: inline-block;
+  animation: heartPulse 2.5s ease-in-out infinite;
 }
 
-.recap {
-  font: 400 13px/1.5 var(--cw-font-body);
-  color: var(--cw-text-faint);
-}
-
-@keyframes pulse {
+@keyframes heartPulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.12); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .heart { animation: none; }
+.totalsBox {
+  background: var(--cw-stat-bg);
+  border: 1px solid rgba(192, 57, 43, 0.2);
+  border-radius: var(--cw-radius-md);
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bigStat {
+  font-family: var(--cw-font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--cw-text-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.bigStatLabel {
+  font-family: var(--cw-font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--cw-text-muted);
+  margin: 4px 0 2px;
+}
+
+.lastDateTag {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  color: var(--cw-text-faint);
+  margin: 0;
+}
+
+.recapGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.recapPill {
+  background: rgba(192, 57, 43, 0.05);
+  border-radius: var(--cw-radius-pill);
+  padding: 4px 10px;
+  font-family: var(--cw-font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--cw-text-primary);
+}
+
+.closingText {
+  font-family: var(--cw-font-display);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--cw-text-muted);
+  margin: 0;
+  line-height: 1.4;
 }

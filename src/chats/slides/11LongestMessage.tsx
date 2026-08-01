@@ -11,22 +11,33 @@ export default function LongestMessage({ data }: SlideProps) {
     : '';
 
   return (
-    <Card label="Went off" title="The longest message" subtitle={`${longestMessage.length.toLocaleString()} characters. Sent on ${dateStr}.`}>
-      <div className={styles.bubble}>
-        <div className={styles.bubbleHeader}>{longestMessage.sender} · {dateStr}</div>
-        <div className={styles.bubbleBody}>&ldquo;{longestMessage.preview}&hellip;&rdquo;</div>
-        <div className={styles.bubbleFooter}>{longestMessage.length.toLocaleString()} characters</div>
-      </div>
-
-      <p className={styles.sectionLabel}>Average message length (characters)</p>
-      {meta.isSolo ? (
-        <StatBox number={Math.round(avgLengthBySender[meta.senderA] ?? 0)} label={meta.senderA} />
-      ) : (
-        <div className={styles.grid}>
-          <StatBox number={Math.round(avgLengthBySender[meta.senderA] ?? 0)} label={meta.senderA} />
-          <StatBox number={Math.round(avgLengthBySender[meta.senderB] ?? 0)} label={meta.senderB} />
+    <Card
+      label="THE MIDNIGHT NOVEL"
+      title="The longest message"
+      subtitle={`${longestMessage.length.toLocaleString()} characters sent on ${dateStr}`}
+    >
+      <div className={styles.container}>
+        {/* Quote Bubble Card */}
+        <div className={styles.bubble}>
+          <div className={styles.bubbleHeader}>
+            <span>📜 {longestMessage.sender.split(' ')[0]}&rsquo;s Novel</span>
+            <span>{dateStr}</span>
+          </div>
+          <div className={styles.bubbleBody}>&ldquo;{longestMessage.preview}&hellip;&rdquo;</div>
+          <div className={styles.bubbleFooter}>Length: {longestMessage.length.toLocaleString()} characters</div>
         </div>
-      )}
+
+        {/* Avg Message Length */}
+        <div className={styles.avgSection}>
+          <p className={styles.sectionLabel}>Average Message Length (Characters)</p>
+          <div className={styles.grid}>
+            <StatBox number={Math.round(avgLengthBySender[meta.senderA] ?? 0)} label={`${meta.senderA.split(' ')[0]} Avg`} />
+            {!meta.isSolo && (
+              <StatBox number={Math.round(avgLengthBySender[meta.senderB] ?? 0)} label={`${meta.senderB.split(' ')[0]} Avg`} />
+            )}
+          </div>
+        </div>
+      </div>
     </Card>
   );
 }

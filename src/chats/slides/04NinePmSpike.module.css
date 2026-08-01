@@ -1,7 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.heatmapWrap {
+  margin-bottom: 8px;
+}
+
 .footerBoxes {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 8px;
+  margin-top: 4px;
 }
 
 .footerBox {
@@ -9,73 +20,72 @@
   background: var(--cw-stat-bg);
   border: 1px solid var(--cw-stat-border);
   border-radius: var(--cw-radius-md);
-  padding: 12px;
+  padding: 8px 10px;
 }
 
 .footerLabel {
-  font: 500 11px/1 var(--cw-font-body);
-  letter-spacing: 0.1em;
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cw-text-faint);
-  margin: 0 0 6px;
+  margin: 0 0 2px;
 }
 
 .footerValue {
-  font: 400 22px/1 var(--cw-font-display);
+  font-family: var(--cw-font-display);
+  font-size: 20px;
+  font-weight: 700;
   color: var(--cw-text-primary);
   margin: 0;
+  line-height: 1;
 }
 
 .footerValueSmall {
-  font: 400 14px/1.4 var(--cw-font-body);
-  color: var(--cw-text-primary);
+  font-family: var(--cw-font-body);
+  font-size: 12px;
+  color: var(--cw-text-muted);
   margin: 0;
 }
 
 .legend {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-top: 20px;
+  gap: 3px;
+  margin-top: 10px;
+  justify-content: center;
 }
 
 .legendWord {
-  font: 500 10px/1 var(--cw-font-body);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
   color: var(--cw-text-faint);
-}
-
-.legendWord:first-child {
-  margin-right: 2px;
-}
-
-.legendWord:last-child {
-  margin-left: 2px;
+  text-transform: uppercase;
 }
 
 .legendSwatch {
-  width: 16px;
+  width: 14px;
   height: 10px;
   border-radius: 2px;
 }
 
 .daysSection {
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .daysLabel {
-  font: 500 11px/1 var(--cw-font-body);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cw-text-faint);
-  margin: 0 0 12px;
+  font-family: var(--cw-font-body);
+  font-size: 11px;
+  color: var(--cw-text-muted);
+  margin: 0 0 6px;
 }
 
 .daysList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .dayRow {
@@ -85,34 +95,37 @@
 }
 
 .dayName {
-  width: 72px;
+  width: 60px;
   flex-shrink: 0;
-  font: 400 12px/1 var(--cw-font-body);
+  font-family: var(--cw-font-body);
+  font-size: 11px;
   color: var(--cw-text-muted);
 }
 
 .dayBarTrack {
   flex: 1;
-  height: 10px;
+  height: 8px;
   background: var(--cw-stat-bg);
-  border-radius: 5px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .dayBarFill {
   height: 100%;
-  border-radius: 5px;
-  background: var(--cw-charcoal);
+  border-radius: 4px;
+  background: var(--cw-text-faint);
 }
 
 .dayBarPeak {
-  background: var(--cw-gold);
+  background: var(--cw-accent);
 }
 
 .dayCount {
   width: 44px;
   flex-shrink: 0;
   text-align: right;
-  font: 400 12px/1 var(--cw-font-body);
-  color: var(--cw-text-faint);
+  font-family: var(--cw-font-body);
+  font-size: 11px;
+  color: var(--cw-text-primary);
+  font-weight: 600;
 }

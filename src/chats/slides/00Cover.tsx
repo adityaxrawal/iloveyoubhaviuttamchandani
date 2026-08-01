@@ -8,18 +8,44 @@ function formatMonthYear(iso: string): string {
 }
 
 export default function Cover({ data }: SlideProps) {
-  const { meta } = data;
+  const { meta, receipts } = data;
   const range = meta.isSolo
     ? formatMonthYear(meta.startDate)
     : `${formatMonthYear(meta.startDate)} – ${formatMonthYear(meta.endDate)}`;
 
   return (
-    <Card label={meta.participants.join(' & ')} title="Our story, by the numbers.">
-      <div className={styles.wrap}>
-        <span className={styles.names} aria-hidden="true">
-          {'A'} ♡ {'B'}
-        </span>
-        <span className={styles.range}>{range}</span>
+    <Card label="CHAPTER 01 · OUR STORY IN NUMBERS" title="Our story, by the numbers.">
+      <div className={styles.container}>
+        {/* Embossed Wax Seal Badge */}
+        <div className={styles.sealBadge}>
+          <div className={styles.sealOuter}>
+            <span className={styles.sealHeart}>♡</span>
+            <span className={styles.sealInitials}>{meta.senderA.split(' ')[0]} & {meta.senderB.split(' ')[0]}</span>
+          </div>
+        </div>
+
+        <p className={styles.dateRange}>{range}</p>
+
+        {/* Hero Quick Stat Pills */}
+        <div className={styles.pillGrid}>
+          <div className={styles.statPill}>
+            <span className={styles.pillValue}>{meta.totalMessages.toLocaleString()}</span>
+            <span className={styles.pillLabel}>Messages</span>
+          </div>
+          <div className={styles.statPill}>
+            <span className={styles.pillValue}>{meta.totalDays}</span>
+            <span className={styles.pillLabel}>Days Active</span>
+          </div>
+          <div className={styles.statPill}>
+            <span className={styles.pillValue}>{receipts.loveYouCount.toLocaleString()}</span>
+            <span className={styles.pillLabel}>&ldquo;I Love You&rdquo;s</span>
+          </div>
+        </div>
+
+        <div className={styles.actionHint}>
+          <span>Tap or swipe to unwrap our story</span>
+          <span className={styles.arrowAnim}>→</span>
+        </div>
       </div>
     </Card>
   );

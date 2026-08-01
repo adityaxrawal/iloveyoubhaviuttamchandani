@@ -1,28 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.peakGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.peakBox {
+  background: var(--cw-stat-bg);
+  border: 1px solid var(--cw-stat-border);
+  border-radius: var(--cw-radius-md);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.peakIcon {
+  font-size: 20px;
+}
+
+.peakName {
+  font-family: var(--cw-font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cw-text-primary);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.peakTime {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  color: var(--cw-text-muted);
+  margin: 2px 0 0;
+}
+
 .bucketTable {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 12px;
-  font: 400 13px/1.6 var(--cw-font-body);
+  font-family: var(--cw-font-body);
+  font-size: 11px;
+  margin: 4px 0;
 }
 
 .bucketTable th, .bucketTable td {
+  padding: 4px 8px;
   text-align: right;
-  padding: 4px 6px;
+  border-bottom: 1px solid var(--cw-stat-border);
 }
 
 .bucketTable th:first-child, .bucketTable td:first-child {
   text-align: left;
 }
 
-.peak {
-  font: 400 16px/1.4 var(--cw-font-display);
-  color: var(--cw-text-primary);
-}
-
-.sectionLabel {
-  font: 500 11px/1 var(--cw-font-body);
+.bucketTable th {
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cw-text-faint);
-  margin: 24px 0 12px;
+  font-size: 10px;
+}
+
+.chartSection {
+  margin-top: 4px;
+}
+
+.sectionLabel {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 0 0 4px;
 }

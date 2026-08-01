@@ -1,6 +1,73 @@
+.receiptContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.receiptHeader {
+  background: var(--cw-stat-bg);
+  border: 1px solid rgba(107, 20, 20, 0.1);
+  border-radius: var(--cw-radius-md);
+  padding: 10px 14px;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.receiptIcon {
+  font-size: 18px;
+}
+
+.heroTotal {
+  font-family: var(--cw-font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--cw-text-primary);
+  line-height: 1;
+  margin: 2px 0;
+}
+
+.heroSub {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.statCell {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.splitSection {
+  margin-top: 2px;
+}
+
+.splitLabel {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin: 0 0 4px;
 }

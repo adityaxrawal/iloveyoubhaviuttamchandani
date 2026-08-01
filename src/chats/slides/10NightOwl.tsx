@@ -34,49 +34,62 @@ export default function NightOwl({ data }: SlideProps) {
   const { timeOfDay, meta } = data;
 
   return (
-    <Card label="When you come alive" title="The night owl" subtitle="When each of you is most likely to text.">
-      <p className={styles.peak}>
-        {meta.senderA} · most active at {formatHour(timeOfDay.peakHourBySender[meta.senderA] ?? 0)}
-      </p>
-      {!meta.isSolo && (
-        <p className={styles.peak}>
-          {meta.senderB} · most active at {formatHour(timeOfDay.peakHourBySender[meta.senderB] ?? 0)}
-        </p>
-      )}
-      <table className={styles.bucketTable}>
-        <thead>
-          <tr>
-            <th></th>
-            <th>{meta.senderA}</th>
-            {!meta.isSolo && <th>{meta.senderB}</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {BUCKET_LABELS.map(([key, label]) => (
-            <tr key={key}>
-              <td>{label}</td>
-              <td>{timeOfDay.bucketsBySender[meta.senderA]?.[key] ?? 0}</td>
-              {!meta.isSolo && <td>{timeOfDay.bucketsBySender[meta.senderB]?.[key] ?? 0}</td>}
+    <Card
+      label="24-HOUR RHYTHMS"
+      title="The night owl"
+      subtitle="When each partner is most active throughout the day"
+    >
+      <div className={styles.container}>
+        {/* Peak Active Hours Banner */}
+        <div className={styles.peakGrid}>
+          <div className={styles.peakBox}>
+            <span className={styles.peakIcon}>🌙</span>
+            <div>
+              <p className={styles.peakName}>{meta.senderA.split(' ')[0]}</p>
+              <p className={styles.peakTime}>Peak at {formatHour(timeOfDay.peakHourBySender[meta.senderA] ?? 21)}</p>
+            </div>
+          </div>
+
+          {!meta.isSolo && (
+            <div className={styles.peakBox}>
+              <span className={styles.peakIcon}>✨</span>
+              <div>
+                <p className={styles.peakName}>{meta.senderB.split(' ')[0]}</p>
+                <p className={styles.peakTime}>Peak at {formatHour(timeOfDay.peakHourBySender[meta.senderB] ?? 22)}</p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Bucket Table */}
+        <table className={styles.bucketTable}>
+          <thead>
+            <tr>
+              <th>Window</th>
+              <th>{meta.senderA.split(' ')[0]}</th>
+              {!meta.isSolo && <th>{meta.senderB.split(' ')[0]}</th>}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {BUCKET_LABELS.map(([key, label]) => (
+              <tr key={key}>
+                <td>{label}</td>
+                <td>{(timeOfDay.bucketsBySender[meta.senderA]?.[key] ?? 0).toLocaleString()}</td>
+                {!meta.isSolo && <td>{(timeOfDay.bucketsBySender[meta.senderB]?.[key] ?? 0).toLocaleString()}</td>}
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      <p className={styles.sectionLabel}>{meta.senderA} · by hour</p>
-      <BarChart
-        data={hourlyChartData(timeOfDay.hourCountsBySender[meta.senderA])}
-        peakIndex={timeOfDay.peakHourBySender[meta.senderA] ?? 0}
-      />
-
-      {!meta.isSolo && (
-        <>
-          <p className={styles.sectionLabel}>{meta.senderB} · by hour</p>
+        {/* 24-Hour Charts */}
+        <div className={styles.chartSection}>
+          <p className={styles.sectionLabel}>{meta.senderA.split(' ')[0]}&rsquo;s 24-Hour Activity</p>
           <BarChart
-            data={hourlyChartData(timeOfDay.hourCountsBySender[meta.senderB])}
-            peakIndex={timeOfDay.peakHourBySender[meta.senderB] ?? 0}
+            data={hourlyChartData(timeOfDay.hourCountsBySender[meta.senderA])}
+            peakIndex={timeOfDay.peakHourBySender[meta.senderA] ?? 0}
           />
-        </>
-      )}
+        </div>
+      </div>
     </Card>
   );
 }

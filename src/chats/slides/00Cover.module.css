@@ -1,19 +1,111 @@
-.wrap {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
-  text-align: center;
+  justify-content: space-between;
   flex: 1;
+  padding: 12px 0 4px;
+  text-align: center;
 }
 
-.names {
-  font: 600 30px/1.2 var(--cw-font-display);
+.sealBadge {
+  position: relative;
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sealOuter {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--cw-stat-bg);
+  border: 1.5px solid rgba(192, 57, 43, 0.3);
+  box-shadow: 0 4px 16px rgba(107, 20, 20, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: var(--cw-text-primary);
 }
 
-.range {
-  font: 400 16px/1.5 var(--cw-font-body);
+.sealHeart {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--cw-accent);
+}
+
+.sealInitials {
+  font-family: var(--cw-font-display);
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.dateRange {
+  font-family: var(--cw-font-body);
+  font-size: 13px;
+  font-weight: 500;
   color: var(--cw-text-muted);
+  margin: 0;
+  background: rgba(192, 57, 43, 0.05);
+  padding: 4px 14px;
+  border-radius: var(--cw-radius-pill);
+}
+
+.pillGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.statPill {
+  background: var(--cw-stat-bg);
+  border: 1px solid rgba(107, 20, 20, 0.1);
+  border-radius: var(--cw-radius-md);
+  padding: 10px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pillValue {
+  font-family: var(--cw-font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cw-text-primary);
+  line-height: 1.1;
+}
+
+.pillLabel {
+  font-family: var(--cw-font-body);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  margin-top: 4px;
+}
+
+.actionHint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--cw-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cw-accent);
+  margin-top: auto;
+}
+
+.arrowAnim {
+  animation: bounceRight 1.5s infinite;
+}
+
+@keyframes bounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
 }

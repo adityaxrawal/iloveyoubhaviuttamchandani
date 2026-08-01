@@ -1,39 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
 .bubble {
   background: var(--cw-stat-bg);
-  border: 1px solid var(--cw-stat-border);
-  border-radius: var(--cw-radius-lg);
-  padding: 16px;
+  border: 1px dashed var(--cw-accent);
+  border-radius: var(--cw-radius-md);
+  padding: 14px;
 }
 
 .bubbleHeader {
-  font: 500 12px/1 var(--cw-font-body);
-  color: var(--cw-text-faint);
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--cw-font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cw-accent);
+  margin-bottom: 8px;
 }
 
 .bubbleBody {
-  font: 400 16px/1.5 var(--cw-font-display);
+  font-family: var(--cw-font-display);
+  font-size: 16px;
+  font-style: italic;
   color: var(--cw-text-primary);
-  white-space: pre-wrap;
+  line-height: 1.4;
 }
 
 .bubbleFooter {
   text-align: right;
-  font: 400 12px/1 var(--cw-font-body);
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
   color: var(--cw-text-faint);
+  margin-top: 8px;
+}
+
+.avgSection {
   margin-top: 10px;
 }
 
 .sectionLabel {
-  font: 500 11px/1 var(--cw-font-body);
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cw-text-faint);
-  margin: 24px 0 12px;
+  margin: 0 0 6px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 8px;
 }

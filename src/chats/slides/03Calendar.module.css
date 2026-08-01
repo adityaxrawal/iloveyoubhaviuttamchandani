@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.streakBanner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bannerItem {
+  background: var(--cw-stat-bg);
+  border: 1px solid rgba(107, 20, 20, 0.1);
+  padding: 8px 10px;
+  border-radius: var(--cw-radius-md);
+  text-align: center;
+}
+
+.bannerVal {
+  font-family: var(--cw-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cw-text-primary);
+  display: block;
+}
+
+.bannerLabel {
+  font-family: var(--cw-font-body);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cw-text-faint);
+  display: block;
+  margin-top: 2px;
+}
+
+.calendarWrap {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.calendarWrap::-webkit-scrollbar {
+  display: none;
+}

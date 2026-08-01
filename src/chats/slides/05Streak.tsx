@@ -42,18 +42,30 @@ export default function Streak({ data }: SlideProps) {
       : `You texted every single day for ${streak.maxStreak} days straight.`;
 
   return (
-    <Card label="Consistency" title="The streak" subtitle={subtitle}>
-      <div className={styles.grid}>
-        <StatBox number={streak.maxStreak} label="Day streak" />
-        <StatBox number={streak.totalChatDays} label="Active days" />
-      </div>
-      <p className={styles.dates}>
-        {streak.bestStart} → {streak.bestEnd} · {percentActive}% of the chat period
-      </p>
+    <Card label="UNBROKEN CONNECTION" title="The streak" subtitle={subtitle}>
+      <div className={styles.container}>
+        {/* Flame Hero Emblem */}
+        <div className={styles.flameHero}>
+          <span className={styles.flameIcon}>🔥</span>
+          <span className={styles.flameNum}>{streak.maxStreak}</span>
+          <span className={styles.flameTag}>Consecutive Days</span>
+        </div>
 
-      <div className={styles.grid}>
-        <StatBox number={avgPerDay} label="Avg texts / active day" />
-        <StatBox number={quietGap} label="Longest quiet gap (days)" />
+        {/* Timeline Range Pill */}
+        <div className={styles.datesPill}>
+          <span>{streak.bestStart}</span>
+          <span className={styles.arrow}>➔</span>
+          <span>{streak.bestEnd}</span>
+          <span className={styles.badge}>{percentActive}% Active</span>
+        </div>
+
+        {/* 2x2 Stat Grid */}
+        <div className={styles.grid}>
+          <StatBox number={streak.totalChatDays} label="Active Chat Days" />
+          <StatBox number={avgPerDay} label="Avg Texts / Active Day" />
+          <StatBox number={percentActive} label="% Days Active" />
+          <StatBox number={quietGap} label="Quiet Gap (Days)" />
+        </div>
       </div>
     </Card>
   );

@@ -11,7 +11,8 @@ function formatMinutes(min: number): string {
 
 function ReplyStat({ name, minutes }: { name: string; minutes: number }) {
   return (
-    <div className={styles.statBox}>
+    <div className={styles.speedBox}>
+      <span className={styles.speedIcon}>⚡</span>
       <p className={styles.statValue}>{formatMinutes(minutes)}</p>
       <p className={styles.statLabel}>{name}</p>
     </div>
@@ -20,44 +21,40 @@ function ReplyStat({ name, minutes }: { name: string; minutes: number }) {
 
 export default function ResponseTime({ data }: SlideProps) {
   const { responseTime, meta } = data;
-
-  if (meta.isSolo) {
-    return (
-      <Card label="How fast we reply" title="Response time">
-        <ReplyStat name={meta.senderA} minutes={responseTime.medianMinutes[meta.senderA] ?? 0} />
-        <div className={styles.grid}>
-          <StatBox number={responseTime.instantCounts[meta.senderA] ?? 0} label="Instant replies (<1 min)" />
-          <StatBox number={responseTime.slowCounts[meta.senderA] ?? 0} label="Slow replies (>60 min)" />
-        </div>
-      </Card>
-    );
-  }
-
   const medA = responseTime.medianMinutes[meta.senderA] ?? 0;
   const medB = responseTime.medianMinutes[meta.senderB] ?? 0;
 
   return (
     <Card
-      label="How fast we reply"
+      label="SPEED OF LOVE"
       title="Response time"
-      subtitle="Median minutes to reply — ignoring gaps over 24 hours."
-      footer={medA < 2 && medB < 2 ? 'Under 2 minutes — basically the same room.' : undefined}
+      subtitle="Median time to reply — ignoring gaps over 24 hours."
+      footer={medA < 2 && medB < 2 ? '⚡ Under 2 minutes — basically in the exact same room!' : undefined}
     >
-      <div className={styles.grid}>
-        <ReplyStat name={meta.senderA} minutes={medA} />
-        <ReplyStat name={meta.senderB} minutes={medB} />
-      </div>
+      <div className={styles.container}>
+        {/* Median Speed Tiles */}
+        <div className={styles.grid}>
+          <ReplyStat name={meta.senderA} minutes={medA} />
+          {!meta.isSolo && <ReplyStat name={meta.senderB} minutes={medB} />}
+        </div>
 
-      <p className={styles.sectionLabel}>Instant replies (under 1 minute)</p>
-      <div className={styles.grid}>
-        <StatBox number={responseTime.instantCounts[meta.senderA] ?? 0} label={meta.senderA} />
-        <StatBox number={responseTime.instantCounts[meta.senderB] ?? 0} label={meta.senderB} />
-      </div>
+        {/* Instant Replies */}
+        <div className={styles.sectionWrap}>
+          <p className={styles.sectionLabel}>⚡ Instant Replies (&lt; 1 minute)</p>
+          <div className={styles.grid}>
+            <StatBox number={responseTime.instantCounts[meta.senderA] ?? 0} label={meta.senderA.split(' ')[0]} />
+            {!meta.isSolo && <StatBox number={responseTime.instantCounts[meta.senderB] ?? 0} label={meta.senderB.split(' ')[0]} />}
+          </div>
+        </div>
 
-      <p className={styles.sectionLabel}>Slow replies (over 60 minutes)</p>
-      <div className={styles.grid}>
-        <StatBox number={responseTime.slowCounts[meta.senderA] ?? 0} label={meta.senderA} />
-        <StatBox number={responseTime.slowCounts[meta.senderB] ?? 0} label={meta.senderB} />
+        {/* Slow Replies */}
+        <div className={styles.sectionWrap}>
+          <p className={styles.sectionLabel}>🐢 Slow Replies (&gt; 60 minutes)</p>
+          <div className={styles.grid}>
+            <StatBox number={responseTime.slowCounts[meta.senderA] ?? 0} label={meta.senderA.split(' ')[0]} />
+            {!meta.isSolo && <StatBox number={responseTime.slowCounts[meta.senderB] ?? 0} label={meta.senderB.split(' ')[0]} />}
+          </div>
+        </div>
       </div>
     </Card>
   );

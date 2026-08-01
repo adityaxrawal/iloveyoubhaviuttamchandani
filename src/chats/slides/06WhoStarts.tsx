@@ -12,25 +12,39 @@ export default function WhoStarts({ data }: SlideProps) {
   const aPercent = total > 0 ? Math.round((aCount / total) * 100) : 0;
   const bPercent = 100 - aPercent;
 
-  if (meta.isSolo) {
-    return (
-      <Card label="Who texts first" title="Who starts it" subtitle="Who sent the first message of the day, every day.">
-        <StatBox number={aCount} label={`${meta.senderA} · days started`} />
-      </Card>
-    );
-  }
+  const starterName = aCount >= bCount ? meta.senderA.split(' ')[0] : meta.senderB.split(' ')[0];
 
   return (
     <Card
-      label="Who texts first"
+      label="THE GOOD MORNING BATTLE"
       title="Who starts it"
-      subtitle="Who sent the first message of the day, every day."
-      footer={<>{meta.senderA.split(' ')[0]} kicked things off {aCount} days.<br/>{meta.senderB.split(' ')[0]} started {bCount}.</>}
+      subtitle="Who sent the first text of the day, every morning."
     >
-      <SenderSplitBar leftLabel={meta.senderA} leftPercent={aPercent} rightLabel={meta.senderB} rightPercent={bPercent} />
-      <div className={styles.grid}>
-        <StatBox number={aCount} label={`${meta.senderA} · days started`} />
-        <StatBox number={bCount} label={`${meta.senderB} · days started`} />
+      <div className={styles.container}>
+        {/* Crown Announcement Banner */}
+        <div className={styles.starterBanner}>
+          <span className={styles.sunIcon}>🌅</span>
+          <span className={styles.bannerText}>
+            <strong>{starterName}</strong> is the early riser who kicked off most mornings!
+          </span>
+        </div>
+
+        {/* Sender Split Progress */}
+        {!meta.isSolo && (
+          <div className={styles.splitWrap}>
+            <SenderSplitBar leftLabel={meta.senderA} leftPercent={aPercent} rightLabel={meta.senderB} rightPercent={bPercent} />
+          </div>
+        )}
+
+        {/* Dual Stat Cards */}
+        <div className={styles.grid}>
+          <StatBox number={aCount} label={`${meta.senderA.split(' ')[0]} · Days Started`} />
+          {!meta.isSolo && <StatBox number={bCount} label={`${meta.senderB.split(' ')[0]} · Days Started`} />}
+        </div>
+
+        <p className={styles.footnote}>
+          Out of {total} total days tracked, {meta.senderA.split(' ')[0]} started {aCount} days ({aPercent}%) and {meta.senderB.split(' ')[0]} started {bCount} days ({bPercent}%).
+        </p>
       </div>
     </Card>
   );
