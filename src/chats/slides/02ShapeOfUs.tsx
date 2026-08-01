@@ -1,20 +1,17 @@
 import { useState } from 'react';
 import type { SlideProps } from '../lib/types';
+
 import Card from '../components/Card';
+
 import BarChart from '../components/BarChart';
+
 import StatBox from '../components/StatBox';
+import { formatMonthLabel, formatYearLabel } from '../lib/formatters';
 import styles from './02ShapeOfUs.module.css';
 
-function formatMonthLabel(key: string): string {
-  const [year, month] = key.split('-');
-  const date = new Date(Number(year), Number(month) - 1, 1);
-  const monthAbbr = date.toLocaleDateString('en-US', { month: 'short' });
-  return `${monthAbbr} '${year.slice(2)}`;
-}
 
-function formatYearLabel(year: string): string {
-  return `'${year.slice(2)}`;
-}
+
+
 
 export default function ShapeOfUs({ data }: SlideProps) {
   const [view, setView] = useState<'month' | 'year'>('month');

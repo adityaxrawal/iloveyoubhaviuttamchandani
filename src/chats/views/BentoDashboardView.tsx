@@ -5,6 +5,7 @@ import BarChart from '../components/BarChart';
 import HeatmapGrid from '../components/HeatmapGrid';
 import CalendarGrid from '../components/CalendarGrid';
 import { heatmapColorVar } from '../lib/heatmapColor';
+import { formatMonthLabel, formatYearLabel, formatHour } from '../lib/formatters';
 import CountUp from '../components/CountUp';
 import styles from './BentoDashboardView.module.css';
 
@@ -15,22 +16,28 @@ interface BentoDashboardViewProps {
 
 const LEGEND_STOPS = [0, 1, 6, 16, 31, 61, 101];
 
-function formatMonthLabel(key: string): string {
-  const [year, month] = key.split('-');
-  const date = new Date(Number(year), Number(month) - 1, 1);
-  const monthAbbr = date.toLocaleDateString('en-US', { month: 'short' });
-  return `${monthAbbr} '${year.slice(2)}`;
+function MetricTile({ val, lbl }: { val: string; lbl: string }) {
+  return (
+    <div className={styles.metricBox}>
+      <span className={styles.metricVal}>{val}</span>
+      <span className={styles.metricLbl}>{lbl}</span>
+    </div>
+  );
 }
 
-function formatYearLabel(year: string): string {
-  return `'${year.slice(2)}`;
+function WordList({ words }: { words: [string, number][] }) {
+  return (
+    <>
+      {words.map(([w, c]) => (
+        <div key={w} className={styles.wordRow}>
+          <span>{w}</span>
+          <span className={styles.wordCount}>{c.toLocaleString()}</span>
+        </div>
+      ))}
+    </>
+  );
 }
 
-function formatHour(hour: number): string {
-  const period = hour < 12 ? 'AM' : 'PM';
-  const h12 = hour % 12 === 0 ? 12 : hour % 12;
-  return `${h12} ${period}`;
-}
 
 export default function BentoDashboardView({ data, onOpenStory }: BentoDashboardViewProps) {
   const { meta, receipts, shape, calendar, heatmap, streak, responseTime, initiator, vocabulary, messageShape, timeOfDay } = data;
@@ -186,22 +193,10 @@ export default function BentoDashboardView({ data, onOpenStory }: BentoDashboard
 
               {/* Volume Metric Breakdown Grid */}
               <div className={styles.cardMetricsGrid}>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>16.4k</span>
-                  <span className={styles.metricLbl}>🏆 Peak Month (May &apos;26)</span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>7.1k</span>
-                  <span className={styles.metricLbl}>🌙 Quiet Month (Nov &apos;25)</span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>12.1k</span>
-                  <span className={styles.metricLbl}>📈 Monthly Average</span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>45.8k</span>
-                  <span className={styles.metricLbl}>📅 Busiest Quarter (Q2 &apos;26)</span>
-                </div>
+                <MetricTile val="16.4k" lbl="🏆 Peak Month (May '26)" />
+                <MetricTile val="7.1k" lbl="🌙 Quiet Month (Nov '25)" />
+                <MetricTile val="12.1k" lbl="📈 Monthly Average" />
+                <MetricTile val="45.8k" lbl="📅 Busiest Quarter (Q2 '26)" />
               </div>
             </div>
 
@@ -232,18 +227,9 @@ export default function BentoDashboardView({ data, onOpenStory }: BentoDashboard
 
               {/* Streak & Habit Highlights Grid */}
               <div className={styles.threeColMetricsGrid} style={{ marginTop: '10px' }}>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>355 Days</span>
-                  <span className={styles.metricLbl}>🔥 Consecutive Streak</span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>100%</span>
-                  <span className={styles.metricLbl}>🎯 Active Days Rate</span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricVal}>9–11 PM</span>
-                  <span className={styles.metricLbl}>⚡ Peak Chat Window</span>
-                </div>
+                <MetricTile val="355 Days" lbl="🔥 Consecutive Streak" />
+                <MetricTile val="100%" lbl="🎯 Active Days Rate" />
+                <MetricTile val="9–11 PM" lbl="⚡ Peak Chat Window" />
               </div>
             </div>
           </div>
@@ -432,22 +418,12 @@ export default function BentoDashboardView({ data, onOpenStory }: BentoDashboard
               <div className={styles.wordsFlexGrid}>
                 <div className={styles.wordCol}>
                   <p className={styles.subLabel}>{meta.senderA.split(' ')[0]}&rsquo;s Top Words</p>
-                  {topWordsA.map(([w, c]) => (
-                    <div key={w} className={styles.wordRow}>
-                      <span>{w}</span>
-                      <span className={styles.wordCount}>{c.toLocaleString()}</span>
-                    </div>
-                  ))}
+                  <WordList words={topWordsA} />
                 </div>
 
                 <div className={styles.wordCol}>
                   <p className={styles.subLabel}>{meta.senderB.split(' ')[0]}&rsquo;s Top Words</p>
-                  {topWordsB.map(([w, c]) => (
-                    <div key={w} className={styles.wordRow}>
-                      <span>{w}</span>
-                      <span className={styles.wordCount}>{c.toLocaleString()}</span>
-                    </div>
-                  ))}
+                  <WordList words={topWordsB} />
                 </div>
               </div>
             </div>

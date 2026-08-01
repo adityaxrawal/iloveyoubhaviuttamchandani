@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import type { RawMessage } from './types';
-import { runAnalysis } from './useAnalysis';
+import { runAnalysis, useAnalysis } from './useAnalysis';
+
+describe('useAnalysis', () => {
+  it('is a function exported for computing analysis state', () => {
+    expect(typeof useAnalysis).toBe('function');
+  });
+});
+
 
 describe('runAnalysis', () => {
   it('returns a ready state with data for valid messages', () => {

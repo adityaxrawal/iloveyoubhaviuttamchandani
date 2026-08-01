@@ -16,13 +16,13 @@ import type {
   Vocabulary,
 } from './types';
 
-export function codePointLength(s: string): number {
+function codePointLength(s: string): number {
   return Array.from(s).length;
 }
 
 const EMOJI_RE = /[\u{10000}-\u{10FFFF}]|❤|♥/gu;
 
-export function extractEmojis(text: string): string[] {
+function extractEmojis(text: string): string[] {
   return text.match(EMOJI_RE) ?? [];
 }
 
@@ -34,18 +34,18 @@ export function isMediaMessage(text: string): boolean {
   return MEDIA_RE.test(text);
 }
 
-export function median(nums: number[]): number {
+function median(nums: number[]): number {
   if (nums.length === 0) return 0;
   const sorted = [...nums].sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
   return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
 }
 
-export function pad2(n: number): string {
+function pad2(n: number): string {
   return n < 10 ? `0${n}` : String(n);
 }
 
-export function formatDateKey(d: Date): string {
+function formatDateKey(d: Date): string {
   return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
 }
 

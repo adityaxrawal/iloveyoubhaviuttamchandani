@@ -1,8 +1,9 @@
 import type { SlideProps } from '../lib/types';
 import Card from '../components/Card';
-import StatBox from '../components/StatBox';
 import SenderSplitBar from '../components/SenderSplitBar';
+import SenderStatGrid from '../components/SenderStatGrid';
 import styles from './06WhoStarts.module.css';
+
 
 export default function WhoStarts({ data }: SlideProps) {
   const { initiator, meta } = data;
@@ -37,10 +38,7 @@ export default function WhoStarts({ data }: SlideProps) {
         )}
 
         {/* Dual Stat Cards */}
-        <div className={styles.grid}>
-          <StatBox number={aCount} label={`${meta.senderA.split(' ')[0]} · Days Started`} />
-          {!meta.isSolo && <StatBox number={bCount} label={`${meta.senderB.split(' ')[0]} · Days Started`} />}
-        </div>
+        <SenderStatGrid meta={meta} countA={aCount} countB={bCount} labelSuffix=" · Days Started" gridClassName={styles.grid} />
 
         <p className={styles.footnote}>
           Out of {total} total days tracked, {meta.senderA.split(' ')[0]} started {aCount} days ({aPercent}%) and {meta.senderB.split(' ')[0]} started {bCount} days ({bPercent}%).

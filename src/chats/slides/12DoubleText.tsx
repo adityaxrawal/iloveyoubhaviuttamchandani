@@ -1,7 +1,7 @@
 import type { SlideProps } from '../lib/types';
 import Card from '../components/Card';
-import StatBox from '../components/StatBox';
 import SenderSplitBar from '../components/SenderSplitBar';
+import SenderStatGrid from '../components/SenderStatGrid';
 import styles from './12DoubleText.module.css';
 
 export default function DoubleText({ data }: SlideProps) {
@@ -35,10 +35,7 @@ export default function DoubleText({ data }: SlideProps) {
         </div>
 
         {/* Double Text Count Stats */}
-        <div className={styles.grid}>
-          <StatBox number={aCount} label={`${meta.senderA.split(' ')[0]} Double Texts`} />
-          {!meta.isSolo && <StatBox number={bCount} label={`${meta.senderB.split(' ')[0]} Double Texts`} />}
-        </div>
+        <SenderStatGrid meta={meta} countA={aCount} countB={bCount} labelSuffix=" Double Texts" gridClassName={styles.grid} />
 
         {!meta.isSolo && (
           <>
@@ -49,10 +46,7 @@ export default function DoubleText({ data }: SlideProps) {
             {/* Share of own messages */}
             <div className={styles.ownSection}>
               <p className={styles.sectionLabel}>Share of own messages that were double texts</p>
-              <div className={styles.grid}>
-                <StatBox number={aSharePercent} label={`${meta.senderA.split(' ')[0]} %`} />
-                <StatBox number={bSharePercent} label={`${meta.senderB.split(' ')[0]} %`} />
-              </div>
+              <SenderStatGrid meta={meta} countA={aSharePercent} countB={bSharePercent} labelSuffix=" %" gridClassName={styles.grid} />
             </div>
           </>
         )}
