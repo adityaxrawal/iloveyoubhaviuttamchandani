@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react';
 import type { AnalysisResult } from './lib/types';
 import StoryShell from './components/StoryShell';
+import ModeSwitch from './components/ModeSwitch';
+import BentoDashboardView from './views/BentoDashboardView';
 import metricsData from './code/metrics.json';
 import './theme/tokens.css';
 
@@ -25,9 +28,77 @@ const SLIDES = [
 ];
 
 export default function ChatWrappedApp() {
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 768;
+    }
+    return false;
+  });
+
+  // Mobile defaults to 'story'; Desktop/Tablet defaults to 'bento'
+  const [viewMode, setViewMode] = useState<'story' | 'bento'>(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return 'story';
+    }
+    return 'bento';
+  });
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const data = metricsData as unknown as AnalysisResult;
+
+  // Track window resize to detect Mobile vs Desktop/Tablet
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setViewMode('story'); // Force Story mode on mobile
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const activeMode = isMobile ? 'story' : viewMode;
+
   return (
-    <div className="storyRoot">
-      <StoryShell slides={SLIDES} data={metricsData as unknown as AnalysisResult} />
+    <div
+      className="storyRoot"
+      style={{
+        minHeight: '100dvh',
+        height: isMobile ? 'auto' : '100dvh',
+        background: 'radial-gradient(circle at 50% 40%, #7a1527 0%, #4a0d17 100%)',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Hide ModeSwitch on Mobile View completely */}
+      {!isMobile && (
+        <ModeSwitch
+          mode={activeMode}
+          onChangeMode={setViewMode}
+          currentIndex={currentIndex}
+          totalSlides={SLIDES.length}
+        />
+      )}
+
+      <div style={{ flex: 1, display: 'flex', width: '100%', minHeight: 0, overflow: 'hidden' }}>
+        {activeMode === 'story' ? (
+          <StoryShell
+            slides={SLIDES}
+            data={data}
+            currentIndex={currentIndex}
+            onIndexChange={setCurrentIndex}
+          />
+        ) : (
+          <BentoDashboardView
+            data={data}
+            onOpenStory={() => setViewMode('story')}
+          />
+        )}
+      </div>
     </div>
   );
 }
