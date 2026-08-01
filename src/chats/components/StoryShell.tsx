@@ -9,19 +9,29 @@ const TAP_DRAG_TOLERANCE = 10;
 interface StoryShellProps {
   slides: ComponentType<SlideProps>[];
   data: AnalysisResult;
+  currentIndex?: number;
+  onIndexChange?: (index: number) => void;
 }
 
-export default function StoryShell({ slides, data }: StoryShellProps) {
-  const [index, setIndex] = useState(0);
+export default function StoryShell({ slides, data, currentIndex: controlledIndex, onIndexChange }: StoryShellProps) {
+  const [internalIndex, setInternalIndex] = useState(0);
+  const index = controlledIndex !== undefined ? controlledIndex : internalIndex;
+
   const total = slides.length;
   const dragStartX = useRef<number | null>(null);
+
+  const setIndex = (updater: (i: number) => number) => {
+    const newIdx = updater(index);
+    if (onIndexChange) {
+      onIndexChange(newIdx);
+    } else {
+      setInternalIndex(newIdx);
+    }
+  };
 
   const goNext = () => setIndex((i) => nextIndex(i, total));
   const goPrev = () => setIndex((i) => prevIndex(i, total));
 
-  // Document-level listener rather than relying on this element holding DOM
-  // focus — clicking any interactive control inside the slide would
-  // otherwise steal focus and silently break arrow-key navigation.
   useEffect(() => {
     const handleKeyDown = (e: globalThis.KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') setIndex((i) => nextIndex(i, total));
@@ -29,17 +39,12 @@ export default function StoryShell({ slides, data }: StoryShellProps) {
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [total]);
+  }, [total, index]);
 
   const handlePointerDown = (e: PointerEvent) => {
     dragStartX.current = e.clientX;
   };
 
-  // No full-screen tap-zone overlay: it would sit on top of the slide's own
-  // interactive elements (heatmap cells, the Shape-of-Us toggle) and steal
-  // every click before it reaches them. Instead this delegates from the
-  // shell itself — a real swipe always navigates; a plain tap navigates
-  // only if it didn't land on a control the slide handles itself.
   const handlePointerUp = (e: PointerEvent) => {
     if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;

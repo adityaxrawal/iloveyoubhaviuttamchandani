@@ -5,23 +5,29 @@
   --cw-space-lg: 24px;
   --cw-space-xl: 32px;
   --cw-space-2xl: 48px;
-  --cw-radius-sm: 6px;
-  --cw-radius-md: 8px;
-  --cw-radius-lg: 12px;
-  --cw-radius-pill: 20px;
+
+  --cw-radius-sm: 8px;
+  --cw-radius-md: 12px;
+  --cw-radius-lg: 18px;
+  --cw-radius-pill: 9999px;
 
   --cw-bg: #f5f0e8;
   --cw-card-bg: #faf6ee;
   --cw-stat-bg: #fbf7f0;
   --cw-stat-border: #e0c9c2;
+  --cw-stat-border-gold: rgba(201, 162, 75, 0.4);
+
   --cw-text-primary: #6b1414;
   --cw-text-muted: #8b2020;
   --cw-text-faint: #a85d5d;
+
   --cw-accent: #c0392b;
   --cw-accent-hover: #a83226;
   --cw-gold: #c9a24b;
+  --cw-gold-glow: rgba(201, 162, 75, 0.25);
   --cw-charcoal: #8b1a1a;
   --cw-rust: #6b1414;
+
   --cw-hm-0: #faf3ea;
   --cw-hm-1: #f0dcd6;
   --cw-hm-2: #e0c9c2;
@@ -29,9 +35,31 @@
   --cw-hm-4: #b85f52;
   --cw-hm-5: #943a2c;
   --cw-hm-6: #6b1414;
+
   --cw-font-display: 'Dancing Script', cursive;
   --cw-font-body: 'Playfair Display', serif;
+
   --cw-scallop-color: #c0392b;
   --cw-scallop-size: 14px;
   --cw-scallop-depth: 6px;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulseGoldGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(201, 162, 75, 0.3);
+  }
 }

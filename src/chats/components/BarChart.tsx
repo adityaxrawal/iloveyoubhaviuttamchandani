@@ -21,11 +21,13 @@ export default function BarChart({ data, peakIndex }: BarChartProps) {
     <div className={styles.chart}>
       {data.map((d, i) => (
         <div key={`${d.label}-${i}`} className={styles.barCol}>
-          <div
-            className={`${styles.bar} ${i === peakIndex ? styles.barPeak : ''}`}
-            style={{ height: `${(d.value / max) * 100}%` }}
-            title={`${d.label}: ${d.value.toLocaleString()}`}
-          />
+          <div className={styles.barTrack}>
+            <div
+              className={`${styles.bar} ${i === peakIndex ? styles.barPeak : ''}`}
+              style={{ height: `${(d.value / max) * 100}%` }}
+              title={`${d.label}: ${d.value.toLocaleString()}`}
+            />
+          </div>
           <span className={styles.axisLabel}>{i % labelStep === 0 ? d.label : ''}</span>
         </div>
       ))}

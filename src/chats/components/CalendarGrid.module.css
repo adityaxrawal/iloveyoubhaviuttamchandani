@@ -1,47 +1,101 @@
-.grid {
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.monthsHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 28px;
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cw-text-faint);
+  letter-spacing: 0.02em;
+}
+
+.monthLabel {
+  text-align: center;
+}
+
+.gridBody {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.dayLabelsCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 88px;
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--cw-text-faint);
+  padding-right: 4px;
+}
+
+.columnsWrap {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.column {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-.headerRow,
-.weekRow {
+.cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.cell:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 6px var(--cw-accent);
+  z-index: 10;
+}
+
+.cellEmpty {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.legendLabel {
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  color: var(--cw-text-faint);
+}
+
+.swatchesFlex {
   display: flex;
   align-items: center;
   gap: 3px;
 }
 
-.headerRow {
-  margin-bottom: 2px;
-}
-
-.cornerLabel,
-.monthLabel {
-  width: 26px;
-  flex-shrink: 0;
-  font: 400 9px/1 var(--cw-font-body);
-  color: var(--cw-text-faint);
-  text-align: right;
-  padding-right: 4px;
-  box-sizing: border-box;
-}
-
-.dayLabel {
-  flex: 1;
-  font: 500 9px/1 var(--cw-font-body);
-  letter-spacing: 0.04em;
-  color: var(--cw-text-faint);
-  text-align: center;
-}
-
-.cell,
-.cellEmpty {
-  flex: 1;
-  aspect-ratio: 1;
-  min-width: 0;
+.swatch {
+  width: 10px;
+  height: 10px;
   border-radius: 2px;
-}
-
-.cellEmpty {
-  background: transparent;
 }

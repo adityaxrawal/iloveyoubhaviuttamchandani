@@ -2,8 +2,10 @@
   display: flex;
   align-items: flex-end;
   gap: 6px;
-  height: 220px;
+  height: 100%;
   width: 100%;
+  padding-bottom: 4px;
+  box-sizing: border-box;
 }
 
 .barCol {
@@ -11,29 +13,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
   height: 100%;
   min-width: 0;
 }
 
+.barTrack {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 0;
+}
+
 .bar {
   width: 100%;
-  border-radius: 3px 3px 0 0;
-  background: var(--cw-charcoal);
-  transition: opacity 0.15s ease;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, #c0392b 0%, #6b1414 100%);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(107, 20, 20, 0.15);
 }
 
 .bar:hover {
-  opacity: 0.75;
+  filter: brightness(1.15);
+  transform: translateY(-2px);
 }
 
 .barPeak {
-  background: var(--cw-gold);
+  background: linear-gradient(180deg, #c9a24b 0%, #a87e2a 100%);
+  box-shadow: 0 0 12px rgba(201, 162, 75, 0.4);
 }
 
 .axisLabel {
   margin-top: 6px;
-  font: 400 10px/1 var(--cw-font-body);
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
   color: var(--cw-text-faint);
   white-space: nowrap;
+  height: 14px;
+  line-height: 14px;
+  flex-shrink: 0;
 }

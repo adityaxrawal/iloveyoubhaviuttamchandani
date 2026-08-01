@@ -1,20 +1,32 @@
 .statBox {
   background: var(--cw-stat-bg);
-  border: 1px solid var(--cw-stat-border);
+  border: 1px solid var(--cw-stat-border-gold);
   border-radius: var(--cw-radius-md);
-  padding: 18px 12px;
+  padding: 14px 10px;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(107, 20, 20, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.statBox:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(107, 20, 20, 0.08);
 }
 
 .stat {
-  font: 400 30px/1 var(--cw-font-display);
+  font-family: var(--cw-font-display);
+  font-size: 28px;
+  font-weight: 700;
   color: var(--cw-text-primary);
   margin: 0;
+  line-height: 1.1;
 }
 
 .label {
-  font: 500 11px/1 var(--cw-font-body);
-  letter-spacing: 0.12em;
+  font-family: var(--cw-font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--cw-text-faint);
   margin: 4px 0 0;
