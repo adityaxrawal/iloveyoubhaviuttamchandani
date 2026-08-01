@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import type { ChatExport } from './types';
 import { computeAnalysis } from './analysis';
-import sampleData from '../code/sample_chat.json';
+import sampleData from '../data/sample_chat.json';
 
 const sampleMessages = (sampleData as ChatExport).messages;
 

@@ -3,7 +3,7 @@ import type { AnalysisResult } from './lib/types';
 import StoryShell from './components/StoryShell';
 import ModeSwitch from './components/ModeSwitch';
 import BentoDashboardView from './views/BentoDashboardView';
-import metricsData from './code/metrics.json';
+import metricsData from './data/metrics.json';
 import './theme/tokens.css';
 
 import Cover from './slides/00Cover';

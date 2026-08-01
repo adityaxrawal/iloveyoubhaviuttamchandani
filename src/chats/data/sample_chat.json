@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "total_messages": 53381,
+    "participants": [
+      "Aditya Rawal",
+      "𝓑𝓱𝓪𝓿𝓲🏡"
+    ],
+    "start_date": "2026-03-19T22:50:32",
+    "end_date": "2026-07-23T22:58:10",
+    "source_file": "_chat.txt"
+  },
+  "messages": [
+    {
+      "id": 1,
+      "timestamp": "2014-03-12T08:23:11",
+      "date": "12/03/14",
+      "time": "8:23:11 AM",
+      "sender": "Bhavi",
+      "message": "hiii good morning 😊"
+    },
+    {
+      "id": 2,
+      "timestamp": "2014-03-12T08:31:44",
+      "date": "12/03/14",
+      "time": "8:31:44 AM",
+      "sender": "Aditya",
+      "message": "good morning!! slept well?"
+    },
+    {
+      "id": 3,
+      "timestamp": "2014-03-12T08:33:02",
+      "date": "12/03/14",
+      "time": "8:33:02 AM",
+      "sender": "Bhavi",
+      "message": "yes finally 😴 you?"
+    },
+    {
+      "id": 4,
+      "timestamp": "2014-03-12T08:40:17",
+      "date": "12/03/14",
+      "time": "8:40:17 AM",
+      "sender": "Aditya",
+      "message": "barely lol\nkept thinking about that conversation we had yesterday"
+    },
+    {
+      "id": 5,
+      "timestamp": "2014-03-12T09:02:55",
+      "date": "12/03/14",
+      "time": "9:02:55 AM",
+      "sender": "Bhavi",
+      "message": "same 😶 what are you upto today"
+    },
+    {
+      "id": 6,
+      "timestamp": "2014-03-12T09:15:30",
+      "date": "12/03/14",
+      "time": "9:15:30 AM",
+      "sender": "Aditya",
+      "message": "class till 2 then free. you?"
+    },
+    {
+      "id": 7,
+      "timestamp": "2014-03-12T09:17:48",
+      "date": "12/03/14",
+      "time": "9:17:48 AM",
+      "sender": "Bhavi",
+      "message": "free after 3! lets meet at our spot 🏡"
+    },
+    {
+      "id": 8,
+      "timestamp": "2014-03-12T09:19:00",
+      "date": "12/03/14",
+      "time": "9:19:00 AM",
+      "sender": "Aditya",
+      "message": "yes please 🤝 I love you btw"
+    },
+    {
+      "id": 9,
+      "timestamp": "2014-03-12T09:19:41",
+      "date": "12/03/14",
+      "time": "9:19:41 AM",
+      "sender": "Bhavi",
+      "message": "I love you too ❤️ see you at 3"
+    },
+    {
+      "id": 10,
+      "timestamp": "2014-03-12T21:45:10",
+      "date": "12/03/14",
+      "time": "9:45:10 PM",
+      "sender": "Aditya",
+      "message": "today was so good 😭😭"
+    }
+  ]
+}
