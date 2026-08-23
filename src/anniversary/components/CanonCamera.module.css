@@ -1,0 +1,57 @@
+.cameraWrapper {
+  position: relative;
+  display: block;
+  aspect-ratio: 1536 / 1024;
+  user-select: none;
+}
+
+.screenArea {
+  position: absolute;
+  left: 14.8%;
+  top: 33.8%;
+  width: 41.6%;
+  height: 46.2%;
+  overflow: hidden;
+  z-index: 1;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.cameraFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .screenArea {
+    left: 11.25%;
+    top: 33.98%;
+    width: 243.29296875px;
+    height: 179.67966958142202px;
+  }
+}
+
+@media (max-width: 767px) {
+  .screenArea {
+    width: 133.84375px;
+    height: 98.73719262295083px;
+    left: 11.54%;
+    top: 33.80%;
+  }
+}

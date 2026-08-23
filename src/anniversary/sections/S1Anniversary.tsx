@@ -10,7 +10,7 @@ import august_2025CalendarExactSvg from "../elements/august_2025_calendar_exact.
 import goldenHeartExactSvg from "../elements/golden_heart_exact.svg";
 import blankPaperExactSvg from "../elements/blank_paper_exact.svg";
 import heartPostageStamp_12_23ExactSvg from "../elements/heart_postage_stamp_12_23_exact.svg";
-import canonCameraExactSvg from "../elements/canon_camera_exact.svg";
+import CanonCamera from "../components/CanonCamera";
 import Doodle from "../components/Doodle";
 import s from "./S1Anniversary.module.css";
 import section1Bg from "../background/section1.svg";
@@ -24,7 +24,7 @@ export default function S1Anniversary() {
       {/* ─── Added Elements ─── */}
     
       {/* ─── Added Elements ─── */}
-      <img src={canonCameraExactSvg} alt="" className={s.custom_canon_camera_exact_8bae892e} />
+      <CanonCamera className={s.custom_canon_camera_exact_8bae892e} />
     
       {/* ─── Added Elements ─── */}
       <Doodle name="gypsophila" size={48} className={s.custom_gypsophila_2147990b} />
@@ -125,6 +125,8 @@ export default function S1Anniversary() {
     
       {/* ─── Added Elements ─── */}
       <Doodle name="scribble-heart" size={48} className={s.custom_scribble_heart_ecd37773} />
+    
+      {/* ─── Added Elements ─── */}
     </section>
   );
 }
