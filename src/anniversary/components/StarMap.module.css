@@ -1,0 +1,30 @@
+.map {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 26px rgb(201 154 78 / 0.08));
+}
+
+.twinkle {
+  animation: am-twinkle 5.5s ease-in-out infinite;
+}
+
+@keyframes am-twinkle {
+  0%,
+  100% {
+    opacity: inherit;
+  }
+  45% {
+    opacity: 0.18;
+  }
+  62% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinkle {
+    animation: none;
+  }
+}

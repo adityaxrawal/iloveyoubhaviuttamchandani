@@ -1,0 +1,20 @@
+.thread {
+  display: block;
+  width: 100%;
+  height: clamp(46px, 6vw, 84px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.line {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: calc(1 - var(--progress, 0));
+  transition: stroke-dashoffset 0.12s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
