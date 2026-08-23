@@ -1,0 +1,262 @@
+.love-house-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.love-house-illustration .house-paper {
+  fill: #f5ebdd;
+}
+
+.love-house-illustration .house-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.15;
+}
+
+/* ============================================================
+   GROUND SHADOW
+   ============================================================ */
+
+.love-house-illustration .house-ground-shadow {
+  fill: #b59d84;
+  opacity: 0.13;
+}
+
+/* ============================================================
+   HOUSE BODY
+   ============================================================ */
+
+.love-house-illustration .house-body {
+  fill: #f8e7df;
+  stroke: #5b3025;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   ROOF
+   ============================================================ */
+
+.love-house-illustration .house-roof {
+  fill: none;
+  stroke: #8f2d27;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .house-roof-secondary {
+  fill: none;
+  stroke: #a33a30;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.82;
+}
+
+.love-house-illustration .house-roof-detail {
+  fill: none;
+  stroke: #6a3529;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+/* ============================================================
+   CHIMNEY
+   ============================================================ */
+
+.love-house-illustration .chimney {
+  fill: #f8e7df;
+  stroke: #5b3025;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .chimney-secondary {
+  fill: none;
+  stroke: #8f2d27;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   HEARTS
+   ============================================================ */
+
+.love-house-illustration .floating-heart {
+  fill: #a92b29;
+  stroke: #9e2929;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .floating-heart-top {
+  transform: translate(1px, -1px);
+}
+
+.love-house-illustration .floating-heart-right {
+  transform: translate(-1px, 1px);
+}
+
+.love-house-illustration .house-heart {
+  fill: #f8e7df;
+  stroke: #a32b2b;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .house-heart-secondary {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   WINDOWS
+   ============================================================ */
+
+.love-house-illustration .house-window {
+  fill: #f8e7df;
+  stroke: #702f27;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .window-detail {
+  fill: none;
+  stroke: #8c4a39;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
+/* ============================================================
+   DOOR
+   ============================================================ */
+
+.love-house-illustration .house-door {
+  fill: #a82c2a;
+  stroke: #702b25;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .house-door-secondary {
+  fill: none;
+  stroke: #8d3028;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.75;
+}
+
+.love-house-illustration .door-handle {
+  fill: none;
+  stroke: #f5ebdd;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* ============================================================
+   TREE
+   ============================================================ */
+
+.love-house-illustration .tree-crown {
+  fill: #f8e7df;
+  stroke: #5b3025;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .tree-crown-secondary {
+  fill: none;
+  stroke: #8c4032;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.68;
+}
+
+.love-house-illustration .tree-trunk {
+  fill: none;
+  stroke: #633327;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .tree-trunk-secondary {
+  fill: none;
+  stroke: #8c4938;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+
+.love-house-illustration .tree-detail {
+  fill: none;
+  stroke: #74392c;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   GROUND
+   ============================================================ */
+
+.love-house-illustration .ground-line {
+  fill: none;
+  stroke: #8d3028;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-house-illustration .ground-line-secondary {
+  fill: none;
+  stroke: #a13a30;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+.love-house-illustration .ground-details {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 2.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   LOOSE HOUSE STROKES
+   ============================================================ */
+
+.love-house-illustration .house-loose-stroke {
+  fill: none;
+  stroke: #8b4937;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}

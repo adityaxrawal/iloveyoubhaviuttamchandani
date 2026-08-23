@@ -1,6 +1,6 @@
-import React, { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useMemo, type PointerEvent, type TouchEvent } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Mesh } from 'three';
+import { Group } from 'three';
 
 // Heart pattern: 1 = red cube, 2 = white highlight cube, 0 = empty
 const HEART_PATTERN = [
@@ -16,7 +16,6 @@ const HEART_PATTERN = [
 
 interface HeartMeshProps {
   rotationSpeed: number;
-  onSpeedChange: (speed: number) => void;
   scale?: number;
 }
 
@@ -24,24 +23,21 @@ interface PixelHeart3DProps {
   scale?: number;
 }
 
-function HeartMesh({ rotationSpeed, onSpeedChange, scale = 1 }: HeartMeshProps) {
-  const groupRef = useRef<Mesh>(null);
-  const [currentSpeed, setCurrentSpeed] = useState(0.01);
+function HeartMesh({ rotationSpeed, scale = 1 }: HeartMeshProps) {
+  const groupRef = useRef<Group>(null);
+  const currentSpeedRef = useRef(0.01);
+  const targetSpeedRef = useRef(rotationSpeed);
+  targetSpeedRef.current = rotationSpeed;
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Apply rotation
-      groupRef.current.rotation.y += currentSpeed;
-      
-      // Decay speed towards base rotation speed
-      const targetSpeed = rotationSpeed;
+      // Decay speed towards target speed smoothly in the animation loop
       const decayFactor = 0.98;
-      const newSpeed = currentSpeed * decayFactor + targetSpeed * (1 - decayFactor);
-      
-      if (Math.abs(newSpeed - currentSpeed) > 0.0001) {
-        setCurrentSpeed(newSpeed);
-        onSpeedChange(newSpeed);
-      }
+      currentSpeedRef.current =
+        currentSpeedRef.current * decayFactor + targetSpeedRef.current * (1 - decayFactor);
+
+      // Apply rotation
+      groupRef.current.rotation.y += currentSpeedRef.current;
 
       // Heart beating effect - smooth sine wave animation
       const time = state.clock.getElapsedTime();
@@ -53,30 +49,33 @@ function HeartMesh({ rotationSpeed, onSpeedChange, scale = 1 }: HeartMeshProps) 
   });
 
   // Generate cubes based on heart pattern
-  const cubes = [];
-  const cubeSize = 0.5 * scale;
-  const spacing = 0.55 * scale;
+  const cubes = useMemo(() => {
+    const items = [];
+    const cubeSize = 0.5 * scale;
+    const spacing = 0.55 * scale;
 
-  for (let row = 0; row < HEART_PATTERN.length; row++) {
-    for (let col = 0; col < HEART_PATTERN[row].length; col++) {
-      const cellValue = HEART_PATTERN[row][col];
-      if (cellValue > 0) {
-        const x = (col - HEART_PATTERN[row].length / 2) * spacing;
-        const y = (HEART_PATTERN.length / 2 - row) * spacing;
-        const z = 0;
+    for (let row = 0; row < HEART_PATTERN.length; row++) {
+      for (let col = 0; col < HEART_PATTERN[row].length; col++) {
+        const cellValue = HEART_PATTERN[row][col];
+        if (cellValue > 0) {
+          const x = (col - HEART_PATTERN[row].length / 2) * spacing;
+          const y = (HEART_PATTERN.length / 2 - row) * spacing;
+          const z = 0;
 
-        const isHighlight = cellValue === 2;
-        const color = isHighlight ? '#ffffff' : '#ff0000';
+          const isHighlight = cellValue === 2;
+          const color = isHighlight ? '#ffffff' : '#ff0000';
 
-        cubes.push(
-          <mesh key={`${row}-${col}`} position={[x, y, z]}>
-            <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
-            <meshLambertMaterial color={color} />
-          </mesh>
-        );
+          items.push(
+            <mesh key={`${row}-${col}`} position={[x, y, z]}>
+              <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
+              <meshLambertMaterial color={color} />
+            </mesh>
+          );
+        }
       }
     }
-  }
+    return items;
+  }, [scale]);
 
   return (
     <group ref={groupRef}>
@@ -90,12 +89,12 @@ export default function PixelHeart3D({ scale = 1 }: PixelHeart3DProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [lastPointerX, setLastPointerX] = useState(0);
 
-  const handlePointerDown = useCallback((event: React.PointerEvent) => {
+  const handlePointerDown = useCallback((event: PointerEvent<HTMLDivElement>) => {
     setIsDragging(true);
     setLastPointerX(event.clientX);
   }, []);
 
-  const handlePointerMove = useCallback((event: React.PointerEvent) => {
+  const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
     if (!isDragging) return;
 
     const deltaX = event.clientX - lastPointerX;
@@ -110,14 +109,14 @@ export default function PixelHeart3D({ scale = 1 }: PixelHeart3DProps) {
     setIsDragging(false);
   }, []);
 
-  const handleTouchStart = useCallback((event: React.TouchEvent) => {
+  const handleTouchStart = useCallback((event: TouchEvent<HTMLDivElement>) => {
     if (event.touches.length === 1) {
       setIsDragging(true);
       setLastPointerX(event.touches[0].clientX);
     }
   }, []);
 
-  const handleTouchMove = useCallback((event: React.TouchEvent) => {
+  const handleTouchMove = useCallback((event: TouchEvent<HTMLDivElement>) => {
     if (!isDragging || event.touches.length !== 1) return;
 
     const deltaX = event.touches[0].clientX - lastPointerX;
@@ -155,7 +154,6 @@ export default function PixelHeart3D({ scale = 1 }: PixelHeart3DProps) {
         />
         <HeartMesh 
           rotationSpeed={rotationSpeed}
-          onSpeedChange={setRotationSpeed}
           scale={scale}
         />
       </Canvas>

@@ -9,15 +9,19 @@ import { useEffect } from 'react';
  */
 export const useScrollColor = (containerRef, sections) => {
   useEffect(() => {
+    if (!sections || !sections.length) return;
+
     const handleScroll = () => {
       if (!containerRef.current) return;
 
       // Calculate scroll position (middle of the viewport)
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-      let activeColor = sections[0].color;
+      let activeColor = sections[0]?.color;
+      if (!activeColor) return;
 
       for (const section of sections) {
+        if (!section?.id) continue;
         const element = document.getElementById(section.id);
         if (element) {
           const { offsetTop, offsetHeight } = element;
@@ -32,7 +36,7 @@ export const useScrollColor = (containerRef, sections) => {
       containerRef.current.style.backgroundColor = activeColor;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll);

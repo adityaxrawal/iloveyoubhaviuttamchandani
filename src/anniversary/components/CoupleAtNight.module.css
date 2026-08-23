@@ -1,0 +1,42 @@
+.scene {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.glow,
+.lantern {
+  animation: am-lantern 4.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.lantern {
+  animation-name: am-lantern-soft;
+}
+
+@keyframes am-lantern {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes am-lantern-soft {
+  0%,
+  100% {
+    opacity: 0.92;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .lantern {
+    animation: none;
+  }
+}

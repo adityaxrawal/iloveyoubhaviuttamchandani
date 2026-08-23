@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ComponentType, PointerEvent } from 'react';
 import type { AnalysisResult, SlideProps } from '../lib/types';
 import { directionFromSwipe, directionFromTapPosition, nextIndex, prevIndex } from './storyNav';
@@ -20,17 +20,20 @@ export default function StoryShell({ slides, data, currentIndex: controlledIndex
   const total = slides.length;
   const dragStartX = useRef<number | null>(null);
 
-  const setIndex = (updater: (i: number) => number) => {
-    const newIdx = updater(index);
-    if (onIndexChange) {
-      onIndexChange(newIdx);
-    } else {
-      setInternalIndex(newIdx);
-    }
-  };
+  const setIndex = useCallback(
+    (updater: (i: number) => number) => {
+      const newIdx = updater(index);
+      if (onIndexChange) {
+        onIndexChange(newIdx);
+      } else {
+        setInternalIndex(newIdx);
+      }
+    },
+    [index, onIndexChange],
+  );
 
-  const goNext = () => setIndex((i) => nextIndex(i, total));
-  const goPrev = () => setIndex((i) => prevIndex(i, total));
+  const goNext = useCallback(() => setIndex((i) => nextIndex(i, total)), [setIndex, total]);
+  const goPrev = useCallback(() => setIndex((i) => prevIndex(i, total)), [setIndex, total]);
 
   useEffect(() => {
     const handleKeyDown = (e: globalThis.KeyboardEvent) => {
@@ -39,7 +42,7 @@ export default function StoryShell({ slides, data, currentIndex: controlledIndex
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [total, index]);
+  }, [total, setIndex]);
 
   const handlePointerDown = (e: PointerEvent) => {
     dragStartX.current = e.clientX;

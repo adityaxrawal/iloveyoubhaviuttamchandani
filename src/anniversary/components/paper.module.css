@@ -1,0 +1,172 @@
+/* ---------- torn edge between bands ---------- */
+.tornEdge {
+  display: block;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tornUp {
+  transform: scaleY(-1);
+}
+
+/* ---------- tape ---------- */
+.tape {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  transform: rotate(var(--rot, -4deg));
+  /* torn-off ends, slightly different left and right */
+  clip-path: polygon(
+    3% 0%, 97% 2%, 100% 22%, 96% 46%, 99% 74%, 95% 100%,
+    5% 98%, 1% 72%, 4% 44%, 0% 20%
+  );
+  box-shadow: 0 1px 3px rgb(59 7 16 / 0.18);
+  font-family: var(--font-serif);
+  font-size: clamp(0.62rem, 0.9vw, 0.78rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  padding: 0 0.7em;
+}
+
+.tape::after {
+  /* satin sheen down the strip */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgb(255 255 255 / 0.2) 0%,
+    rgb(255 255 255 / 0) 40%,
+    rgb(255 255 255 / 0.11) 64%,
+    rgb(255 255 255 / 0) 100%
+  );
+  pointer-events: none;
+}
+
+.kraft {
+  background: rgb(206 183 143 / 0.92);
+}
+.cream {
+  background: rgb(238 226 205 / 0.85);
+}
+.rose {
+  background: rgb(200 120 118 / 0.55);
+}
+
+/* ---------- torn note card ---------- */
+.note {
+  position: relative;
+  padding: clamp(0.9rem, 2vw, 1.4rem) clamp(1rem, 2.2vw, 1.6rem);
+  background: var(--paper);
+  color: var(--ink-red);
+  box-shadow: 0 6px 18px rgb(59 7 16 / 0.22);
+  filter: drop-shadow(0 2px 3px rgb(59 7 16 / 0.14));
+  translate: calc(0.771 * var(--u) + 3.531vw) calc(-2.665 * var(--u) + 0.693vw);
+  scale: 0.797;
+  rotate: -7.182deg;
+}
+
+.note::after {
+  /* paper grain */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.plain {
+  background: var(--paper);
+}
+
+.tinted {
+  background: linear-gradient(160deg, #f2e3ca, #e8d3b2);
+}
+
+.lined {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 1.55em,
+    rgb(166 20 30 / 0.14) 1.55em calc(1.55em + 1px)
+  );
+  background-color: var(--paper);
+}
+
+.grid {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 1.1em,
+      rgb(90 42 40 / 0.11) 1.1em calc(1.1em + 1px)
+    ),
+    repeating-linear-gradient(
+      to right,
+      transparent 0 1.1em,
+      rgb(90 42 40 / 0.11) 1.1em calc(1.1em + 1px)
+    );
+  background-color: #f4ead6;
+}
+
+/* ---------- polaroid ---------- */
+.polaroid {
+  position: relative;
+  margin: 0;
+  /* the mockups keep a wide border and a deep chin under the photo */
+  padding: clamp(9px, 1.1vw, 20px) clamp(9px, 1.1vw, 20px) clamp(30px, 3.6vw, 66px);
+  background: linear-gradient(168deg, #fdfaf3 0%, #f4ecdd 100%);
+  box-shadow:
+    0 10px 26px rgb(59 7 16 / 0.34),
+    0 2px 5px rgb(59 7 16 / 0.24);
+  transform: rotate(var(--rot, -4deg));
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+  will-change: transform;
+  translate: calc(-4.791 * var(--u)) calc(-1.137 * var(--u));
+  rotate: -1.097deg;
+  scale: 0.923;
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #d8cbb6;
+}
+
+.polaroid figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: var(--ink-red);
+}
+
+.polaroid:hover,
+.polaroid:focus-within {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow:
+    0 18px 38px rgb(59 7 16 / 0.4),
+    0 3px 8px rgb(59 7 16 / 0.26);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polaroid {
+    transition: none;
+  }
+  .polaroid:hover,
+  .polaroid:focus-within {
+    transform: rotate(var(--rot, -4deg));
+  }
+}

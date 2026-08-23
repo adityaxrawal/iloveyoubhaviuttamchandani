@@ -1,0 +1,116 @@
+.love-message-bubbles {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.love-message-bubbles .message-paper {
+  fill: #f5ebdd;
+}
+
+.love-message-bubbles .message-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.13;
+}
+
+/* Subtle notebook/grid-paper lines from the reference. */
+
+.love-message-bubbles .paper-grid {
+  fill: none;
+  stroke: #d6c7b6;
+  stroke-width: 0.9;
+  opacity: 0.38;
+}
+
+/* ============================================================
+   SPEECH BUBBLE FILLS
+   ============================================================ */
+
+.love-message-bubbles .bubble-fill {
+  fill: #f8e7df;
+}
+
+/* ============================================================
+   PRIMARY SPEECH BUBBLE OUTLINES
+   ============================================================ */
+
+.love-message-bubbles .bubble-outline {
+  fill: none;
+  stroke: #76251f;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   SECONDARY IMPERFECT TRACE
+   ============================================================ */
+
+.love-message-bubbles .bubble-outline-secondary {
+  fill: none;
+  stroke: #a0392e;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+/* ============================================================
+   LOWER MESSAGE DOTS
+   ============================================================ */
+
+.love-message-bubbles .message-dots {
+  fill: none;
+  stroke: #a52d27;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   HEART
+   ============================================================ */
+
+.love-message-bubbles .bubble-heart {
+  fill: #a62925;
+  stroke: #8f211d;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-message-bubbles .bubble-heart-secondary {
+  fill: none;
+  stroke: #c04b3d;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.5;
+}
+
+.love-message-bubbles .heart-worn-mark {
+  fill: none;
+  stroke: #d86d5b;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.42;
+}
+
+/* ============================================================
+   HAND-DRAWN IMPERFECTIONS
+   ============================================================ */
+
+.love-message-bubbles .bubble-loose-mark {
+  fill: none;
+  stroke: #8d332a;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.58;
+}

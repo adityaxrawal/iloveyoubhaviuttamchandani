@@ -1,8 +1,5 @@
-import React from 'react';
 import MyLoveBhavi from '../bu/BU';
 
-const LetterPage: React.FC = () => {
+export default function LetterPage() {
   return <MyLoveBhavi />;
-};
-
-export default LetterPage;
+}

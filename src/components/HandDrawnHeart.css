@@ -1,0 +1,92 @@
+.hand-drawn-heart {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.hand-drawn-heart .heart-paper {
+  fill: #f5ebdd;
+}
+
+/* ============================================================
+   HEART
+   ============================================================ */
+
+.hand-drawn-heart .heart-fill {
+  fill: #f8e7df;
+}
+
+/* ============================================================
+   MAIN OUTLINE
+   ============================================================ */
+
+.hand-drawn-heart .heart-outline {
+  fill: none;
+  stroke: #9e2929;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand-drawn-heart .heart-outline-main {
+  stroke-width: 7;
+  opacity: 0.98;
+}
+
+.hand-drawn-heart .heart-outline-secondary {
+  stroke-width: 5;
+  opacity: 0.82;
+  transform: translate(2px, -1px);
+}
+
+.hand-drawn-heart .heart-outline-inner {
+  stroke-width: 2.8;
+  opacity: 0.62;
+}
+
+/* ============================================================
+   HATCHING
+   ============================================================ */
+
+.hand-drawn-heart .heart-hatching {
+  fill: none;
+  stroke: #d87969;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.46;
+}
+
+/* ============================================================
+   BOTTOM LOOSE STROKES
+   ============================================================ */
+
+.hand-drawn-heart .heart-bottom-stroke {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand-drawn-heart .heart-bottom-stroke-right {
+  stroke-width: 3.2;
+  opacity: 0.85;
+}
+
+/* ============================================================
+   SIDE ACCENTS
+   ============================================================ */
+
+.hand-drawn-heart .heart-accent-strokes {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

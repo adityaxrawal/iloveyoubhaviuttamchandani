@@ -1,0 +1,191 @@
+.love-coffee-mugs {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.love-coffee-mugs .coffee-mugs-paper {
+  fill: #f5ebdd;
+}
+
+.love-coffee-mugs .coffee-mugs-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.15;
+}
+
+/* ============================================================
+   GROUND SHADOW
+   ============================================================ */
+
+.love-coffee-mugs .coffee-ground-shadow {
+  fill: #b59d84;
+  opacity: 0.12;
+}
+
+/* ============================================================
+   MAIN MUG BODY
+   ============================================================ */
+
+.love-coffee-mugs .mug-body {
+  fill: #f8e7df;
+  stroke: #632f26;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   MUG RIM
+   ============================================================ */
+
+.love-coffee-mugs .mug-rim {
+  fill: #f8e7df;
+  stroke: #632f26;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-coffee-mugs .mug-rim-secondary {
+  fill: none;
+  stroke: #8a4535;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+.love-coffee-mugs .coffee-surface {
+  fill: none;
+  stroke: #7b3d2e;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   HANDLES
+   ============================================================ */
+
+.love-coffee-mugs .mug-handle {
+  fill: #f8e7df;
+  stroke: #632f26;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   CUP BOTTOM
+   ============================================================ */
+
+.love-coffee-mugs .mug-bottom {
+  fill: none;
+  stroke: #632f26;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-coffee-mugs .mug-bottom-secondary {
+  fill: none;
+  stroke: #914d3a;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+
+/* ============================================================
+   FACE
+   ============================================================ */
+
+.love-coffee-mugs .face-line {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-coffee-mugs .face-smile {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-coffee-mugs .face-cheek {
+  fill: none;
+  stroke: #b15a48;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+/* ============================================================
+   HEART ABOVE THE MUGS
+   ============================================================ */
+
+.love-coffee-mugs .mug-love-heart {
+  fill: #f8e7df;
+  stroke: #9e2929;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.love-coffee-mugs .mug-love-heart-secondary {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.76;
+}
+
+.love-coffee-mugs .mug-love-heart-point {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   STEAM
+   ============================================================ */
+
+.love-coffee-mugs .coffee-steam {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   LOOSE HAND-DRAWN LINES
+   ============================================================ */
+
+.love-coffee-mugs .mug-loose-line {
+  fill: none;
+  stroke: #7b3d2e;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.6;
+}
+
+.love-coffee-mugs .mug-loose-light {
+  fill: none;
+  stroke: #9b5d4a;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.5;
+}

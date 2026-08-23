@@ -33,6 +33,7 @@ src/chats/code/
 src/chats/code/_chat*.txt
 src/chats/code/chat*.json
 src/chats/code/analysis*.json
+src/anniversary/images
 
 # Global fallbacks for chat files
 _chat*.txt

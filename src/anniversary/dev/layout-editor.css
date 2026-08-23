@@ -1,0 +1,1573 @@
+/* ------------------------------------------------------------------ *
+ * Layout Studio — Professional Visual Editor Design System
+ * Bespoke, human-crafted dark studio aesthetic with refined hierarchy
+ * ------------------------------------------------------------------ */
+
+html.am-editing,
+html.am-editing body {
+  overflow: hidden;
+  background: #090c10;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Shell Layout ─────────────────────────────────────────────────────────── */
+
+.amShell {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: grid;
+  grid-template-columns: 460px minmax(0, 1fr);
+  background: #090c10;
+  color: #e6edf3;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  user-select: none;
+}
+
+/* Custom Studio Scrollbars */
+.amShell ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.amShell ::-webkit-scrollbar-track {
+  background: rgba(13, 17, 23, 0.5);
+  border-radius: 4px;
+}
+.amShell ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.amShell ::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.6);
+}
+
+/* ─── Studio Sidebar Panel ─────────────────────────────────────────────────── */
+
+.amPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0d1117;
+  position: relative;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Studio Header ────────────────────────────────────────────────────────── */
+
+.amStudioHeader {
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.amBrandGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.amLogoBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.35);
+}
+
+.amBrandText {
+  display: flex;
+  flex-direction: column;
+}
+
+.amBrandTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f0f6fc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.amLiveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  display: inline-block;
+  animation: amPulse 2s infinite ease-in-out;
+}
+
+@keyframes amPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.amBrandSubtitle {
+  font-size: 11px;
+  color: #8b949e;
+  font-weight: 500;
+}
+
+.amHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amHeaderBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #c9d1d9;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.amHeaderBtn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.amPendingBadge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+/* ─── Pinned Viewport & Screen Toolbar ─────────────────────────────────────── */
+
+.amViewportToolbar {
+  padding: 12px 18px;
+  background: #111620;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.amDeviceRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.amDeviceSelectWrap {
+  flex: 1;
+  position: relative;
+}
+
+.amSelect {
+  width: 100%;
+  padding: 7px 28px 7px 11px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #161b22;
+  color: #e6edf3;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+
+.amSelect:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #1c2128;
+}
+
+.amSelect:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.amSelectArrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #8b949e;
+  font-size: 10px;
+}
+
+.amZoomBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  color: #8b949e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.amScreenJumpRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amScreenJumpLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.amJumpBtn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.08);
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.amJumpBtn:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+/* ─── Studio Main Tabs ─────────────────────────────────────────────────────── */
+
+.amMainTabs {
+  display: flex;
+  padding: 8px 18px 0;
+  background: #0d1117;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.amMainTab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 10px 10px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #8b949e;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+
+.amMainTab:hover {
+  color: #f0f6fc;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.amMainTab.amTabActive {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.amActiveIndicatorDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+}
+
+/* ─── Panel Content Scroll Body ────────────────────────────────────────────── */
+
+.amPanelBody {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── Cards & Section Containers ──────────────────────────────────────────── */
+
+.amCard {
+  background: #161b22;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.amCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.amCardTitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #c9d1d9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+/* ─── Inspector View: Selected Element Identity ────────────────────────────── */
+
+.amIdentityHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.amIdentityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.amIdentityTarget {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f0f6fc;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amIdentityScope {
+  font-size: 11px;
+  color: #8b949e;
+  font-weight: 500;
+}
+
+.amIdentityScope.amWarn {
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.amKindBadge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.amKindBadge.amCss {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #38bdf8;
+}
+
+.amKindBadge.amCustom {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #c084fc;
+}
+
+/* ─── Transform Metrics Grid ───────────────────────────────────────────────── */
+
+.amTransformGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.amMetricCard {
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: all 0.15s ease;
+}
+
+.amMetricCard:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  background: #111620;
+}
+
+.amMetricLabel {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8b949e;
+}
+
+.amMetricValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f0f6fc;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.amMetricValue.amHighlight {
+  color: #38bdf8;
+}
+
+/* ─── Nudge & Fine-Tuning Controls ─────────────────────────────────────────── */
+
+.amNudgeSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.amNudgeTitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amNudgeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.amNudgeBtn {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0d1117;
+  color: #c9d1d9;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.amNudgeBtn:hover:not(:disabled) {
+  background: #21262d;
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.amNudgeBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Responsive Media Target Selector ─────────────────────────────────────── */
+
+.amTargetRuleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amTargetRuleLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8b949e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amRuleHelpText {
+  font-size: 11px;
+  color: #6e7681;
+  line-height: 1.4;
+}
+
+/* ─── Action Button Rows ──────────────────────────────────────────────────── */
+
+.amActionStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.amActionRow {
+  display: flex;
+  gap: 8px;
+}
+
+.amBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #21262d;
+  color: #e6edf3;
+  box-sizing: border-box;
+}
+
+.amBtn:hover:not(:disabled) {
+  background: #30363d;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.amBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.amBtn.amBtnPrimary {
+  background: linear-gradient(135deg, #1f6feb 0%, #1656b8 100%);
+  border-color: #388bfd;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(31, 111, 235, 0.35);
+}
+
+.amBtn.amBtnPrimary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #388bfd 0%, #1f6feb 100%);
+  box-shadow: 0 4px 14px rgba(31, 111, 235, 0.45);
+}
+
+.amBtn.amBtnDanger {
+  background: rgba(218, 54, 51, 0.18);
+  border-color: rgba(248, 81, 73, 0.4);
+  color: #ff7b72;
+}
+
+.amBtn.amBtnDanger:hover:not(:disabled) {
+  background: #da3633;
+  border-color: #f85149;
+  color: #ffffff;
+}
+
+.amBtn.amBtnLockActive {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: #f59e0b;
+  color: #fbbf24;
+}
+
+.amBtn.amBtnLockActive:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.28);
+}
+
+/* ─── Empty State Placeholder ──────────────────────────────────────────────── */
+
+.amEmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 20px;
+  background: #161b22;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  gap: 12px;
+}
+
+.amEmptyIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #38bdf8;
+}
+
+.amEmptyTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f0f6fc;
+  margin: 0;
+}
+
+.amEmptyDesc {
+  font-size: 12px;
+  color: #8b949e;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 320px;
+}
+
+.amEmptyActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+/* ─── Layers / Scene Tree Tab ──────────────────────────────────────────────── */
+
+.amLayersList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.amLayerCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  gap: 10px;
+}
+
+.amLayerCard:hover {
+  background: #161b22;
+  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.amLayerCard.amActive {
+  background: rgba(31, 111, 235, 0.16);
+  border-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+}
+
+.amLayerCard.amActive .amLayerName {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.amLayerMain {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.amLayerIconBox {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.amLayerCard.amActive .amLayerIconBox {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.amLayerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.amLayerName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f0f6fc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amLayerSubtext {
+  font-size: 10px;
+  color: #8b949e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amLayerBadges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.amLayerActionBtn {
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #8b949e;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amLayerActionBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.amLayerActionBtn.amLocked {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: #f59e0b;
+  color: #fbbf24;
+}
+
+/* ─── Library Tab: Sub-Navigation & Filters ────────────────────────────────── */
+
+
+.amLibrarySubNav {
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+.amSubTab {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #8b949e;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.amSubTab:hover {
+  color: #f0f6fc;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.amSubTab.amSubTabActive {
+  background: #1f6feb;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(31, 111, 235, 0.35);
+}
+
+.amColorPalette {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.amColorSwatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.amColorSwatch:hover {
+  transform: scale(1.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.amColorSwatch.amActive {
+  transform: scale(1.22);
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+.amCategoryChips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.amChip {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 14px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8b949e;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.amChip:hover {
+  color: #f0f6fc;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.amChip.amActive {
+  background: #1f6feb;
+  border-color: #388bfd;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(31, 111, 235, 0.35);
+}
+
+.amSearchBox {
+  position: relative;
+}
+
+.amInput {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  background: #0d1117;
+  color: #e6edf3;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.amInput:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.amSearchClear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.amSearchClear:hover {
+  color: #f0f6fc;
+}
+
+/* ─── Asset Grid Cards (Doodles & SVGs) ─────────────────────────────────────── */
+
+.amDoodleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  max-height: 450px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.amDoodleItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 76px;
+  gap: 6px;
+}
+
+.amDoodleIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 100%;
+  background: #fdfbf7;
+  border: 1px solid #ebd9c5;
+  border-radius: 6px;
+  padding: 4px;
+  box-sizing: border-box;
+  color: #1e1e1e;
+  overflow: hidden;
+}
+
+.amDoodleItem:hover {
+  background: #1c2128;
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.amDoodleItem.amActive {
+  background: rgba(31, 111, 235, 0.18);
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.amDoodleName {
+  font-size: 10px;
+  font-weight: 600;
+  color: #8b949e;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.amDoodleItem.amActive .amDoodleName {
+  color: #38bdf8;
+}
+
+.amSvgGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  max-height: 450px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.amSvgItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 84px;
+  gap: 5px;
+}
+
+.amSvgThumb {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdfbf7;
+  border: 1px solid #ebd9c5;
+  border-radius: 6px;
+  padding: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.amSvgThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.amSvgItem:hover {
+  background: #1c2128;
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.amSvgItem.amActive {
+  background: rgba(31, 111, 235, 0.18);
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.amEmptyAssets {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 24px 12px;
+  color: #8b949e;
+  font-size: 11px;
+}
+
+/* ─── Asset Preview Card ───────────────────────────────────────────────────── */
+
+.amPreviewCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.amPreviewBox {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdfbf7;
+  border: 1px solid #ebd9c5;
+  border-radius: 8px;
+  flex-shrink: 0;
+  padding: 6px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.amPreviewDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.amPreviewName {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f0f6fc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amSliderRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.amSliderHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 600;
+  color: #8b949e;
+}
+
+.amSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+.amSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+  transition: transform 0.1s ease;
+}
+
+.amSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+/* ─── Guide & Shortcuts Tab: Modern Documentation System ───────────────────── */
+
+.amGuideCard {
+  background: #161b22;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.amGuideHeading {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f0f6fc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.amGuideText {
+  font-size: 12px;
+  color: #8b949e;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.amGuideList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.amGuideItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #c9d1d9;
+}
+
+.amGuideItemIcon {
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.amGuideItem strong {
+  color: #f0f6fc;
+}
+
+/* ─── Keyboard Shortcut Keycap Styling (<kbd>) ─────────────────────────────── */
+
+.amShortcutTable {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amShortcutRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 7px;
+  gap: 10px;
+}
+
+.amShortcutDesc {
+  font-size: 12px;
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.amKeyCombo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+kbd,
+.amKbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  min-width: 18px;
+  height: 20px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #f0f6fc;
+  background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+/* ─── Footer Notification Toast ────────────────────────────────────────────── */
+
+.amToast {
+  position: absolute;
+  bottom: 16px;
+  left: 18px;
+  right: 18px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  animation: amSlideUp 0.2s ease-out;
+  z-index: 100;
+}
+
+.amToast[data-err="1"] {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+@keyframes amSlideUp {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ─── Quick Shortcuts Modal / Drawer ───────────────────────────────────────── */
+
+.amModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483999;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.amModalContent {
+  background: #161b22;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.amModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amModalTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f0f6fc;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amModalClose {
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.amModalClose:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Canvas Viewport & Canva-Style Selection Box ──────────────────────────── */
+
+.amCanvas {
+  position: relative;
+  overflow: auto;
+  display: grid;
+  place-items: start center;
+  padding: 24px;
+  background: repeating-conic-gradient(#12161c 0% 25%, #0e1218 0% 50%) 50% / 20px 20px;
+}
+
+.amFrameWrap {
+  transform-origin: top center;
+  flex: none;
+  box-shadow: 0 16px 70px rgba(0, 0, 0, 0.7);
+  position: relative;
+  border-radius: 2px;
+}
+
+.amFrameWrap iframe {
+  display: block;
+  border: 0;
+  background: #3b0710;
+}
+
+.amBox {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  border: 1.5px solid #00c4cc;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 196, 204, 0.4);
+  transform-origin: center center;
+  box-sizing: border-box;
+}
+
+.amBoxLocked {
+  border-style: dashed;
+  border-color: rgb(245 158 11 / 0.95);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.amBodyMove {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.amHandle {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1.5px solid #00c4cc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  z-index: 10;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.amHandle:hover {
+  background: #00c4cc;
+  border-color: #ffffff;
+  transform: scale(1.25);
+}
+
+.amHandleCorner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.amHandleCorner::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.amHandleNW { top: -6px; left: -6px; }
+.amHandleNE { top: -6px; right: -6px; }
+.amHandleSE { bottom: -6px; right: -6px; }
+.amHandleSW { bottom: -6px; left: -6px; }
+
+.amHandleEdgeV {
+  width: 6px;
+  height: 16px;
+  border-radius: 3px;
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.amHandleEdgeV::after {
+  content: "";
+  position: absolute;
+  inset: -6px -8px;
+}
+
+.amHandleW { left: -4px; }
+.amHandleE { right: -4px; }
+
+.amHandleEdgeH {
+  width: 16px;
+  height: 6px;
+  border-radius: 3px;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.amHandleEdgeH::after {
+  content: "";
+  position: absolute;
+  inset: -8px -6px;
+}
+
+.amHandleN { top: -4px; }
+.amHandleS { bottom: -4px; }
+
+.amRotateStem {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  width: 1.5px;
+  height: 26px;
+  background: #00c4cc;
+  translate: -50% 0;
+  pointer-events: none;
+}
+
+.amHandleRotate {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #00c4cc;
+  translate: -50% 0;
+  cursor: grab;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.amHandleRotate::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+}
+
+.amHandleRotate:hover {
+  background: #00c4cc;
+  border-color: #ffffff;
+  transform: translate(-50%, 0) scale(1.25);
+}
+
+.amHandleRotate:active {
+  cursor: grabbing;
+}
+
+.amDimensionBadge {
+  position: absolute;
+  bottom: -34px;
+  left: 50%;
+  translate: -50% 0;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ─── Inline Text Editing ──────────────────────────────────────────────────── */
+
+.amBoxEditingText {
+  border-style: dotted !important;
+  border-color: #00c4cc !important;
+  background: rgba(0, 196, 204, 0.1);
+}
+
+.amInlineTextEditor {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  color: transparent !important; /* Text is drawn by the element underneath */
+  caret-color: #00c4cc !important;
+}
+
+.amInlineTextEditor::selection {
+  background: rgba(0, 196, 204, 0.3);
+  color: transparent;
+}

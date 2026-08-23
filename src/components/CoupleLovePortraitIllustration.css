@@ -1,0 +1,186 @@
+.couple-love-portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.couple-love-portrait .couple-paper {
+  fill: #f5ebdd;
+}
+
+.couple-love-portrait .couple-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.14;
+}
+
+/* ============================================================
+   MAIN PERSON OUTLINES
+   ============================================================ */
+
+.couple-love-portrait .person-outline {
+  fill: none;
+  stroke: #75281f;
+  stroke-width: 4.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .person-outline-secondary {
+  fill: none;
+  stroke: #a23a2e;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.68;
+}
+
+/* ============================================================
+   FACES
+   ============================================================ */
+
+.couple-love-portrait .left-face,
+.couple-love-portrait .right-face {
+  fill: #f8e7df;
+  stroke: #6e2922;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .face-secondary {
+  fill: none;
+  stroke: #9a3c30;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   HAIR
+   ============================================================ */
+
+.couple-love-portrait .left-hair,
+.couple-love-portrait .right-hair {
+  fill: #f8e7df;
+  stroke: #75281f;
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .hair-detail {
+  fill: none;
+  stroke: #8d3027;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .hair-secondary {
+  fill: none;
+  stroke: #a74638;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.65;
+}
+
+.couple-love-portrait .hair-tie {
+  fill: #f8e7df;
+  stroke: #8a3027;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .hair-tie-secondary {
+  fill: none;
+  stroke: #a74536;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+
+/* ============================================================
+   FACE DETAILS
+   ============================================================ */
+
+.couple-love-portrait .eye-line {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .eye-dot {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.couple-love-portrait .person-detail {
+  fill: none;
+  stroke: #8b3329;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .nose-contact {
+  fill: none;
+  stroke: #a03b30;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+
+/* ============================================================
+   HEART
+   ============================================================ */
+
+.couple-love-portrait .couple-heart {
+  fill: #f8e7df;
+  stroke: #9e2929;
+  stroke-width: 4.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.couple-love-portrait .couple-heart-secondary {
+  fill: none;
+  stroke: #a83a30;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.68;
+}
+
+/* ============================================================
+   LOOSE HAND-DRAWN MARKS
+   ============================================================ */
+
+.couple-love-portrait .loose-ink {
+  fill: none;
+  stroke: #8f352b;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.58;
+}
+
+.couple-love-portrait .loose-ink-light {
+  fill: none;
+  stroke: #aa5544;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.48;
+}

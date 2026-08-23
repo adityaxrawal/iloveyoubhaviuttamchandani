@@ -1,0 +1,81 @@
+.hand-drawn-spark {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 220px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.hand-drawn-spark .spark-paper {
+  fill: #f5ebdd;
+}
+
+.hand-drawn-spark .spark-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.15;
+}
+
+/* ============================================================
+   PRIMARY RED INK
+   ============================================================ */
+
+.hand-drawn-spark .spark-stroke {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/*
+ * Small variations prevent the marks from looking like
+ * identical vector strokes.
+ */
+
+.hand-drawn-spark .spark-stroke-top {
+  stroke-width: 7;
+}
+
+.hand-drawn-spark .spark-stroke-left {
+  stroke-width: 7.5;
+}
+
+.hand-drawn-spark .spark-stroke-middle {
+  stroke-width: 7;
+}
+
+.hand-drawn-spark .spark-stroke-bottom {
+  stroke-width: 7;
+}
+
+/* ============================================================
+   SECONDARY HAND-DRAWN TRACE
+   ============================================================ */
+
+.hand-drawn-spark .spark-trace {
+  fill: none;
+  stroke: #9e2929;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.5;
+}
+
+.hand-drawn-spark .spark-trace-top {
+  stroke-width: 2.2;
+}
+
+.hand-drawn-spark .spark-trace-left {
+  stroke-width: 2;
+}
+
+.hand-drawn-spark .spark-trace-middle {
+  stroke-width: 2.1;
+}
+
+.hand-drawn-spark .spark-trace-bottom {
+  stroke-width: 2.2;
+}
