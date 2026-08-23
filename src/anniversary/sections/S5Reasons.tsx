@@ -12,16 +12,12 @@ import cantWaitSvg from "../elements/i_cant_wait_for_all_our_tomorrows_exact.svg
 import simplyLoveSvg from "../elements/simply_put_just_love_you_exact.svg";
 
 // Scrapbook Elements from src/anniversary/elements
-import august_2025CalendarExactSvg from "../elements/august_2025_calendar_exact.svg";
-import CanonCamera from "../components/CanonCamera";
 import heartPostageStamp_12_23ExactSvg from "../elements/heart_postage_stamp_12_23_exact.svg";
 import cherriesExactSvg from "../elements/cherries_exact.svg";
 import ticTacToeHanddrawnExactSvg from "../elements/tic_tac_toe_handdrawn_exact.svg";
 import goldenHeartExactSvg from "../elements/golden_heart_exact.svg";
-import redHeartAndSparklesExactSvg from "../elements/red_heart_and_sparkles_exact.svg";
 import redHanddrawnHeartExactSvg from "../elements/red_handdrawn_heart_exact.svg";
 import redHeartBalloonsExactSvg from "../elements/red_heart_balloons_exact.svg";
-import paperClipExactSvg from "../elements/paper_clip_exact.svg";
 
 import Doodle from "../components/Doodle";
 import s from "./S5Reasons.module.css";
@@ -58,52 +54,24 @@ export default function S5Reasons() {
       </header>
 
       {/* ─── Scrapbook Elements ─── */}
-      {/* Top-Left: August 2025 Calendar + Gold Paperclip + Gold Foil Heart */}
-      <img
-        src={august_2025CalendarExactSvg}
-        alt="August calendar"
-        className={s.elemCalendar}
-      />
-      <img
-        src={paperClipExactSvg}
-        alt=""
-        aria-hidden="true"
-        className={s.elemClipOnCalendar}
-      />
-      <img
-        src={goldenHeartExactSvg}
-        alt=""
-        aria-hidden="true"
-        className={s.elemGoldenHeartTopLeft}
-      />
-
-      {/* Mid-Left: Vintage Canon Camera + Red Sparkle Heart */}
-      <CanonCamera className={s.elemCamera} />
-      <img
-        src={redHeartAndSparklesExactSvg}
-        alt=""
-        aria-hidden="true"
-        className={s.elemHeartSparklesMidLeft}
-      />
-
-      {/* Top-Right: Heart Postage Stamp + Sweet Cherries */}
-      <img
-        src={heartPostageStamp_12_23ExactSvg}
-        alt="Postage stamp"
-        className={s.elemStamp}
-      />
+      {/* Left Side: Sweet Cherries + Handdrawn Tic-Tac-Toe */}
       <img
         src={cherriesExactSvg}
         alt=""
         aria-hidden="true"
         className={s.elemCherries}
       />
-
-      {/* Mid-Right: Handdrawn Tic-Tac-Toe + Balloons + Golden Heart */}
       <img
         src={ticTacToeHanddrawnExactSvg}
         alt="Tic Tac Toe with hearts"
         className={s.elemTicTacToe}
+      />
+
+      {/* Right Side: Heart Postage Stamp + Balloons + Golden Heart */}
+      <img
+        src={heartPostageStamp_12_23ExactSvg}
+        alt="Postage stamp"
+        className={s.elemStamp}
       />
       <img
         src={redHeartBalloonsExactSvg}

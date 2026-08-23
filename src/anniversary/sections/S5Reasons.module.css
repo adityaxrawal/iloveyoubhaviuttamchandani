@@ -129,70 +129,30 @@
 
 /* ─── Scrapbook Elements ─── */
 
-/* Top-Left: August 2025 Calendar */
-.elemCalendar {
+/* Left Side: Sweet Cherries */
+.elemCherries {
   position: absolute;
-  left: 5.8%;
-  top: 11.5%;
-  width: clamp(92px, 9vw, 138px);
+  left: 6.5%;
+  top: 17%;
+  width: clamp(46px, 4.6vw, 72px);
   height: auto;
-  rotate: -5deg;
-  z-index: 4;
-  pointer-events: none;
-  filter: drop-shadow(0 8px 18px rgba(60, 15, 20, 0.16));
-  transition: transform 0.3s ease;
-}
-
-/* Paperclip on calendar */
-.elemClipOnCalendar {
-  position: absolute;
-  left: 4.8%;
-  top: 9.8%;
-  width: clamp(20px, 2vw, 32px);
-  height: auto;
-  rotate: 18deg;
-  z-index: 6;
-  pointer-events: none;
-  filter: drop-shadow(0 2px 5px rgba(60, 15, 20, 0.25));
-}
-
-/* Gold heart near calendar */
-.elemGoldenHeartTopLeft {
-  position: absolute;
-  left: 13.8%;
-  top: 25.8%;
-  width: clamp(28px, 2.7vw, 44px);
-  height: auto;
-  rotate: 12deg;
+  rotate: 10deg;
   z-index: 5;
   pointer-events: none;
-  filter: drop-shadow(0 4px 10px rgba(180, 130, 40, 0.3));
+  filter: drop-shadow(0 4px 10px rgba(120, 20, 30, 0.18));
 }
 
-/* Mid-Left: Canon Camera */
-.elemCamera {
+/* Left Side: Handdrawn Tic-Tac-Toe */
+.elemTicTacToe {
   position: absolute;
-  left: 3.5%;
-  top: 48%;
-  width: clamp(100px, 10.2vw, 156px);
+  left: 3.8%;
+  top: 47.5%;
+  width: clamp(86px, 8.4vw, 130px);
   height: auto;
   rotate: -6deg;
   z-index: 4;
   pointer-events: none;
-  filter: drop-shadow(0 10px 22px rgba(50, 10, 15, 0.2));
-}
-
-/* Red heart and sparkles near camera */
-.elemHeartSparklesMidLeft {
-  position: absolute;
-  left: 12.2%;
-  top: 61.5%;
-  width: clamp(38px, 3.8vw, 58px);
-  height: auto;
-  rotate: 8deg;
-  z-index: 5;
-  pointer-events: none;
-  filter: drop-shadow(0 3px 8px rgba(166, 20, 30, 0.2));
+  filter: drop-shadow(0 6px 14px rgba(80, 20, 20, 0.14));
 }
 
 /* Top-Right: Postage Stamp */
@@ -208,53 +168,27 @@
   filter: drop-shadow(0 8px 18px rgba(60, 15, 20, 0.16));
 }
 
-/* Cherries next to stamp */
-.elemCherries {
-  position: absolute;
-  right: 13.5%;
-  top: 22.8%;
-  width: clamp(44px, 4.4vw, 68px);
-  height: auto;
-  rotate: -10deg;
-  z-index: 5;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 10px rgba(120, 20, 30, 0.18));
-}
-
-/* Mid-Right: Handdrawn Tic-Tac-Toe */
-.elemTicTacToe {
-  position: absolute;
-  right: 3.8%;
-  top: 47.5%;
-  width: clamp(86px, 8.4vw, 130px);
-  height: auto;
-  rotate: 6deg;
-  z-index: 4;
-  pointer-events: none;
-  filter: drop-shadow(0 6px 14px rgba(80, 20, 20, 0.14));
-}
-
-/* Red heart balloons below tic tac toe */
+/* Mid-Right: Red heart balloons */
 .elemBalloons {
   position: absolute;
-  right: 12.8%;
-  top: 59%;
-  width: clamp(48px, 4.8vw, 74px);
+  right: 5.5%;
+  top: 47%;
+  width: clamp(52px, 5.2vw, 80px);
   height: auto;
-  rotate: -8deg;
+  rotate: -6deg;
   z-index: 5;
   pointer-events: none;
   filter: drop-shadow(0 6px 14px rgba(166, 20, 30, 0.2));
 }
 
-/* Gold heart near tic-tac-toe */
+/* Gold heart near balloons */
 .elemGoldenHeartMidRight {
   position: absolute;
-  right: 4.8%;
-  top: 66%;
+  right: 12.8%;
+  top: 59%;
   width: clamp(24px, 2.4vw, 38px);
   height: auto;
-  rotate: -15deg;
+  rotate: 12deg;
   z-index: 5;
   pointer-events: none;
   filter: drop-shadow(0 4px 8px rgba(180, 130, 40, 0.25));
@@ -480,28 +414,21 @@
   }
 
   /* ── Scrapbook Elements on Mobile ── */
-  .elemCalendar {
-    left: 2%;
-    top: 12px;
-    width: 58px;
-    rotate: -6deg;
-    z-index: 3;
-    opacity: 0.85;
-  }
-
-  .elemClipOnCalendar {
-    left: 1.5%;
-    top: 8px;
-    width: 14px;
-    rotate: 16deg;
+  .elemCherries {
+    left: 4%;
+    top: 48px;
+    width: 30px;
+    rotate: 10deg;
     z-index: 4;
   }
 
-  .elemGoldenHeartTopLeft {
-    left: 11%;
-    top: 58px;
-    width: 18px;
-    rotate: 10deg;
+  .elemTicTacToe {
+    left: -8px;
+    top: 40%;
+    width: 62px;
+    rotate: -6deg;
+    z-index: 2;
+    opacity: 0.7;
   }
 
   .elemStamp {
@@ -513,53 +440,20 @@
     opacity: 0.85;
   }
 
-  .elemCherries {
-    right: 10%;
-    top: 54px;
-    width: 28px;
-    rotate: -10deg;
-    z-index: 4;
-  }
-
-  .elemCamera {
-    left: -14px;
-    top: 35%;
-    width: 72px;
-    rotate: -8deg;
-    z-index: 2;
-    opacity: 0.6;
-  }
-
-  .elemHeartSparklesMidLeft {
-    left: 2px;
-    top: 44%;
-    width: 26px;
-    z-index: 2;
-    opacity: 0.75;
-  }
-
-  .elemTicTacToe {
-    right: -10px;
-    top: 40%;
-    width: 64px;
-    rotate: 6deg;
-    z-index: 2;
-    opacity: 0.6;
-  }
-
   .elemBalloons {
     right: 0px;
-    top: 52%;
-    width: 36px;
+    top: 44%;
+    width: 38px;
     rotate: -6deg;
     z-index: 2;
-    opacity: 0.75;
+    opacity: 0.8;
   }
 
   .elemGoldenHeartMidRight {
-    right: 4px;
-    top: 62%;
+    right: 8px;
+    top: 56%;
     width: 16px;
+    rotate: 12deg;
     z-index: 2;
   }
 
