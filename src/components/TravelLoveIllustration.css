@@ -1,0 +1,196 @@
+.travel-love-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.travel-love-illustration .travel-paper {
+  fill: #f5ebdd;
+}
+
+.travel-love-illustration .travel-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.16;
+}
+
+/* ============================================================
+   FLIGHT PATH
+   ============================================================ */
+
+.travel-love-illustration .flight-path {
+  fill: none;
+  stroke: #b72d2d;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 15 12;
+}
+
+.travel-love-illustration .flight-path-secondary {
+  stroke-width: 1.8;
+  opacity: 0.55;
+  stroke-dasharray: 9 10;
+}
+
+.travel-love-illustration .flight-path-dashes {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.92;
+}
+
+/* ============================================================
+   HEART
+   ============================================================ */
+
+.travel-love-illustration .travel-heart {
+  fill: #b52c2c;
+  stroke: #9e2929;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.travel-love-illustration .travel-heart-edge {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+/* ============================================================
+   HEART ACCENTS
+   ============================================================ */
+
+.travel-love-illustration .travel-heart-accents {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   AIRPLANE
+   ============================================================ */
+
+.travel-love-illustration .airplane-outline {
+  fill: #f8eadc;
+  stroke: #4e2b21;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.travel-love-illustration .airplane-secondary {
+  fill: none;
+  stroke: #4e2b21;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+.travel-love-illustration .airplane-detail {
+  fill: none;
+  stroke: #4e2b21;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.travel-love-illustration .airplane-window {
+  fill: none;
+  stroke: #4e2b21;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ============================================================
+   TICKET SHADOW
+   ============================================================ */
+
+.travel-love-illustration .ticket-shadow {
+  fill: #b99f84;
+  opacity: 0.16;
+}
+
+/* ============================================================
+   TICKETS
+   ============================================================ */
+
+.travel-love-illustration .ticket {
+  fill: #f8eadc;
+  stroke: #5b3528;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.travel-love-illustration .ticket-back {
+  opacity: 0.94;
+}
+
+.travel-love-illustration .ticket-front {
+  opacity: 1;
+}
+
+/* ============================================================
+   TICKET DETAILS
+   ============================================================ */
+
+.travel-love-illustration .ticket-detail {
+  fill: none;
+  stroke: #704435;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.78;
+}
+
+.travel-love-illustration .ticket-print {
+  fill: none;
+  stroke: #704435;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  opacity: 0.75;
+}
+
+/* ============================================================
+   PRINTED HEARTS
+   ============================================================ */
+
+.travel-love-illustration .ticket-heart {
+  fill: #f8eadc;
+  stroke: #a32b2b;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.travel-love-illustration .ticket-heart-lower {
+  stroke-width: 2.1;
+  opacity: 0.92;
+}
+
+/* ============================================================
+   LOOSE HAND-DRAWN TICKET STROKES
+   ============================================================ */
+
+.travel-love-illustration .ticket-loose-stroke {
+  fill: none;
+  stroke: #5b3528;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+}

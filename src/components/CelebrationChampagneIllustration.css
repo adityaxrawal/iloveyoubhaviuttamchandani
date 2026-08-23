@@ -1,0 +1,144 @@
+.celebration-champagne {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.celebration-champagne .celebration-paper {
+  fill: #f5ebdd;
+}
+
+.celebration-champagne .celebration-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.15;
+}
+
+/* ============================================================
+   HEART
+   ============================================================ */
+
+.celebration-champagne .celebration-heart {
+  fill: #f8e7df;
+  stroke: #9e2929;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.celebration-champagne .celebration-heart-trace {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.78;
+}
+
+/* ============================================================
+   RED CELEBRATION MARKS
+   ============================================================ */
+
+.celebration-champagne .celebration-rays {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.95;
+}
+
+.celebration-champagne .celebration-rays-lower {
+  stroke-width: 3.4;
+}
+
+/* ============================================================
+   CHAMPAGNE GLASSES
+   ============================================================ */
+
+.celebration-champagne .glass-outline {
+  fill: #f8e9dc;
+  stroke: #512d22;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.celebration-champagne .glass-secondary {
+  fill: none;
+  stroke: #512d22;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.68;
+}
+
+.celebration-champagne .glass-detail {
+  fill: none;
+  stroke: #6a3c2d;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+/* ============================================================
+   CHAMPAGNE / LIQUID LEVEL
+   ============================================================ */
+
+.celebration-champagne .glass-liquid {
+  fill: none;
+  stroke: #6a3c2d;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.78;
+}
+
+/* ============================================================
+   CENTER HEART / CLINK
+   ============================================================ */
+
+.celebration-champagne .clink-heart path:first-child {
+  fill: #f8e7df;
+  stroke: #9e2929;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.celebration-champagne .clink-heart-trace {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+}
+
+/* ============================================================
+   LOOSE HAND-DRAWN INK
+   ============================================================ */
+
+.celebration-champagne .loose-ink {
+  fill: none;
+  stroke: #512d22;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.68;
+}
+
+.celebration-champagne .loose-ink-light {
+  fill: none;
+  stroke: #704334;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.5;
+}

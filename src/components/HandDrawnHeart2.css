@@ -1,0 +1,122 @@
+.hand-drawn-heart-2 {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  overflow: visible;
+}
+
+/* ============================================================
+   PAPER
+   ============================================================ */
+
+.hand-drawn-heart-2 .heart-paper {
+  fill: #f5ebdd;
+}
+
+.hand-drawn-heart-2 .heart-paper-texture {
+  fill: #cdbba8;
+  opacity: 0.18;
+}
+
+/* ============================================================
+   HEART INTERIOR
+   ============================================================ */
+
+.hand-drawn-heart-2 .heart-fill {
+  fill: #f8e7df;
+}
+
+/* ============================================================
+   HEART OUTLINE
+   ============================================================ */
+
+.hand-drawn-heart-2 .heart-outline {
+  fill: none;
+  stroke: #9e2929;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand-drawn-heart-2 .heart-outline-primary {
+  stroke-width: 6;
+  opacity: 0.96;
+}
+
+.hand-drawn-heart-2 .heart-outline-secondary {
+  stroke-width: 4.5;
+  opacity: 0.86;
+}
+
+.hand-drawn-heart-2 .heart-outline-inner {
+  stroke-width: 2.2;
+  opacity: 0.48;
+}
+
+/* ============================================================
+   HATCHING
+   ============================================================ */
+
+.hand-drawn-heart-2 .heart-hatching {
+  fill: none;
+  stroke: #d87969;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.40;
+}
+
+/* ============================================================
+   BOTTOM
+   ============================================================ */
+
+.hand-drawn-heart-2 .heart-bottom-stroke {
+  fill: none;
+  stroke: #9e2929;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hand-drawn-heart-2 .heart-bottom-stroke-secondary {
+  stroke-width: 3.5;
+  opacity: 0.85;
+}
+
+.hand-drawn-heart-2 .heart-bottom-stroke-small {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* ============================================================
+   RADIAL ACCENTS
+   ============================================================ */
+
+.hand-drawn-heart-2 .heart-accent-strokes {
+  fill: none;
+  stroke: #a32b2b;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.95;
+}
+
+.hand-drawn-heart-2 .heart-accent-fragments {
+  fill: none;
+  stroke: #d87969;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-drawn-heart-2 {
+    transition: none;
+  }
+}
