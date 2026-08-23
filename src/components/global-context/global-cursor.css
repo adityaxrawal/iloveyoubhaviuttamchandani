@@ -1,62 +1,88 @@
-/* ===== FLOATING ELEMENTS ===== */
-.floating-element {
+/* ===== ROSE BURST ON CLICK ===== */
+.rose-burst-layer {
   position: fixed;
+  inset: 0;
   z-index: 9999;
   pointer-events: none;
-  animation: float-up-fade 4s ease-out forwards;
+  overflow: hidden;
+}
+
+.rose-burst {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.rose-burst__bloom,
+.rose-burst__petal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  transform-origin: 50% 50%;
   will-change: transform, opacity;
 }
 
-.pixel-heart-particle {
-  width: 4px;
-  height: 4px;
-  background-color: #ff1744;
-  box-shadow: 0 0 4px #ff1744;
-  position: absolute;
+.rose-burst__bloom {
+  animation: rose-bloom 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  filter: drop-shadow(0 3px 6px rgb(90 8 22 / 0.35));
 }
 
-.pixel-heart-particle::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  width: 2px;
-  height: 2px;
-  box-shadow:
-    2px 0 0 #ff1744,
-    4px 0 0 #ff1744,
-    6px 0 0 #ff1744,
-    0 2px 0 #ff1744,
-    8px 2px 0 #ff1744,
-    2px 4px 0 #ff1744,
-    4px 4px 0 #ff1744,
-    6px 4px 0 #ff1744,
-    4px 6px 0 #ff1744;
-  background: transparent;
+.rose-burst__petal {
+  animation: petal-drift 2.4s cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
 }
 
-@keyframes float-up-fade {
+@keyframes rose-bloom {
   0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(0.8);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(-14deg);
   }
-  20% {
+  18% {
     opacity: 1;
-    transform: translate(var(--dx, 0), -50px) scale(1);
+    transform: translate(-50%, -58%) scale(1.06) rotate(2deg);
+  }
+  34% {
+    transform: translate(-50%, -62%) scale(0.98) rotate(0deg);
   }
   100% {
     opacity: 0;
-    transform: translate(var(--dx, 0), -400px) scale(1);
+    transform: translate(-50%, -190%) scale(0.86) rotate(6deg);
+  }
+}
+
+@keyframes petal-drift {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  }
+  14% {
+    opacity: 0.95;
+    transform: translate(calc(-50% + var(--dx) * 0.28), calc(-50% + var(--dy) * 0.22))
+      scale(1) rotate(calc(var(--spin) * 0.25));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.7)
+      rotate(var(--spin));
   }
 }
 
 /* ===== GLOBAL CURSOR ===== */
+/* a small rose bud, deep rose red rather than the old neon pink */
 body,
 a,
 button,
 .clickable {
   cursor:
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" fill="%23FF1744"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>')
-      12 12,
-    auto !important;
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="30" viewBox="-14 -15 28 30"><g><path d="M0 0c.5 5 .3 9-.5 13" fill="none" stroke="%233C6B3B" stroke-width="1.6" stroke-linecap="round"/><path d="M-.3 6.4c-2.8-.5-5-2.3-5.7-4.6 2.6-.4 5.2 1.2 5.7 4.6z" fill="%233F6E3C"/><g transform="translate(0 -3)"><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23A6141E"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23A6141E" transform="rotate(72)"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23A6141E" transform="rotate(144)"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23A6141E" transform="rotate(216)"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23A6141E" transform="rotate(288)"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23841020" transform="rotate(36) scale(.6)"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23841020" transform="rotate(180) scale(.6)"/><path d="M0 0C-7-3.2-7.6-12.4 0-12.4S7-3.2 0 0Z" fill="%23841020" transform="rotate(300) scale(.6)"/><circle cy="-1" r="1.6" fill="%236E0713"/></g></g></svg>')
+      6 4,
+    auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rose-burst__bloom,
+  .rose-burst__petal {
+    animation: none;
+    opacity: 0;
+  }
 }

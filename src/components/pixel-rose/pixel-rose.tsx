@@ -1,25 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, type FC } from "react";
 import pixelDataRaw from "./pixel-data.json";
 import "./pixel-rose.css";
 
 // Type assertion for the imported JSON data
 const pixelData = pixelDataRaw as string[][];
 
-const PixelRose: React.FC = () => {
+const PixelRose: FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d", { alpha: false }); // Optimize for no transparency if possible, but rose might have it?
-    // The data seems to have colors. If no alpha needed, alpha: false is faster.
-    // However, the original might have relied on body background.
-    // Let's assume standard alpha is fine.
-
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
-    if (pixelData.length === 0) return;
+    if (!pixelData || pixelData.length === 0 || !pixelData[0]?.length) return;
 
     const rows = pixelData.length;
     const cols = pixelData[0].length;
@@ -27,29 +23,30 @@ const PixelRose: React.FC = () => {
     // Set canvas dimensions to the actual data size
     canvas.width = cols;
     canvas.height = rows;
-
-    // Draw the pixels
-    // We can disable anti-aliasing for crisp pixel art, though fillRect 1x1 aligns with pixels anyway.
     ctx.imageSmoothingEnabled = false;
 
-    // Rendering loop
-    // To avoid blocking the main thread for too long, we can do this in one go as it's likely fast enough (512x512).
-    // If it janks, we can chunk it.
+    // Direct buffer write using ImageData for instant rendering without main-thread jank
+    const imgData = ctx.createImageData(cols, rows);
+    const buf32 = new Uint32Array(imgData.data.buffer);
 
-    // Clear canvas first
-    ctx.clearRect(0, 0, cols, rows);
+    for (let y = 0; y < rows; y++) {
+      const row = pixelData[y];
+      if (!row) continue;
+      const rowOffset = y * cols;
+      for (let x = 0; x < cols; x++) {
+        const hex = row[x];
+        if (hex && hex.charCodeAt(0) === 35) {
+          const num = parseInt(hex.slice(1), 16);
+          const r = (num >> 16) & 255;
+          const g = (num >> 8) & 255;
+          const b = num & 255;
+          // In little-endian ABGR: (A << 24) | (B << 16) | (G << 8) | R
+          buf32[rowOffset + x] = 0xff000000 | (b << 16) | (g << 8) | r;
+        }
+      }
+    }
 
-    // Performance optimization: Batch fillRects of same color?
-    // For now, simple iteration.
-
-    pixelData.forEach((row, y) => {
-      row.forEach((color, x) => {
-        // Optimization: Don't draw if transparent? (if color is null/empty, but here they are hex strings)
-        // We assume valid colors.
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, 1, 1);
-      });
-    });
+    ctx.putImageData(imgData, 0, 0);
   }, []);
 
   return (
