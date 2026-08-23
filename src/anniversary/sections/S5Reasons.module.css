@@ -1,0 +1,640 @@
+/* ─── Section 5: Reasons I Love You ─── */
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  background-color: #f5ede0;
+}
+
+/* ─── Full background image ─── */
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ─── Header Block ─── */
+.headerBlock {
+  position: absolute;
+  top: clamp(42px, 6.6vh, 68px);
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.heartTopDeco {
+  margin-bottom: 2px;
+  color: #a6141e;
+}
+
+.titleMain {
+  font-family: 'Dancing Script', 'Caveat', cursive;
+  font-size: clamp(2.2rem, 4.2vw, 4.6rem);
+  font-weight: 700;
+  color: #a6141e;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 3px rgba(166, 20, 30, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.titleHeart {
+  display: inline-block;
+  font-family: serif;
+  font-size: 0.62em;
+}
+
+.subtitle {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.52rem, 0.76vw, 0.84rem);
+  font-weight: 600;
+  color: #7a3a38;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+.subtitleHeart {
+  margin-top: 3px;
+  color: #a6141e;
+}
+
+/* ─── Cards Grid ─── */
+.cardsGrid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -46%;
+  margin-top: clamp(8px, 3vh, 40px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(8px, 1.2vw, 18px);
+  width: clamp(540px, 76vw, 1060px);
+  z-index: 5;
+}
+
+/* ─── Individual Note Card ─── */
+.noteCard {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+  will-change: transform;
+  cursor: default;
+  padding-top: 6px;
+}
+
+.noteCard:hover {
+  transform: translateY(-6px) rotate(0deg) !important;
+  filter: drop-shadow(0 14px 22px rgba(80, 20, 20, 0.22));
+  z-index: 10;
+}
+
+/* ─── Full-bleed SVG (self-contained note card) ─── */
+.cardSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Individual card rotations */
+.card0 { transform: rotate(-1.5deg); }
+.card1 { transform: rotate(0.8deg); }
+.card2 { transform: rotate(-0.6deg); }
+.card3 { transform: rotate(1.2deg); }
+.card4 { transform: rotate(0.5deg); }
+.card5 { transform: rotate(-1.2deg); }
+.card6 { transform: rotate(0.7deg); }
+.card7 { transform: rotate(-0.9deg); }
+
+/* ─── Scrapbook Elements ─── */
+
+/* Top-Left: August 2025 Calendar */
+.elemCalendar {
+  position: absolute;
+  left: 5.8%;
+  top: 11.5%;
+  width: clamp(92px, 9vw, 138px);
+  height: auto;
+  rotate: -5deg;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(60, 15, 20, 0.16));
+  transition: transform 0.3s ease;
+}
+
+/* Paperclip on calendar */
+.elemClipOnCalendar {
+  position: absolute;
+  left: 4.8%;
+  top: 9.8%;
+  width: clamp(20px, 2vw, 32px);
+  height: auto;
+  rotate: 18deg;
+  z-index: 6;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(60, 15, 20, 0.25));
+}
+
+/* Gold heart near calendar */
+.elemGoldenHeartTopLeft {
+  position: absolute;
+  left: 13.8%;
+  top: 25.8%;
+  width: clamp(28px, 2.7vw, 44px);
+  height: auto;
+  rotate: 12deg;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(180, 130, 40, 0.3));
+}
+
+/* Mid-Left: Canon Camera */
+.elemCamera {
+  position: absolute;
+  left: 3.5%;
+  top: 48%;
+  width: clamp(100px, 10.2vw, 156px);
+  height: auto;
+  rotate: -6deg;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 22px rgba(50, 10, 15, 0.2));
+}
+
+/* Red heart and sparkles near camera */
+.elemHeartSparklesMidLeft {
+  position: absolute;
+  left: 12.2%;
+  top: 61.5%;
+  width: clamp(38px, 3.8vw, 58px);
+  height: auto;
+  rotate: 8deg;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 8px rgba(166, 20, 30, 0.2));
+}
+
+/* Top-Right: Postage Stamp */
+.elemStamp {
+  position: absolute;
+  right: 6.2%;
+  top: 10.5%;
+  width: clamp(80px, 7.8vw, 120px);
+  height: auto;
+  rotate: 7deg;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(60, 15, 20, 0.16));
+}
+
+/* Cherries next to stamp */
+.elemCherries {
+  position: absolute;
+  right: 13.5%;
+  top: 22.8%;
+  width: clamp(44px, 4.4vw, 68px);
+  height: auto;
+  rotate: -10deg;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(120, 20, 30, 0.18));
+}
+
+/* Mid-Right: Handdrawn Tic-Tac-Toe */
+.elemTicTacToe {
+  position: absolute;
+  right: 3.8%;
+  top: 47.5%;
+  width: clamp(86px, 8.4vw, 130px);
+  height: auto;
+  rotate: 6deg;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(80, 20, 20, 0.14));
+}
+
+/* Red heart balloons below tic tac toe */
+.elemBalloons {
+  position: absolute;
+  right: 12.8%;
+  top: 59%;
+  width: clamp(48px, 4.8vw, 74px);
+  height: auto;
+  rotate: -8deg;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 14px rgba(166, 20, 30, 0.2));
+}
+
+/* Gold heart near tic-tac-toe */
+.elemGoldenHeartMidRight {
+  position: absolute;
+  right: 4.8%;
+  top: 66%;
+  width: clamp(24px, 2.4vw, 38px);
+  height: auto;
+  rotate: -15deg;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(180, 130, 40, 0.25));
+}
+
+/* Bottom small crayon heart */
+.elemCrayonHeartFooter {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(38px, 5.2vh, 52px);
+  translate: -50% 0;
+  width: clamp(20px, 1.8vw, 28px);
+  height: auto;
+  rotate: 4deg;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ─── Star & Sparkle Doodles (Organized Constellations) ─── */
+.doodleStar {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  color: #c59b27;
+  filter: drop-shadow(0 1px 2px rgba(160, 110, 30, 0.25));
+}
+
+.doodleSparkle {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  color: #c59b27;
+  filter: drop-shadow(0 1px 2px rgba(160, 110, 30, 0.25));
+}
+
+.doodleSparkleCrimson {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  color: #a6141e;
+  filter: drop-shadow(0 1px 2px rgba(166, 20, 30, 0.2));
+}
+
+/* Individual star/sparkle positions for natural Pinterest aesthetic */
+
+/* Top row & Header zone */
+.sparkleTopFarLeft    { left: 3.2%;  top: 7.2%;  rotate: 15deg; }
+.starTopLeft1         { left: 19.5%; top: 8.5%;  rotate: -12deg; }
+.sparkleTopLeftNear   { left: 26.8%; top: 12.2%; rotate: 8deg; }
+.starTopCenterLeft    { left: 33.5%; top: 6.8%;  rotate: 22deg; }
+
+.starTopCenterRight   { left: 66.8%; top: 7.2%;  rotate: -18deg; }
+.sparkleTopRightNear  { left: 73.2%; top: 11.5%; rotate: 12deg; }
+.shootingStarTopRight { right: 4.2%; top: 5.5%;  rotate: -8deg; }
+.starTopFarRight      { right: 2.8%; top: 19.8%; rotate: 14deg; }
+
+/* Left Margin zone */
+.starMidLeft1         { left: 2.2%;  top: 36.5%; rotate: -15deg; }
+.sparkleMidLeft1      { left: 18.2%; top: 39.2%; rotate: 20deg; }
+.starMidLeft2         { left: 2.8%;  top: 68.5%; rotate: 10deg; }
+.sparkleMidLeft2      { left: 16.5%; top: 73.8%; rotate: -22deg; }
+.starLowerLeft        { left: 10.2%; top: 82.5%; rotate: 16deg; }
+
+/* Right Margin zone */
+.sparkleMidRight1     { right: 2.5%;  top: 35.8%; rotate: -14deg; }
+.starMidRight1        { right: 18.2%; top: 38.6%; rotate: 25deg; }
+.sparkleMidRight2     { right: 3.2%;  top: 72.5%; rotate: 18deg; }
+.starMidRight2        { right: 17.5%; top: 74.8%; rotate: -10deg; }
+.starLowerRight       { right: 9.8%;  top: 83.2%; rotate: 8deg; }
+
+/* Inter-Card Micro Accents */
+.sparkleGridCenter    { left: 49.8%; top: 49.5%; rotate: 15deg; translate: -50% -50%; }
+.starGridTopGap       { left: 49.8%; top: 22.8%; rotate: -8deg; translate: -50% -50%; }
+.sparkleGridBottomGap { left: 49.8%; top: 76.5%; rotate: 25deg; translate: -50% -50%; }
+
+/* Bottom Footer zone */
+.sparkleFooterLeft    { left: 39.5%; bottom: clamp(14px, 2.5vh, 32px); rotate: 12deg; }
+.starFooterRight      { right: 39.5%; bottom: clamp(14px, 2.5vh, 32px); rotate: -15deg; }
+
+/* ─── Gypsophila flowers ─── */
+.flowerLeft {
+  position: absolute;
+  left: -0.8%;
+  bottom: 4%;
+  width: clamp(52px, 7vw, 112px);
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(50, 10, 15, 0.15));
+  transform: rotate(-8deg);
+}
+
+.flowerRight {
+  position: absolute;
+  right: -0.2%;
+  bottom: 3%;
+  width: clamp(52px, 7vw, 112px);
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(50, 10, 15, 0.15));
+  transform: rotate(6deg) scaleX(-1);
+}
+
+/* ─── Footer ─── */
+.footerBlock {
+  position: absolute;
+  bottom: clamp(8px, 2vh, 26px);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1px, 0.4vh, 6px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.footerSubtitle {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.48rem, 0.72vw, 0.78rem);
+  font-weight: 600;
+  color: #7a3a38;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.footerSignoff {
+  font-family: 'Dancing Script', 'Caveat', cursive;
+  font-size: clamp(1rem, 1.9vw, 2.1rem);
+  color: #a6141e;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(166, 20, 30, 0.12);
+  position: absolute;
+  right: clamp(18px, 3.5vw, 52px);
+  bottom: clamp(8px, 2vh, 26px);
+}
+
+@media (min-width: 768px) {
+  .cardsGrid {
+    left: 49.65%;
+    top: 50.5%;
+    width: 823.58984375px;
+    height: 435.881039946934px;
+  }
+}
+
+/* ─── Mobile Responsiveness (max-width: 767px) ─── */
+@media (max-width: 767px) {
+  .section {
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    overflow: visible;
+    padding-top: clamp(88px, 12.5vh, 118px);
+    padding-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* ── Header ── */
+  .headerBlock {
+    position: relative;
+    top: auto;
+    left: auto;
+    translate: none;
+    margin-top: 4px;
+    margin-bottom: 24px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .titleMain {
+    font-size: clamp(2rem, 8.5vw, 2.75rem);
+    white-space: nowrap;
+    justify-content: center;
+  }
+
+  .subtitle {
+    font-size: clamp(0.55rem, 2.6vw, 0.74rem);
+    letter-spacing: 0.24em;
+    margin-top: 5px;
+  }
+
+  /* ── 2 × 4 Card Grid on Mobile ── */
+  .cardsGrid {
+    position: relative;
+    top: auto;
+    left: auto;
+    translate: none;
+    margin-top: 0;
+    width: calc(100% - 24px);
+    max-width: 400px;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 14px 10px;
+    box-sizing: border-box;
+  }
+
+  .noteCard {
+    padding-top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .cardSvg {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ── Scrapbook Elements on Mobile ── */
+  .elemCalendar {
+    left: 2%;
+    top: 12px;
+    width: 58px;
+    rotate: -6deg;
+    z-index: 3;
+    opacity: 0.85;
+  }
+
+  .elemClipOnCalendar {
+    left: 1.5%;
+    top: 8px;
+    width: 14px;
+    rotate: 16deg;
+    z-index: 4;
+  }
+
+  .elemGoldenHeartTopLeft {
+    left: 11%;
+    top: 58px;
+    width: 18px;
+    rotate: 10deg;
+  }
+
+  .elemStamp {
+    right: 2%;
+    top: 10px;
+    width: 48px;
+    rotate: 8deg;
+    z-index: 3;
+    opacity: 0.85;
+  }
+
+  .elemCherries {
+    right: 10%;
+    top: 54px;
+    width: 28px;
+    rotate: -10deg;
+    z-index: 4;
+  }
+
+  .elemCamera {
+    left: -14px;
+    top: 35%;
+    width: 72px;
+    rotate: -8deg;
+    z-index: 2;
+    opacity: 0.6;
+  }
+
+  .elemHeartSparklesMidLeft {
+    left: 2px;
+    top: 44%;
+    width: 26px;
+    z-index: 2;
+    opacity: 0.75;
+  }
+
+  .elemTicTacToe {
+    right: -10px;
+    top: 40%;
+    width: 64px;
+    rotate: 6deg;
+    z-index: 2;
+    opacity: 0.6;
+  }
+
+  .elemBalloons {
+    right: 0px;
+    top: 52%;
+    width: 36px;
+    rotate: -6deg;
+    z-index: 2;
+    opacity: 0.75;
+  }
+
+  .elemGoldenHeartMidRight {
+    right: 4px;
+    top: 62%;
+    width: 16px;
+    z-index: 2;
+  }
+
+  .elemCrayonHeartFooter {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    margin: 22px auto 6px auto;
+    width: 22px;
+    display: block;
+  }
+
+  /* ── Footer on Mobile ── */
+  .footerBlock {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-top: 12px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footerSubtitle {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+  }
+
+  .footerSignoff {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1.45rem;
+  }
+
+  .flowerLeft {
+    left: -12px;
+    bottom: 6px;
+    width: 56px;
+    opacity: 0.8;
+  }
+
+  .flowerRight {
+    right: -12px;
+    bottom: 6px;
+    width: 56px;
+    opacity: 0.8;
+  }
+
+  /* ── Doodles on Mobile ── */
+  .sparkleTopFarLeft { left: 4%; top: 4%; }
+  .starTopLeft1 { left: 24%; top: 3.5%; }
+  .sparkleTopLeftNear { left: 32%; top: 8%; }
+  .starTopCenterLeft { display: none; }
+  .starTopCenterRight { display: none; }
+  .sparkleTopRightNear { right: 30%; top: 8%; left: auto; }
+  .shootingStarTopRight { right: 4%; top: 3.5%; }
+  .starTopFarRight { right: 2%; top: 12%; }
+
+  .starMidLeft1 { left: 2%; top: 28%; }
+  .sparkleMidLeft1 { left: 88%; top: 27%; }
+  .starMidLeft2 { left: 2%; top: 70%; }
+  .sparkleMidLeft2 { left: 88%; top: 69%; }
+  .starLowerLeft { left: 8%; top: 88%; }
+  .starLowerRight { right: 8%; top: 88%; }
+  .sparkleMidRight1 { display: none; }
+  .starMidRight1 { display: none; }
+  .sparkleMidRight2 { display: none; }
+  .starMidRight2 { display: none; }
+  .sparkleGridCenter { display: none; }
+  .starGridTopGap { display: none; }
+  .sparkleGridBottomGap { display: none; }
+  .sparkleFooterLeft { left: 20%; bottom: 16px; }
+  .starFooterRight { right: 20%; bottom: 16px; }
+}
